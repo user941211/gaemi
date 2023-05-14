@@ -1,46 +1,73 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-family: AlphaSans,sans-serif!important;
+  text-decoration: none;
 }
 
 .header{
-  width:100%;
-  color:white;
-  padding-left: 3% 0 0 0;
-  background:red;
-  display:fixed;
+  width: 100%;
+  height: 3rem;
+  position: sticky;
+  top: 0;
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--outline);
+  background-color: gray;
+  /*background-color: var(--background);*/
+  z-index: 2;
+}
+
+.container{
+  width: 100%;
+  max-width: 69.2rem;
+  height: inherit;
+  margin: 0 2.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.wrapper .clickable-layer{
+  width: 8rem;
+  height: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 3rem;
+  background-color: var(--primary);
+  font-size: 1.5rem;
+  color: var(--on-primary);
+  border-radius: 4px;
+}
+
+.clickable-layer:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--neutral);
+  border-radius: inherit;
 }
