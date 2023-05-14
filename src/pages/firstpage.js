@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
+import './css/firstPage.css';
 
-const firstpage = () => {
+const firstPage = () => {
   return (
-    <div>firstpage</div> 
+    <div className="firstPage">
+      <header>
+        asdfasdfasdf
+      </header>
+      
+    </div> 
   )
 }
 
-export default firstpage
+export default firstPage
