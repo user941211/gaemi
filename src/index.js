@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/App';
+import firstPage from './pages/firstpage';
 import reportWebVitals from './reportWebVitals';
 import { FirstPage } from '@mui/icons-material';
 
