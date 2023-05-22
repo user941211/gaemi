@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './pages/App';
-import Firstpage from './pages/firstpage';
-import Header from './pages/Header';
 import reportWebVitals from './reportWebVitals';
-
+import App from './pages/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header/>
-    <Firstpage/>
+    <div>
+      <App/>
+    </div>
   </React.StrictMode>
 );
 
