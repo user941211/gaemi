@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/App';
-import firstPage from './pages/firstpage';
+import Firstpage from './pages/Firstpage';
+import Header from './pages/Header';
 import reportWebVitals from './reportWebVitals';
-import { FirstPage } from '@mui/icons-material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    <firstPage />
+    <Header/>
+    <Firstpage/>
   </React.StrictMode>
 );
 

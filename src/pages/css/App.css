@@ -6,6 +6,10 @@
   font-family: AlphaSans,sans-serif!important;
   text-decoration: none;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 
 .header{
   width: 100%;
@@ -19,10 +23,21 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-bottom: 1px solid var(--outline);
-  background-color: gray;
+  border-bottom: 1px solid gray;
+  background-color: white;
+  color: black;
   /*background-color: var(--background);*/
   z-index: 2;
+}
+.header img{
+  width: 2em;
+  margin-right: 10px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container{
@@ -35,7 +50,7 @@
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;

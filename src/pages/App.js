@@ -1,25 +1,16 @@
-import logo from './img/headerLogo.svg';
-import './css/App.css';
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import './css/App.css';
+import Firstpage from './Firstpage';
+import Header from './Header';
+import Main from './Main';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 /*import header from header.js;*/
 
 function App() {
-  
-  let post='abc';
-  
-  return (
+ return (
     <div className="App">
-      <div className="header">
-        <div className="conatiner">
-          <img src={logo} alt="logo"></img>
-          <div className="wrapper">
-            <a className="clickableLayer" href="https://www.alphasquare.co.kr/home" role="button">시작하기</a>
-          </div>
-          <Button variant="contained" href="#outlined-buttons">시작할까말까</Button>
-        </div>
-      </div>
-      <header />
+      {<Header/>}
+      {<Main/>}
     </div>
   );
 }
