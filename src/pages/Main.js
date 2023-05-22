@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import Firstpage from "./Firstpage";
+import Firstpage from "./firstpage";
 function Main() {
     return(
         <div className="Main" style={{display: 'flex'}}>

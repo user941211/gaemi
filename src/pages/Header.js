@@ -1,6 +1,6 @@
 import React from "react";
 import logo from './img/YUlogo.png';
-import Firstpage from "./Firstpage";
+import Firstpage from "./firstpage";
 import {Link, BrowserRouter} from 'react-router-dom';
 import './css/App.css';
 

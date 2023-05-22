@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './css/App.css';
-import Firstpage from './Firstpage';
+import Firstpage from './firstpage';
 import Header from './Header';
 import Main from './Main';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
