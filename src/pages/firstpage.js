@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './css/firstPage.css';
+import Header from './Header';
 import NowTime from '../compenents/nowtime';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /*
 	현재 구현이 안되어있는 기능: 장 오픈 여부 => <span></span>태그 안에 '장이 열린 여부' 글자 대신에
@@ -13,19 +14,24 @@ import NowTime from '../compenents/nowtime';
 
 const Firstpage = () => {
 	return (
-		<div id="wrap">
-			<article>
-				<p><strong>Omega</strong> Route</p>
-				<em>Whatever you imagine, you will see more</em>
-			</article>
-		
-			<figure>
-				<p>
-					<NowTime />
-				</p>		
-			</figure>
+		<div>
+			<Header />
+			
+			<div id="wrap">
+				<article>
+					<p><strong>Omega</strong> Route</p>
+					<button classNmae = "btn"><Link to={`/Main`}></Link></button>
+					<em>Whatever you imagine, you will see more</em>
+				</article>
+			
+				<figure>
+					<p>
+						<NowTime />
+					</p>		
+				</figure>
+			</div>
 		</div>
 	)
 }
 
-export default Firstpage
+export default Firstpage;

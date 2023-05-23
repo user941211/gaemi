@@ -68,3 +68,10 @@ nav li:hover a { background:#111; color:#ddd; opacity:0.9; }
 #wrap.night>img:nth-child(2) { opacity:0.1;}
 #wrap.night figure p img.cl1 { opacity:0.4;}
 #wrap.night figure p img.cl2 { opacity:0.4;}
+
+.btn{
+  width:100px;
+  height:80px;
+  z-index:10000000;
+  background-color: aquamarine;
+}
