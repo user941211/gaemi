@@ -12,20 +12,30 @@ import './css/firstPage.css';
 */
 
 const Firstpage = () => {
-  return (
-    <div id="wrap">
-	    <article>
-		    <p><strong>Omega</strong> Route</p>
-		    <em>Whatever you imagine, you will see more</em>
-	    </article>
-	
-      <figure>		
-		    <p>
-			    <span>장이 열린 여부</span>		
-		    </p>		
-	    </figure>
-    </div>
-  )
+	const nowTime = new Date();
+	const nowHour = nowTime.getHours();
+	const nowMinutes = nowTime.getMinutes();
+
+	return (
+		<div id="wrap">
+			<article>
+				<p><strong>Omega</strong> Route</p>
+				<em>Whatever you imagine, you will see more</em>
+			</article>
+		
+		<figure>		
+				<p>
+					{
+						(nowHour > 9 && nowHour < 16) ||
+						(nowHour === 9 && nowMinutes >= 0) ||
+						(nowHour === 16 && nowMinutes <= 30)
+						? <span>OPEN</span>
+						: <span>CLOSE</span>
+					}
+				</p>		
+			</figure>
+		</div>
+	)
 }
 
 export default Firstpage
