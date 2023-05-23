@@ -25,7 +25,7 @@ const Firstpage = () => {
 				</article>
 			
 				<figure>
-					<p>
+					<p className='clk_name'>
 						<NowTime />
 					</p>		
 				</figure>

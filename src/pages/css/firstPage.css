@@ -78,3 +78,6 @@ nav li:hover a { background:#111; color:#ddd; opacity:0.9; }
   margin-left: 20px;
   font-weight: 800;
 }
+.clk_name{
+  font-size: 40px;
+}
