@@ -23,14 +23,14 @@ function NowTime() {
                 (nowHour === 9 && nowMinutes >= 0 && nowSecond >= 0) ||
                 (nowHour === 15 && nowMinutes <= 30 && nowSecond <= 0)
             ) {
-                remainHour = startTime.hour - nowHour;
-                remainMinutes = startTime.minutes - nowMinutes;
-                remainSeconds = startTime.second - nowSecond;
-                startEnd = "마감";
-            } else {
                 remainHour = endTime.hour - nowHour;
                 remainMinutes = endTime.minutes - nowMinutes;
                 remainSeconds = endTime.second - nowSecond;
+                startEnd = "마감";
+            } else {
+                remainHour = startTime.hour - nowHour;
+                remainMinutes = startTime.minutes - nowMinutes;
+                remainSeconds = startTime.second - nowSecond;
                 startEnd = "시작";
             }
 
