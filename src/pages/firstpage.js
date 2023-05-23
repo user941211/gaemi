@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './css/firstPage.css';
+import NowTime from '../compenents/nowtime';
 //import { Link } from 'react-router-dom';
 
 /*
@@ -11,18 +12,6 @@ import './css/firstPage.css';
 */
 
 const Firstpage = () => {
-	const nowTime = new Date();
-	const nowHour = nowTime.getHours();
-	const nowMinutes = nowTime.getMinutes();
-
-	const startTime = {hour : 9, minutes : 0};
-	const endTime = {hour : 15, minutes: 30};
-
-	const remainStartHour = startTime.hour - nowHour;
-	const remainStartMinutes = startTime.hour - nowMinutes;
-	const remainEndHour = endTime.hour - nowHour;
-	const remainEndMinutes = endTime.hour - nowMinutes;
-
 	return (
 		<div id="wrap">
 			<article>
@@ -30,24 +19,9 @@ const Firstpage = () => {
 				<em>Whatever you imagine, you will see more</em>
 			</article>
 		
-			<figure>		
+			<figure>
 				<p>
-					{
-						(nowHour > 9 && nowHour < 15) ||
-						(nowHour === 9 && nowMinutes >= 0) ||
-						(nowHour === 15 && nowMinutes <= 30)
-						? <span>OPEN</span>
-						: <span>CLOSE</span>
-					}
-				</p>
-				<p>
-					{
-						(nowHour > 9 && nowHour < 15) ||
-						(nowHour === 9 && nowMinutes >= 0) ||
-						(nowHour === 15 && nowMinutes <= 30)
-						? `장 마감까지 ${remainEndHour}시 ${remainEndMinutes}분 남았습니다.`
-						: `장 시작까지 ${remainStartHour}시 ${remainStartMinutes}분 남았습니다.`
-					}
+					<NowTime />
 				</p>		
 			</figure>
 		</div>
