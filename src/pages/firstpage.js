@@ -20,8 +20,8 @@ const Firstpage = () => {
 			<div id="wrap">
 				<article>
 					<p><strong>Omega</strong> Route</p>
-					<p><Link to={`/Main`}>클릭시 Main 이동</Link></p>
 					<em>Whatever you imagine, you will see more</em>
+					<button className='btn'><Link to={`/Main`}>시작하기</Link></button>
 				</article>
 			
 				<figure>
