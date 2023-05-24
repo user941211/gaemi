@@ -13,15 +13,15 @@ function NowTime() {
             const startTime = { hour: 9, minutes: 0, second: 0 };
             const endTime = { hour: 15, minutes: 30, second: 0 };
 
-            let remainHour = 0;
-            let remainMinutes = 0;
-            let remainSeconds = 0;
-            let startEnd = "";
+            var remainHour = 0;
+            var remainMinutes = 0;
+            var remainSeconds = 0;
+            var startEnd = "";
 
             if (
                 (nowHour > 9 && nowMinutes < 15) ||
-                (nowHour === 9 && nowMinutes >= 0 && nowSecond >= 0) ||
-                (nowHour === 15 && nowMinutes <= 30 && nowSecond <= 0)
+                (nowHour === 9 && nowMinutes >= 0) ||
+                (nowHour === 15 && nowMinutes < 30)
             ) {
                 remainHour = endTime.hour - nowHour;
                 remainMinutes = endTime.minutes - nowMinutes;
@@ -43,7 +43,9 @@ function NowTime() {
                 remainSeconds += 60;
                 remainMinutes--;
             }
-
+            if(remainHour<10) remainHour = '0' + remainHour;
+            if(remainMinutes<10) remainMinutes = '0' + remainMinutes;
+            if(remainSeconds<10) remainSeconds = '0' + remainSeconds;
             const remainingTimeString = `장 ${startEnd}까지 ${remainHour}:${remainMinutes}:${remainSeconds}`;
             setRemainingTime(remainingTimeString);
         }, 1000);

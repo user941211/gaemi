@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './css/firstPage.css';
 import Header from './Header';
 import NowTime from '../compenents/nowtime';
