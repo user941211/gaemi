@@ -33,16 +33,17 @@ function NowTime() {
                 remainSeconds = startTime.second - nowSecond;
                 startEnd = "시작";
             }
-
-            if (remainHour < 0) remainHour += 24;
-            if (remainMinutes < 0) {
-                remainMinutes += 60;
-                remainHour--;
-            }
             if (remainSeconds < 0) {
                 remainSeconds += 60;
                 remainMinutes--;
             }
+            if (remainMinutes < 0) {
+                remainMinutes += 60;
+                remainHour--;
+            }
+            if (remainHour < 0) remainHour += 24;
+            
+            
             if(remainHour<10) remainHour = '0' + remainHour;
             if(remainMinutes<10) remainMinutes = '0' + remainMinutes;
             if(remainSeconds<10) remainSeconds = '0' + remainSeconds;
