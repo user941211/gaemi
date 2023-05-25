@@ -126,22 +126,61 @@ a{
   height: 50%;
   top:0px;
   border-bottom: 1px solid burlywood;
+  padding:20px
 }
 .first_name{
   height: 100%;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 .second_name{
   height: 100%;
   font-size: 20px;
 }
-
 .Graph{
-  width:80%;
-  height: 30%;
-  margin-left: 10%;
-  margin-top:5%;
-  background-color: blue;
-  color: white;
-  border:1px solid blue;
+  margin: 20px;
+}
+.stockLogo{
+  display: flex;
+  font-size: 20px;
+}
+
+.stockLogo img{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+}
+
+.stockInfo{
+  
+}
+
+.stockInfo .cospi{
+  color: gray;
+  font-size: 15px;
+}
+
+.stockInfo .stockContent{
+  margin-left: 10px;
+}
+
+.stockInfo .stockTable{
+  width:100%;
+  margin-top: 10px;
+  border-top:1px solid lightcoral;
+  border-bottom:1px solid lightcoral;
+}
+.stockInfo .stockTable tr:nth-child(2n-1){
+  color:brown;
+  font-size: 18px;
+}
+
+.themeButton{
+  width:80px;
+  height:20px;
+  margin-top: 10px;
+  background-color: gray;
+  color:black;
+  border-radius: 10%;
+  font-size: 10px;
 }
