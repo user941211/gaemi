@@ -1,6 +1,7 @@
 import React from "react";
 import './css/App.css';
 import Header from "./Header";
+import Chart from '../compenents/chart'
 
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
@@ -14,7 +15,10 @@ function Main() {
             <div className="main">
                 <div className="container">
                     <div className="Left">
-                        <div className="Graph">그래프출력됩니다</div>
+                        <Chart />
+                        <div className="Graph">
+                            
+                        </div>
                     </div>
                     <div className="Right">
                         <div className="first">
