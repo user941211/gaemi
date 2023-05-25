@@ -19,7 +19,7 @@ function NowTime() {
             var startEnd = "";
 
             if (
-                (nowHour > 9 && nowMinutes < 15) ||
+                (nowHour > 9 && nowHour < 15) ||
                 (nowHour === 9 && nowMinutes >= 0) ||
                 (nowHour === 15 && nowMinutes < 30)
             ) {
