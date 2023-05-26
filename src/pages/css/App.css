@@ -22,8 +22,9 @@ a{
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
+  align-items: center;
   justify-content: center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid burlywood;
   background-color: white;
   color: black;
   /*background-color: var(--background);*/
@@ -32,6 +33,13 @@ a{
 .header img{
   width: 2em;
   margin-right: 10px;
+}
+
+.header .searchSpace{
+  border:1px solid #bbb;
+  border-radius: 50px;
+  padding: 5px 7px;
+  text-align: center;
 }
 
 .logo {
@@ -104,8 +112,7 @@ a{
   color: black;
   /*background-color: var(--background);*/
   z-index: 2;
-  border:1px solid burlywood;
-  background-color: beige;
+  background-color: white;
 }
 
 .Left{
@@ -126,7 +133,12 @@ a{
   height: 50%;
   top:0px;
   border-bottom: 1px solid burlywood;
-  padding:20px
+  padding:20px;
+  overflow:scroll;
+}
+.second{
+  padding:20px;
+  overflow:scroll;
 }
 .first_name{
   height: 100%;
@@ -174,11 +186,21 @@ a{
   color:brown;
   font-size: 18px;
 }
+.stockInfo .stockTable tr:nth-child(8) td:nth-child(1){
+  color:blue;
+}
+.stockInfo .stockTable tr:nth-child(8) td:nth-child(2){
+  color:red;
+}
+.themeLayout{
+  display: flex;
+}
 
 .themeButton{
   width:80px;
   height:20px;
   margin-top: 10px;
+  margin-right: 10px;
   background-color: gray;
   color:black;
   border-radius: 10%;

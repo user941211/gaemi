@@ -16,6 +16,7 @@ function Header(){
                     <p>Omega Route</p>
                 </div>
             </div>
+            <input type="text" className="searchSpace" placeholder="검색"/>
         </div>
     );
 }

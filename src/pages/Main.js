@@ -32,7 +32,8 @@ function Main() {
                                         <p className="cospi">코스피 980908</p>
                                     </div>
                                 </div>
-                                <div>
+                                <div className="themeLayout">
+                                    <Theme/>
                                     <Theme/>
                                 </div>
                                 <table className="stockTable">
