@@ -69,7 +69,7 @@ nav li:hover a { background:#111; color:#ddd; opacity:0.9; }
 #wrap.night figure p img.cl1 { opacity:0.4;}
 #wrap.night figure p img.cl2 { opacity:0.4;}
 
-.btn{
+#wrap .btn{
   width:80px;
   height:30px;
   z-index:10000000;
@@ -77,6 +77,11 @@ nav li:hover a { background:#111; color:#ddd; opacity:0.9; }
   background-color: #F5D0A9;
   margin-left: 20px;
   font-weight: 800;
+}
+#wrap .btn p{
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
 }
 .clk_name{
   font-size: 40px;

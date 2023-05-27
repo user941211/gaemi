@@ -7,13 +7,9 @@
   font-family: AlphaSans,sans-serif!important;
   text-decoration: none;
 }
-a{
-  text-decoration: none;
-  color: black;
-}
 
 /*header부분*/
-.header{
+#header{
   width: 100%;
   height: 3rem;
   position: sticky;
@@ -32,30 +28,36 @@ a{
   /*background-color: var(--background);*/
   z-index: 2;
 }
-.header img{
+
+#header a{
+  text-decoration: none;
+  color: black;
+}
+
+#header img{
   width: 2em;
   margin-right: 10px;
 }
 
-.header .searchSpace{
+#header .searchSpace{
   border:1px solid #bbb;
   border-radius: 50px;
   padding: 5px 7px;
   text-align: center;
 }
 
-.logo {
+#header .logo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.LogoMain{
+#header .LogoMain{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header_container{
+#header .header_container{
   width: 100%;
   max-width: 69.2rem;
   height: 100%;
@@ -160,7 +162,6 @@ a{
   overflow:scroll;
 }
 .first_name{
-  height: 100%;
   font-size: 20px;
   margin-bottom: 10px;
 }
