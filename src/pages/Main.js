@@ -38,9 +38,13 @@ function Main() {
                         </div>
                         <div className="second">
                             <div className="second_name">발굴분석</div>
-                            <div>
-                                <BalGul />
-                            </div>
+                            <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
+                                <Tab eventKey="home" title="발굴분류">
+                                    <BalGul />
+                                </Tab>
+                                <Tab eventKey="profile" title="Profile">
+                                </Tab>
+                            </Tabs>
                         </div>
                     </div>
                 </div>
