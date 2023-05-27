@@ -10,10 +10,14 @@ import { Link } from 'react-router-dom';
 function Header(){
     return(
       <div className="header">
-            <div className="container">
+            <div className="header_container">
                 <div className="logo">
-                <Link to={`/Main`}><img src={logo} alt="logo"></img></Link>
-                    <p>Omega Route</p>
+                    <Link to={`/Main`}>
+                        <div className="LogoMain">
+                            <img src={logo} alt="logo"></img>
+                            <p>Omega Route</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
             <form>

@@ -15,7 +15,7 @@ function Main() {
         <div>
             <Header />
             <div className="main">
-                <div className="container">
+                <div className="main_container">
                     <div className="Left">
                         <div className="Graph">
                             <Chart />
