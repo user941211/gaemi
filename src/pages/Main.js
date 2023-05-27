@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import Chart from '../compenents/chart'
-import Theme from "../compenents/theme";
 import Stock from "../compenents/stock";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Sonnet from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Header";
 import './css/App.css';
