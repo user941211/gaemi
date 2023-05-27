@@ -16,7 +16,9 @@ function Header(){
                     <p>Omega Route</p>
                 </div>
             </div>
-            <input type="text" className="searchSpace" placeholder="검색"/>
+            <form>
+                <input type="search" className="searchSpace" placeholder="검색"/>
+            </form>
         </div>
     );
 }
