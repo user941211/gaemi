@@ -28,10 +28,10 @@ function Main() {
                         <div className="first">
                         <div className="first_name">종목정보</div>
                         <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-                            <Tab eventKey="home" title="종목분류">
+                            <Tab eventKey="home" title="종목요약">
                                 <Stock />
                             </Tab>
-                            <Tab eventKey="profile" title="Profile">
+                            <Tab eventKey="profile" title="재무정보">
                             </Tab>
                         </Tabs>
                             
@@ -39,10 +39,10 @@ function Main() {
                         <div className="second">
                             <div className="second_name">발굴분석</div>
                             <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-                                <Tab eventKey="home" title="발굴분류">
+                                <Tab eventKey="home" title="테마종목">
                                     <BalGul />
                                 </Tab>
-                                <Tab eventKey="profile" title="Profile">
+                                <Tab eventKey="profile" title="종목필터">
                                 </Tab>
                             </Tabs>
                         </div>
