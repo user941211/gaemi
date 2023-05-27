@@ -8,6 +8,7 @@ import Sonnet from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Header";
 import './css/App.css';
+import BalGul from "../compenents/balgul";
 
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
@@ -39,7 +40,9 @@ function Main() {
                         </div>
                         <div className="second">
                             <div className="second_name">발굴분석</div>
-                            <div></div>
+                            <div>
+                                <BalGul />
+                            </div>
                         </div>
                     </div>
                 </div>
