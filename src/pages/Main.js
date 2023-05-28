@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Chart from '../compenents/chart'
 import Stock from "../compenents/stock";
 import Tab from 'react-bootstrap/Tab';
@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Header";
 import './css/App.css';
 import BalGul from "../compenents/balgul";
-
+import Test from "../compenents/test"
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
@@ -43,6 +43,7 @@ function Main() {
                                     <BalGul />
                                 </Tab>
                                 <Tab eventKey="profile" title="종목필터">
+                                    <Test />
                                 </Tab>
                             </Tabs>
                         </div>

@@ -7,9 +7,9 @@ const port = 3001;
 // Create a MySQL connection
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'your_username',
-  password: 'your_password',
-  database: 'your_database_name'
+  user: 'root',
+  password: '941211',
+  database: 'tistory'
 });
 
 // Connect to the MySQL database
@@ -17,7 +17,7 @@ connection.connect();
 
 // Define a route to fetch data from the database
 app.get('/api/data', (req, res) => {
-  const query = 'SELECT * FROM your_table_name';
+  const query = 'SELECT * FROM tistory';
 
   // Execute the query
   connection.query(query, (error, results) => {
