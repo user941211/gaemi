@@ -79,9 +79,11 @@ nav li:hover a { background:#111; color:#ddd; opacity:0.9; }
   font-weight: 800;
 }
 #wrap .btn p{
-  text-decoration: none;
   color: black;
   font-size: 15px;
+}
+#wrap .btn a{
+  text-decoration: none;
 }
 .clk_name{
   font-size: 40px;

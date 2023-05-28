@@ -56,6 +56,11 @@
   justify-content: center;
   align-items: center;
 }
+#header p{
+  height: 20px;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
 
 #header .header_container{
   width: 100%;

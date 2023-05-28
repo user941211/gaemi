@@ -10,7 +10,7 @@ import './css/App.css';
 
 function Header(){
     return(
-      <div id="header">
+        <div id="header">
             <div className="header_container">
                 <div className="logo">
                     <Link to={`/Main`}>
