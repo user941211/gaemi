@@ -8,7 +8,7 @@ const BalGul = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://finance.naver.com/item/coinfo.naver?code=005930');
+        const response = await axios.get('https://alphasquare.co.kr/home/market/market-summary?code=005930');
         setStockData(response.data);
       } catch (error) {
         console.error('주식 정보 패치 실패:', error);

@@ -8,6 +8,7 @@ import Header from "./Header";
 import './css/App.css';
 import BalGul from "../compenents/balgul";
 import Test from "../compenents/test"
+import axios from "axios";
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
@@ -40,7 +41,7 @@ function Main() {
                             <div className="second_name">발굴분석</div>
                             <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
                                 <Tab eventKey="home" title="테마종목">
-                                    <BalGul />
+                                   BalGul
                                 </Tab>
                                 <Tab eventKey="profile" title="종목필터">
                                     <Test />
