@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
 const port = 3001;
+require('dotenv').config();
 
 // sql 연동
 const db1 = mysql.createConnection({
