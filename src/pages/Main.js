@@ -41,7 +41,7 @@ function Main() {
                             <div className="second_name">발굴분석</div>
                             <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
                                 <Tab eventKey="home" title="테마종목">
-                                   BalGul
+                                   <BalGul/>
                                 </Tab>
                                 <Tab eventKey="profile" title="종목필터">
                                     <Test />

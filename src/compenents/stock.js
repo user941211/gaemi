@@ -7,7 +7,7 @@ function Stock() {
     return(
         <div className="stockInfo">
             <div className="stockLogo">
-                <img src={stockLogo}/>
+                <img src={stockLogo} alt="stock"/>
                 <div className="stockContent">
                     <p>삼성전자</p>
                     <p className="cospi">코스피 980908</p>

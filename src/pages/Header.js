@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import SearchModal from "../compenents/searchmodal";
 import logo from './img/YUlogo.png';
 import { Link } from 'react-router-dom';
 import './css/App.css';
@@ -22,7 +23,7 @@ function Header(){
                 </div>
             </div>
             <form>
-                <input type="search" className="searchSpace" placeholder="검색"/>
+                <SearchModal/>
             </form>
         </div>
     );
