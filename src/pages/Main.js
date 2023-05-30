@@ -17,7 +17,7 @@ import axios from "axios";
 function Main() {
     return(
         <div>
-            <Header />
+            <Header name="/"/>
             <div className="main">
                 <div className="main_container">
                     <div className="Left">
