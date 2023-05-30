@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchModal from "../compenents/searchmodal";
 import logo from "./img/YUlogo.png";
 import { Link } from "react-router-dom";
