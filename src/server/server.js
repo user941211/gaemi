@@ -6,10 +6,10 @@ const port = 3001;
 
 // sql 연동
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "941211",
-  database: "tistory",
+  host: REACT_APP_DB_HOST,
+  user: REACT_APP_DB_USERNAME,
+  password: REACT_APP_DB_PASSWORD,
+  database: "daily_craw",
 });
 app.use(
   cors({

@@ -6,7 +6,7 @@
 .pnp.js
 # password
 /password.json
-
+.env
 # testing
 /coverage
 
