@@ -31,7 +31,7 @@ app.listen(port, () => {
 });
 // post 요청 시 값을 객체로 바꿔줌
 app.use(express.urlencoded({ extended: true }));
-// API Server 밑에거 지우고 주석 부분으로도 실행 가능
+
 app.get("/AJ네트웍스", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   const sql = "SELECT * FROM AJ네트웍스;";
