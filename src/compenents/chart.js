@@ -1,59 +1,60 @@
-import { Component } from "react";
-import ApexCharts from "react-apexcharts";
+import { Component } from 'react'
+import ApexCharts from 'react-apexcharts'
 
 export default class Chart extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      series: [
-        {
-          name: "희망",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-        },
-        {
-          name: "개미들 나락",
-          data: [1, 4, 15, 41, 69, 32, 39, 31, 48],
-        },
-      ],
+      series: [{
+        name: "희망",
+        data: [31, 572, 780, 41, 978, 69, 529, 590, 714, 48, 717, 4, 489, 32, 569, 822, 852, 692, 887, 305]
+      },
+      {
+        name: "개미들 나락",
+        data: [69, 389, 527, 740, 180, 869, 690, 36, 590, 367, 948, 197, 954, 520, 1, 794, 556, 357, 876, 895]
+      }],
 
-      options: {
+      options: {  
+        theme: {
+          mode: "dark",
+        },
         chart: {
           zoom: {
-            enabled: false,
-          },
+            enabled: false
+          }
         },
         dataLabels: {
-          enabled: false,
+          enabled: false
         },
         stroke: {
-          curve: "straight",
+          curve: 'smooth'
         },
         title: {
-          text: "대충 구현해봄",
-          align: "left",
+          text: '대충 구현해봄',
+          align: 'left'
         },
         grid: {
           row: {
-            colors: ["#f3f3f3f3", "transparent"], // takes an array which will be repeated on columns
-            opacity: 0.5,
+            colors: ['#f3f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
           },
         },
         xaxis: {
-          categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-        },
-      },
-    };
+          categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
+        }
+      }
+    }
   }
   render() {
     return (
-      <ApexCharts
-        options={this.state.options}
-        series={this.state.series}
-        typs="line"
-        width={500}
-        height={300}
-      />
+        <ApexCharts
+            options={this.state.options}
+            series={this.state.series}
+            typs='line'
+            width={600}
+            height={350}
+        />
     );
   }
 }
