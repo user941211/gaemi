@@ -16,9 +16,6 @@ export default class Chart extends Component {
       }],
 
       options: {  
-        theme: {
-          mode: "dark",
-        },
         chart: {
           zoom: {
             enabled: false
