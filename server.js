@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
 const port = 3001;
-require('dotenv').config();
+
 // sql 연동
 const db1 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
@@ -59,7 +59,7 @@ app.post('/search', (req, res) => {
   const inputValue = req.body.inputValue;
 
   // Search for the value in the `hi` and `jk` columns of the `def` table in the `abc` database
-  connection.query(
+  db2.query(
     `SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.daily_buy_list WHERE code = ? OR code_name = ?`,
     [inputValue, inputValue],
     (error, results) => {
@@ -76,7 +76,7 @@ app.post('/search', (req, res) => {
       const jkValue = results[0].jk;
 
       // Search for a table with the same value and name in the `xyz` database
-      connection.query(
+      db1.query(
         `SELECT * FROM information_schema.tables WHERE table_schema = ${process.env.REACT_APP_DB_DATABASE1} AND table_name = ?`,
         [jkValue],
         (error, results) => {
@@ -93,7 +93,7 @@ app.post('/search', (req, res) => {
           const tableName = results[0].table_name;
 
           // Perform the SELECT * FROM query on the found table
-          connection.query(`SELECT * FROM xyz.${tableName}`, (error, results) => {
+          db2.query(`SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.${tableName}`, (error, results) => {
             if (error) {
               console.error(error);
               return res.status(500).json({ error: 'Internal Server Error' });
