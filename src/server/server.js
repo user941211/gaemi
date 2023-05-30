@@ -32,26 +32,6 @@ app.listen(port, () => {
 // post 요청 시 값을 객체로 바꿔줌
 app.use(express.urlencoded({ extended: true }));
 // API Server 밑에거 지우고 주석 부분으로도 실행 가능
-/*app.get('/test', (req, res) => {
-  const query = 'SELECT * FROM test';
-
-  db.query(query, (error, results) => {
-    if (error) {
-      console.error('Error executing MySQL query:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    db.query(query,
-      (err, result) => {
-          if (err)
-              console.log(err);
-          else
-              res.send(result);
-    });
-
-    res.json(results);
-  });
-});*/
 app.get("/test", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   const sql = "SELECT * FROM test;";
