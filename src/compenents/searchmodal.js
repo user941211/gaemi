@@ -2,29 +2,24 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../pages/css/App.css';
-
+import axios from 'axios';
 function SearchModal() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(null);
 
-  const handleSearch = async () => {
+  const handleSearch = (e) => {
+    setInputValue(e.value);
+
+    fetchinputValue();
+  };
+  const fetchinputValue = async () => {
     try {
-      const response = await fetch('http://localhost:3001/search', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ inputValue }),
+      const response = await axios('http://localhost:3001/search', {
+        name : inputValue
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data); //data 출력!
-      } else {
-        console.error('Error:', response.status);
-      }
+      console.log(response.data)
     } catch (error) {
       console.error('Error:', error);
     }

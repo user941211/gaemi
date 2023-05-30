@@ -48,7 +48,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="테마종목">
-                  <BalGul />
+                  BalGul
                 </Tab>
                 <Tab eventKey="profile" title="종목필터">
                   <Test />

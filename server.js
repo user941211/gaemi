@@ -4,6 +4,10 @@ const cors = require("cors");
 const app = express();
 const port = 3001;
 require('dotenv').config();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+app.use(bodyParser.json());
 
 // sql 연동
 const db1 = mysql.createConnection({
@@ -18,13 +22,13 @@ const db2 = mysql.createConnection({
   password: process.env.REACT_APP_DB_PASSWORD,
   database: process.env.REACT_APP_DB_DATABASE2,
 });
-app.use(
+/*app.use(
   cors({
     origin: "*",
     credentials: true,
     optionsSuccessStatus: 200,
   })
-);
+);*/
 // 잘 연동 되었는지 확인
 db1.connect((error) => {
   if (error) {
@@ -44,7 +48,6 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-
 app.get("/search", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   const sql = "SELECT * FROM AJ네트웍스;";
@@ -57,16 +60,16 @@ app.get("/search", (req, res) => {
 // post 요청 시 값을 객체로 바꿔줌
 app.use(express.urlencoded({ extended: true }));
 app.post('/search', (req, res) => {
-  const inputValue = req.body.inputValue;
-
+  var inputValue = req.body.name;
+  console.log(inputValue);
   // Search for the value in the `hi` and `jk` columns of the `def` table in the `abc` database
   db2.query(
-    `SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.daily_buy_list WHERE code = ? OR code_name = ?`,
+    `SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.stock_item_all WHERE code = ? OR code_name = ?`,
     [inputValue, inputValue],
     (error, results) => {
       if (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error1' });
       }
 
       if (results.length === 0) {
@@ -83,7 +86,7 @@ app.post('/search', (req, res) => {
         (error, results) => {
           if (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Internal Server Error' });
+            return res.status(500).json({ error: 'Internal Server Error2' });
           }
 
           if (results.length === 0) {
@@ -97,7 +100,7 @@ app.post('/search', (req, res) => {
           db2.query(`SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.${tableName}`, (error, results) => {
             if (error) {
               console.error(error);
-              return res.status(500).json({ error: 'Internal Server Error' });
+              return res.status(500).json({ error: 'Internal Server Error3' });
             }
 
             // Respond with the result of the SELECT * FROM query
