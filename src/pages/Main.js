@@ -1,13 +1,13 @@
-import React from 'react';
-import Chart from '../compenents/chart'
+import React from "react";
+import Chart from "../compenents/chart";
 import Stock from "../compenents/stock";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header";
-import './css/App.css';
+import "./css/App.css";
 import BalGul from "../compenents/balgul";
-import Test from "../compenents/test"
+import Test from "../compenents/test";
 import axios from "axios";
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
@@ -15,44 +15,52 @@ import axios from "axios";
 */
 
 function Main() {
-    return(
-        <div>
-            <Header name="/"/>
-            <div className="main">
-                <div className="main_container">
-                    <div className="Left">
-                        <div className="Graph">
-                            <Chart />
-                        </div>
-                    </div>
-                    <div className="Right">
-                        <div className="first">
-                        <div className="first_name">종목정보</div>
-                        <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-                            <Tab eventKey="home" title="종목요약">
-                                <Stock />
-                            </Tab>
-                            <Tab eventKey="profile" title="재무정보">
-                            </Tab>
-                        </Tabs>
-                            
-                        </div>
-                        <div className="second">
-                            <div className="second_name">발굴분석</div>
-                            <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-                                <Tab eventKey="home" title="테마종목">
-                                   <BalGul/>
-                                </Tab>
-                                <Tab eventKey="profile" title="종목필터">
-                                    <Test />
-                                </Tab>
-                            </Tabs>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div>
+      <Header name="/" />
+      <div className="main">
+        <div className="main_container">
+          <div className="Left">
+            <div className="Graph">
+              <Chart />
             </div>
+          </div>
+          <div className="Right">
+            <div className="first">
+              <div className="first_name">종목정보</div>
+              <Tabs
+                defaultActiveKey="home"
+                transition={false}
+                id="noanim-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="home" title="종목요약">
+                  <Stock />
+                </Tab>
+                <Tab eventKey="profile" title="재무정보"></Tab>
+              </Tabs>
+            </div>
+            <div className="second">
+              <div className="second_name">발굴분석</div>
+              <Tabs
+                defaultActiveKey="home"
+                transition={false}
+                id="noanim-tab-example"
+                className="mb-3"
+              >
+                <Tab eventKey="home" title="테마종목">
+                  <BalGul />
+                </Tab>
+                <Tab eventKey="profile" title="종목필터">
+                  <Test />
+                </Tab>
+              </Tabs>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Main;

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const BalGul = () => {
   const [stockData, setStockData] = useState(null);
@@ -8,10 +8,12 @@ const BalGul = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://alphasquare.co.kr/home/market/market-summary?code=005930');
+        const response = await axios.get(
+          "https://alphasquare.co.kr/home/market/market-summary?code=005930"
+        );
         setStockData(response.data);
       } catch (error) {
-        console.error('주식 정보 패치 실패:', error);
+        console.error("주식 정보 패치 실패:", error);
       }
     };
 

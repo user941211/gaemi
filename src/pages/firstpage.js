@@ -1,8 +1,8 @@
-import React from 'react';
-import Header from './Header';
-import NowTime from '../compenents/nowtime';
-import { Link } from 'react-router-dom';
-import './css/firstPage.css';
+import React from "react";
+import Header from "./Header";
+import NowTime from "../compenents/nowtime";
+import { Link } from "react-router-dom";
+import "./css/firstPage.css";
 
 /*
 	현재 구현이 안되어있는 기능: 장 오픈 여부 => <span></span>태그 안에 '장이 열린 여부' 글자 대신에
@@ -13,25 +13,30 @@ import './css/firstPage.css';
 */
 
 const Firstpage = () => {
-	return (
-		<div>
-			<Header name="/Main" />
-			
-			<div id="wrap">
-				<article>
-					<p><strong>Omega</strong> Route</p>
-					<em>Whatever you imagine, you will see more</em>
-					<button className='btn'><Link to={`/Main`}><p>시작하기</p></Link></button>
-				</article>
-			
-				<figure>
-					<p className='clk_name'>
-						<NowTime />
-					</p>		
-				</figure>
-			</div>
-		</div>
-	)
-}
+  return (
+    <div>
+      <Header name="/Main" />
+      <div id="wrap">
+        <article>
+          <p>
+            <strong>Omega</strong> Route
+          </p>
+          <em>Whatever you imagine, you will see more</em>
+          <button className="btn">
+            <Link to={`/Main`}>
+              <p>시작하기</p>
+            </Link>
+          </button>
+        </article>
+
+        <figure>
+          <p className="clk_name">
+            <NowTime />
+          </p>
+        </figure>
+      </div>
+    </div>
+  );
+};
 
 export default Firstpage;

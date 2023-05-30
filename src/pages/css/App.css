@@ -1,15 +1,15 @@
 /*초기설정*/
-*{
+* {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
-  font-family: AlphaSans,sans-serif!important;
+  font-family: AlphaSans, sans-serif !important;
   text-decoration: none;
 }
 
 /*header부분*/
-#header{
+#header {
   width: 100%;
   height: 3rem;
   position: sticky;
@@ -29,38 +29,38 @@
   z-index: 2;
 }
 
-#header a{
+#header a {
   text-decoration: none;
   color: black;
 }
 
-#header img{
+#header img {
   width: 2em;
   margin-right: 10px;
 }
-#SearchModal .searchButton{
-  color:brown;
+#SearchModal .searchButton {
+  color: brown;
   background-color: white;
   border: 1px solid brown;
 }
-#SearchModal .searchButton:hover{
-  color:white;
+#SearchModal .searchButton:hover {
+  color: white;
   background-color: brown;
   border: 1px solid white;
 }
-#ModalFooter .firstButton{
-  color:brown;
+#ModalFooter .firstButton {
+  color: brown;
   background-color: white;
   border: 1px solid brown;
 }
-#ModalFooter .firstButton:hover{
-  color:white;
+#ModalFooter .firstButton:hover {
+  color: white;
   background-color: brown;
   border: 1px solid white;
 }
-.searchSpace{
+.searchSpace {
   width: 100%;
-  border:1px solid #bbb;
+  border: 1px solid #bbb;
   border-radius: 40px;
   padding: 5px 7px;
   text-align: center;
@@ -70,18 +70,18 @@
   justify-content: center;
   align-items: center;
 }
-#header .LogoMain{
+#header .LogoMain {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#header p{
+#header p {
   height: 20px;
   vertical-align: middle;
   margin-bottom: 0;
 }
 
-#header .header_container{
+#header .header_container {
   width: 100%;
   max-width: 69.2rem;
   height: 100%;
@@ -97,7 +97,7 @@
   align-items: center;
 }
 
-.wrapper .clickable-layer{
+.wrapper .clickable-layer {
   width: 8rem;
   height: 3rem;
   display: -webkit-box;
@@ -114,7 +114,7 @@
   font-size: 1.5rem;
   color: var(--on-primary);
   border-radius: 4px;
-  float:right;
+  float: right;
 }
 
 .clickable-layer:after {
@@ -129,7 +129,7 @@
   border-radius: inherit;
 }
 /*Main페이지*/
-.main{
+.main {
   width: 100%;
   height: 50rem;
   display: -webkit-box;
@@ -145,7 +145,7 @@
   z-index: 2;
   background-color: white;
 }
-.main_container{
+.main_container {
   width: 100%;
   height: 100%;
   margin: 0 2.4rem;
@@ -160,93 +160,92 @@
   align-items: center;
 }
 
-.Left{
-  width:50%;
+.Left {
+  width: 50%;
   height: 100%;
   border-right: 1px solid burlywood;
   float: left;
   left: 0;
 }
-.Right{
-  width:50%;
+.Right {
+  width: 50%;
   height: 100%;
   float: right;
   right: 0;
 }
-.first{
+.first {
   width: 100%;
   height: 50%;
-  top:0px;
+  top: 0px;
   border-bottom: 1px solid burlywood;
-  padding:20px;
-  overflow:scroll;
+  padding: 20px;
+  overflow: scroll;
 }
-.second{
-  padding:20px;
-  overflow:scroll;
+.second {
+  padding: 20px;
+  overflow: scroll;
 }
-.first_name{
+.first_name {
   font-size: 20px;
   margin-bottom: 10px;
 }
-.second_name{
+.second_name {
   font-size: 20px;
   margin-bottom: 10px;
 }
-.Graph{
+.Graph {
   margin: 20px;
 }
-.stockLogo{
+.stockLogo {
   display: flex;
   font-size: 20px;
 }
 
-.stockLogo img{
-  width:50px;
-  height:50px;
+.stockLogo img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
-.stockInfo{
-  
+.stockInfo {
 }
 
-.stockInfo .cospi{
+.stockInfo .cospi {
   color: gray;
   font-size: 15px;
 }
 
-.stockInfo .stockContent{
+.stockInfo .stockContent {
   margin-left: 10px;
 }
 
-.stockInfo .stockTable{
-  width:100%;
+.stockInfo .stockTable {
+  width: 100%;
   margin-top: 10px;
-  border-top:1px solid lightcoral;
-  border-bottom:1px solid lightcoral;
+  border-top: 1px solid lightcoral;
+  border-bottom: 1px solid lightcoral;
 }
-.stockInfo .stockTable tr:nth-child(2n-1){
-  color:brown;
+.stockInfo .stockTable tr:nth-child(2n-1) {
+  color: brown;
   font-size: 18px;
 }
-.stockInfo .stockTable tr:nth-child(8) td:nth-child(1){
-  color:blue;
+.stockInfo .stockTable tr:nth-child(8) td:nth-child(1) {
+  color: blue;
 }
-.stockInfo .stockTable tr:nth-child(8) td:nth-child(2){
-  color:red;
+.stockInfo .stockTable tr:nth-child(8) td:nth-child(2) {
+  color: red;
 }
-.themeLayout{
+.themeLayout {
   display: flex;
 }
 
-.themeButton{
-  width:80px;
-  height:20px;
+.themeButton {
+  width: 80px;
+  height: 20px;
   margin-top: 10px;
   margin-right: 10px;
   background-color: gray;
-  color:black;
+  color: black;
   border-radius: 10%;
   font-size: 10px;
 }
