@@ -1,6 +1,6 @@
 import React from "react";
 import Theme from "./theme";
-import stockLogo from "../pages/img/stockLogoEx.JPG";
+import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
 function Stock() {

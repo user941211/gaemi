@@ -14,7 +14,7 @@ function Header(props) {
     <div id="header">
       <div className="header_container">
         <div className="logo">
-          <Link to={`${props.name}`}>
+          <Link to={`${props.link}`}>
             <div className="LogoMain">
               <img src={logo} alt="logo"></img>
               <p>Omega Route</p>
