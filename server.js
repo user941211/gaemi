@@ -47,20 +47,20 @@ db2.connect((error) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
 app.get("/search", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  const sql = "SELECT * FROM AJ네트웍스;";
+  const sql = `SELECT * FROM ${inputValue};`;
   db1.query(sql, (err, result) => {
     if (err) console.log(err);
     else res.send(result);
   });
 });
-
+var inputValue;
 // post 요청 시 값을 객체로 바꿔줌
 app.use(express.urlencoded({ extended: true }));
 app.post('/search', (req, res) => {
-  var inputValue = req.body.name;
+  inputValue = req.body.name;
+  res.header("Access-Control-Allow-Origin", "*");
   console.log(inputValue);
   // Search for the value in the `hi` and `jk` columns of the `def` table in the `abc` database
   db2.query(
@@ -74,12 +74,12 @@ app.post('/search', (req, res) => {
 
       if (results.length === 0) {
         // If the value doesn't exist, respond with "don't find"
-        return res.json({ message: "don't find" });
+        return res.json({ message: "못 찾겠다.." });
       }
 
       const jkValue = results[0].jk;
 
-      // Search for a table with the same value and name in the `xyz` database
+      // db1
       db1.query(
         `SELECT * FROM information_schema.tables WHERE table_schema = ${process.env.REACT_APP_DB_DATABASE1} AND table_name = ?`,
         [jkValue],
@@ -111,3 +111,5 @@ app.post('/search', (req, res) => {
     }
   );
 });
+
+
