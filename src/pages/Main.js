@@ -51,7 +51,7 @@ function Main() {
                   BalGul
                 </Tab>
                 <Tab eventKey="profile" title="종목필터">
-                  <Test />
+                  test
                 </Tab>
               </Tabs>
             </div>
