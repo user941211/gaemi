@@ -1,12 +1,23 @@
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*초기설정*/
 * {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
-  font-family: AlphaSans, sans-serif !important;
+  font-family: MaplestoryOTFBold, AlphaSans, sans-serif !important;
   text-decoration: none;
 }
+td{
+  padding:10px;
+}
+
 
 /*header부분*/
 #header {
@@ -32,6 +43,7 @@
 #header a {
   text-decoration: none;
   color: black;
+  
 }
 
 #header img {
@@ -207,7 +219,14 @@
   border-radius: 50%;
 }
 
-.stockInfo {
+.stockLogo_small {
+  display: flex;
+  font-size: 20px;
+}
+.stockLogo_small img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .stockInfo .cospi {
@@ -248,4 +267,9 @@
   color: black;
   border-radius: 10%;
   font-size: 10px;
+}
+
+.gray-line td:first-child{
+  border-top: 1px solid gray;
+  border-collapse: collapse;
 }

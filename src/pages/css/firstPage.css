@@ -1,9 +1,15 @@
+ @font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
-  font-family: AlphaSans, sans-serif !important;
+  font-family: MaplestoryOTFBold, AlphaSans, sans-serif !important;
   text-decoration: none;
 }
 
@@ -68,6 +74,15 @@ figure p {
 figure p span {
   position: relative;
   z-index: 5;
+}
+@media screen and (max-width:1000px) {
+  article{
+    display: none;
+  }
+  figure{
+    left:0;
+    bottom: 0;
+  }
 }
 
 /*테마버튼*/
@@ -216,7 +231,7 @@ nav li:hover a {
 }
 
 #wrap .btn {
-  width: 80px;
+  width: 100px;
   height: 30px;
   z-index: 10000000;
   border-radius: 20%;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
 
 const BalGul = () => {
@@ -30,7 +31,7 @@ const BalGul = () => {
           <p>Quantity: {stockData.quantity}</p>
         </div>
       ) : (
-        <p>로딩중...</p>
+        <Spinner animation="border" variant="primary" />
       )}
     </div>
   );
