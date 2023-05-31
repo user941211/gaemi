@@ -49,8 +49,8 @@ export default class Chart extends Component {
             options={this.state.options}
             series={this.state.series}
             typs='line'
-            width={600}
-            height={350}
+            width={'100%'}
+            height={'500'}
         />
     );
   }
