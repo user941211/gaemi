@@ -33,7 +33,7 @@ function SearchModal() {
   return (
     <form onSubmit={handleSearch} onKeyDown={handleOnKeyPress}>
       <div id="SearchMrodal">
-          <Button variant="primary" className="searchButton" onClick={handleShow}>
+          <Button variant="outline-primary" className="searchButton" onClick={handleShow}>
             찾기
           </Button>
           <Modal show={show} onHide={handleClose}>

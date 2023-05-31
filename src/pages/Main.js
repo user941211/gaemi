@@ -38,7 +38,7 @@ function Main() {
                   <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                    <FinancialInfo/>
+                  <FinancialInfo />
                 </Tab>
               </Tabs>
             </div>
@@ -51,7 +51,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="테마종목">
-                  <BalGul/>
+                  <BalGul />
                 </Tab>
                 <Tab eventKey="profile" title="종목필터">
                   test

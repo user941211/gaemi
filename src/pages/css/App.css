@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'MaplestoryOTFBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-family: "MaplestoryOTFBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -14,10 +15,9 @@
   font-family: MaplestoryOTFBold, AlphaSans, sans-serif !important;
   text-decoration: none;
 }
-td{
-  padding:10px;
+td {
+  padding: 10px;
 }
-
 
 /*header부분*/
 #header {
@@ -43,7 +43,6 @@ td{
 #header a {
   text-decoration: none;
   color: black;
-  
 }
 
 #header img {
@@ -269,7 +268,7 @@ td{
   font-size: 10px;
 }
 
-.gray-line td:first-child{
+.gray-line td:first-child {
   border-top: 1px solid gray;
   border-collapse: collapse;
 }
