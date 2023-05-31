@@ -7,11 +7,11 @@ export default class Chart extends Component {
 
     this.state = {
       series: [{
-        name: "파란버섯",
+        name: "삼성전자",
         data: [31, 572, 780, 41, 978, 69, 529, 590, 714, 48, 717, 4, 489, 32, 569, 822, 852, 692, 887, 305]
       },
       {
-        name: "초록버섯",
+        name: "LG전자",
         data: [69, 389, 527, 740, 180, 869, 690, 36, 590, 367, 948, 197, 954, 520, 1, 794, 556, 357, 876, 895]
       }],
 
@@ -28,7 +28,7 @@ export default class Chart extends Component {
           curve: 'smooth'
         },
         title: {
-          text: '대충 구현해봄',
+          text: '주식 차트',
           align: 'left'
         },
         grid: {
