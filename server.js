@@ -65,7 +65,7 @@ app.post('/search', (req, res) => {
       const jkValue = db1results[0].code_name.replace(/'/g, '');
       console.log(jkValue);
       db1.query(
-        `SELECT * FROM ${jkValue}`,
+        `SELECT date, close, open, high, low FROM ${jkValue}`,
         (error, results) => {
           if (error) {
             console.error(error);
@@ -75,6 +75,7 @@ app.post('/search', (req, res) => {
             return res.json({ message: "table don't find" });
           }
           console.log(results);
+          res.json(results);
           const tableName = results[0].code_name;
           /*db2.query(`SELECT * FROM ${tableName}`, (error, results) => {
             if (error) {
