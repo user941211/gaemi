@@ -9,12 +9,12 @@ import "./css/App.css";
     Header에 있는 'YUlogo' 혹은 'Omega Route'를 클릭시에는 firstpage로 이동이 된다.
 */
 
-function Header(props) {
+function Header({onDataUpdate}) {
   return (
     <div id="header">
       <div className="header_container">
         <div className="logo">
-          <Link to={`${props.link}`}>
+          <Link to="/main">
             <div className="LogoMain">
               <img src={logo} alt="logo"></img>
               <p>Omega Route</p>
@@ -23,7 +23,7 @@ function Header(props) {
         </div>
       </div>
       <form>
-        <SearchModal />
+        <SearchModal onDataUpdate={onDataUpdate}/>
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Chart from "../compenents/chart";
 import Stock from "../compenents/stock";
 import Tab from "react-bootstrap/Tab";
@@ -10,20 +10,26 @@ import BalGul from "../compenents/balgul";
 import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
+import SearchModal from '../compenents/searchmodal';
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
 */
 
 function Main() {
+  const [chartData, setChartData] = useState([]);
+  const handleDataUpdate = (data) =>{
+    setChartData(data);
+  };
+  console.log(chartData);
   return (
     <div>
-      <Header link="/" />
+      <Header link="/" onDataUpdate={handleDataUpdate}/>
       <div className="main">
         <div className="main_container">
           <div className="Left">
             <div className="Graph">
-              <Chart />
+              <Chart chartData={chartData}/>
             </div>
             <div>
               <Recommendation />
@@ -55,7 +61,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="테마종목">
-                  <BalGul />
+                  balgul
                 </Tab>
                 <Tab eventKey="profile" title="종목필터">
                   test

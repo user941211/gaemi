@@ -1,55 +1,36 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import '../pages/css/App.css';
 import axios from 'axios';
-//import Chart from './chart';
 
-const subscribers = new Set(); // 구독자 목록을 저장하는 Set 객체
-
-function SearchModal() {
+function SearchModal({ onDataUpdate }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [inputValue, setInputValue] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:3001/search', { name: inputValue });
-      const data = response.data;
+      const data = response?.data;
       console.log(response.data);
-      setSearchResult(data);
-      console.log(searchResult);
-      console.log(setSearchResult);
+      onDataUpdate(data); // 부모 컴포넌트에 전달하는 코드
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
+
   const handleOnKeyPress = e => {
     if (e.key === 'Enter') {
       handleSearch(e);
     }
   };
-  const subscribe = (subscriber) => {
-    subscribers.add(subscriber);
-  };
 
-  // 구독을 제거합니다.
-  const unsubscribe = (subscriber) => {
-    subscribers.delete(subscriber);
-  };
-
-  // SearchModal 컴포넌트의 데이터 변경을 구독자에게 알립니다.
-  const notifySubscribers = () => {
-    subscribers.forEach(subscriber => subscriber(searchResult));
-  };
   return (
     <form onSubmit={handleSearch} onKeyDown={handleOnKeyPress}>
-      <div id="SearchMrodal">
+      <div id="SearchModal">
         <Button variant="outline-primary" className="searchButton" onClick={handleShow}>
           찾기
         </Button>
@@ -82,6 +63,3 @@ function SearchModal() {
 }
 
 export default SearchModal;
-
-
-//{searchResult.length > 0 && <Chart data={searchResult} />}
