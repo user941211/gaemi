@@ -65,7 +65,7 @@ app.post('/search', (req, res) => {
       const jkValue = db1results[0].code_name.replace(/'/g, '');
       console.log(jkValue);
       db1.query(
-        `SELECT date, close, open, high, low FROM ${jkValue} where date>=20220101`,
+        `SELECT date, close, open, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, results) => {
           if (error) {
             console.error(error);
