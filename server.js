@@ -65,7 +65,7 @@ app.post('/search', (req, res) => {
       const jkValue = db1results[0].code_name.replace(/'/g, '');
       console.log(jkValue);
       db1.query(
-        `SELECT date, close, open, high, low FROM ${jkValue}`,
+        `SELECT date, close, open, high, low FROM ${jkValue} where date>=20220101`,
         (error, results) => {
           if (error) {
             console.error(error);
@@ -77,13 +77,6 @@ app.post('/search', (req, res) => {
           console.log(results);
           res.json(results);
           const tableName = results[0].code_name;
-          /*db2.query(`SELECT * FROM ${tableName}`, (error, results) => {
-            if (error) {
-              console.error(error);
-              return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            res.json(results);
-          });*/
         }
       );
     }
