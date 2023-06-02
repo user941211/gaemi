@@ -4,7 +4,7 @@ import ApexCharts from 'react-apexcharts';
 function Chart({ chartData }) {
   const [series, setSeries] = useState([
     {
-      name: '삼성전자',
+      name: ' ',
       data: [],
     },
   ]);
@@ -14,6 +14,17 @@ function Chart({ chartData }) {
       zoom: {
         enabled: false,
       },
+      events: {
+        dataPointMouseEnter: function (event, chartContext, config) {
+          const { dataPointIndex, seriesIndex } = config;
+          const { categories } = chartContext.config.xaxis;
+          const category = categories[dataPointIndex];
+          const value = chartData[seriesIndex].data[dataPointIndex];
+
+          console.log(`Category: ${category}`);
+          console.log(`Value: ${value}`);
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -22,7 +33,7 @@ function Chart({ chartData }) {
       curve: 'smooth',
     },
     title: {
-      text: '주식 차트',
+      text: ' ',
       align: 'left',
     },
     grid: {
@@ -43,19 +54,32 @@ function Chart({ chartData }) {
   const updateChartData = () => {
     if (chartData && chartData.length > 0) {
       const categories = chartData.map((item) => item.date);
-      const seriesData = chartData.map((item) => item.close);
-
+      const end = chartData.map((item) => item.close);
+      const start = chartData.map((item) => item.open);
+      const low = chartData.map((item) => item.low);
+      const high = chartData.map((item) => item.high);
+      const volume = chartData.map((item) => item.volume);
+      const name = chartData[0].code_name;
       setSeries([
-        {
-          name: '삼성전자',
-          data: seriesData,
-        },
+        //{ name: '시가', data: start },
+        //{ name: '고가', data: high },
+        //{ name: '저가', data: low },
+        { name: '종가', data: end },
+        //{ name: '거래량', data: volume },
       ]);
 
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {
           categories: categories,
+          tickPlacement: 'on',
+          labels: {
+            show: false, // 하나의 x축 레이블만 표시하기 위해 레이블 표시를 비활성화합니다.
+          },
+        },
+        title: {
+          text: name,
+          align: 'left',
         },
       }));
     }
@@ -63,17 +87,12 @@ function Chart({ chartData }) {
 
   return (
     <div>
-      <ApexCharts
-        options={options}
-        series={series}
-        type="line"
-        width={'100%'}
-        height={500}
-      />
+      <ApexCharts options={options} series={series} type="line" width={'100%'} height={500} />
     </div>
   );
 }
 
 export default Chart;
+
 
 

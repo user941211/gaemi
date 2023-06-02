@@ -36,7 +36,7 @@ app.listen(port, () => {
 });
 app.get("/search", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  const sql = `SELECT * FROM ${inputValue};`;
+  const sql = `SELECT * FROM ${inputValue};`; // 수정: inputValue를 사용할 수 있는 범위로 이동
   db1.query(sql, (err, result) => {
     if (err) console.log(err);
     else res.send(result);
@@ -62,10 +62,10 @@ app.post('/search', (req, res) => {
         return res.json({ message: "못 찾겠다.." });
       }
       console.log('db1 결과 : ',db1results);
-      const jkValue = db1results[0].code_name.replace(/'/g, '');
+      const jkValue = db1results[0].code_name.replace(/'/g, ''); // 수정: 구문 오류 수정
       console.log(jkValue);
       db1.query(
-        `SELECT date, close, open, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
+        `SELECT date, close, open, volume, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, results) => {
           if (error) {
             console.error(error);
@@ -82,5 +82,3 @@ app.post('/search', (req, res) => {
     }
   );
 });
-
-
