@@ -27,9 +27,12 @@ function SearchModal({ onDataUpdate }) {
       handleSearch(e);
     }
   };
-
+  const handleSubmit = (event) => {
+    handleSearch(event); // Call handleSearch function
+    handleClose(); // Call handleClose function
+  };
   return (
-    <form onSubmit={handleSearch} onKeyDown={handleOnKeyPress}>
+    <form onSubmit={handleSubmit} onKeyDown={handleOnKeyPress}>
       <div id="SearchModal">
         <Button variant="outline-primary" className="searchButton" onClick={handleShow}>
           찾기
@@ -49,7 +52,7 @@ function SearchModal({ onDataUpdate }) {
             />
           </Modal.Body>
           <Modal.Footer id="ModalFooter">
-            <Button className="firstButton" type="submit">
+            <Button className="firstButton" type="submit" onClick={handleSubmit} >
               찾기
             </Button>
             <Button variant="outline-secondary" className="secondButton" onClick={handleClose}>
