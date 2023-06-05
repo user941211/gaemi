@@ -19,7 +19,7 @@ const Firstpage = () => {
       <div id="wrap">
         <article>
           <p>
-            <strong>Omega</strong> Route
+            <strong>개미</strong> 집
           </p>
           <em>Whatever you imagine, you will see more</em>
           <button className="btn">
