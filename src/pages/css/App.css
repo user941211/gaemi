@@ -156,27 +156,27 @@ td {
   z-index: 2;
   background-color: white;
 }
-.presentPrice{
+.presentPrice {
   margin-top: 10px;
   display: flex;
 }
-.presentPrice p:nth-child(2){
+.presentPrice p:nth-child(2) {
   margin-left: 10px;
   color: palevioletred;
 }
 
-.buyPrice{
+.buyPrice {
   display: flex;
 }
-.buyPrice p:nth-child(2){
+.buyPrice p:nth-child(2) {
   margin-left: 10px;
   color: palevioletred;
 }
 
-.sellPrice{
+.sellPrice {
   display: flex;
 }
-.sellPrice p:nth-child(2){
+.sellPrice p:nth-child(2) {
   margin-left: 10px;
   color: palevioletred;
 }
@@ -268,8 +268,8 @@ td {
   border-top: 1px solid lightcoral;
   border-bottom: 1px solid lightcoral;
 }
-#FinancialInfo td:nth-child(1){
-  color:brown;
+#FinancialInfo td:nth-child(1) {
+  color: brown;
 }
 
 .themeLayout {
@@ -303,26 +303,26 @@ td {
   width: 30%;
 }
 .right .circle {
-    width:15px;
-    height:15px;
-    border-radius:75px;
-    text-align:center;
-    margin:0 auto;
-    font-size:12px;
-    vertical-align:middle;
-    line-height:150px;
+  width: 15px;
+  height: 15px;
+  border-radius: 75px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 12px;
+  vertical-align: middle;
+  line-height: 150px;
 }
 .right .green {
-  background-color: rgb(25,135,84);
+  background-color: rgb(25, 135, 84);
 }
 .right .blue {
-  background-color: rgb(13,202,240);
+  background-color: rgb(13, 202, 240);
 }
 .right .yellow {
-  background-color: rgb(255,193,7);
+  background-color: rgb(255, 193, 7);
 }
 .right .red {
-  background-color: rgb(220,53,69);
+  background-color: rgb(220, 53, 69);
 }
 
 #RecommendationFigure {
@@ -350,19 +350,19 @@ td {
   height: 30px;
 }
 
-#ThemeListMain{
-  width:100%;
+#ThemeListMain {
+  width: 100%;
   display: flex;
   align-items: center;
 }
-#ThemeListMain .ThemeName{
+#ThemeListMain .ThemeName {
   margin-right: 20px;
 }
-#ThemeListMain .ThemeRate{
+#ThemeListMain .ThemeRate {
   margin-right: 20px;
 }
-#ThemeListMain .ThemeProgress{
-  width:100%;
+#ThemeListMain .ThemeProgress {
+  width: 100%;
 }
 
 .modal-dialog-custom {
@@ -373,8 +373,3 @@ td {
   max-width: 2500px;
   padding: 30px;
 }
-
-
-
-
-
