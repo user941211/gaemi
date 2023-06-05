@@ -348,3 +348,17 @@ td {
 #ThemeListMain .ThemeProgress{
   width:100%;
 }
+
+.modal-dialog-custom {
+  max-width: 2500px;
+}
+
+.modal-content-custom {
+  max-width: 2500px;
+  padding: 30px;
+}
+
+
+
+
+
