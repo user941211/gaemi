@@ -55,10 +55,10 @@ function Chart({ chartData }) {
     if (chartData && chartData.length > 0) {
       const categories = chartData.map((item) => item.date);
       const end = chartData.map((item) => item.close);
-      const start = chartData.map((item) => item.open);
+      /*const start = chartData.map((item) => item.open);
       const low = chartData.map((item) => item.low);
       const high = chartData.map((item) => item.high);
-      const volume = chartData.map((item) => item.volume);
+      const volume = chartData.map((item) => item.volume);*/
       const name = chartData[0].code_name;
       setSeries([
         //{ name: '시가', data: start },
