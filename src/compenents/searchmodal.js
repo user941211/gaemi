@@ -16,7 +16,7 @@ function SearchModal({ onDataUpdate }) {
       const response = await axios.post('http://localhost:3001/search', { name: inputValue });
       const data = response?.data;
       console.log(response.data);
-      onDataUpdate(data); // 부모 컴포넌트에 전달하는 코드
+      onDataUpdate(data.results, data.finance); // 부모 컴포넌트에 전달하는 코드
     } catch (error) {
       console.error('Error:', error);
     }
@@ -25,6 +25,7 @@ function SearchModal({ onDataUpdate }) {
   const handleOnKeyPress = e => {
     if (e.key === 'Enter') {
       handleSearch(e);
+      handleClose();
     }
   };
   const handleSubmit = (event) => {

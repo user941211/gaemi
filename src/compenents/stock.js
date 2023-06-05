@@ -6,9 +6,21 @@ import "../pages/css/App.css";
 
 function Stock(chartData) {
   const [data, setData] = useState([]);
-  const code_name = chartData[0]?.code_name;
-  const name = chartData[0]?.name;
-  console.log(name);
+  const [code_name, setCodeName] = useState("");
+  const [code, setCode] = useState("");
+  //const code_name = chartData[0]?.code_name;
+  //const name = chartData[0]?.name;
+  //console.log(name);
+  useEffect(() => {
+    updateChartData();
+  }, [chartData]);
+  const updateChartData = () => {
+    if (chartData.length > 0) {
+      setCodeName(chartData[0].code_name);
+      setCode(chartData[0].code);
+    }
+  };
+
 
   /*useEffect(() => {
   // 크롤링 및 데이터 요청
@@ -28,7 +40,7 @@ function Stock(chartData) {
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
           <p>{code_name}</p>
-          <p className="cospi">코스피 {name}</p> {/* 수정: inputValue를 출력 */}
+          <p className="cospi">코스피 {code}</p> {/* 수정: inputValue를 출력 */}
         </div>
       </div>
       <div className="themeLayout">

@@ -19,8 +19,10 @@ import SearchModal from '../compenents/searchmodal';
 
 function Main() {
   const [chartData, setChartData] = useState([]);
-  const handleDataUpdate = (data) =>{
-    setChartData(data);
+  const [finance, setfinance] = useState([]);
+  const handleDataUpdate = (results, finance) =>{
+    setChartData(results);
+    setfinance(finance);
   };
   console.log(chartData);
   return (
@@ -46,10 +48,10 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="종목요약">
-                  <Stock chartData={chartData}/>
+                  <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo />
+                  <FinancialInfo finance={finance}/>
                 </Tab>
               </Tabs>
             </div>

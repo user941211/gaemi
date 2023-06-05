@@ -6,12 +6,11 @@ const app = express();
 const port = 3001;
 require('dotenv').config();
 const bodyParser = require('body-parser');
-//import Stock from './src/components/stock'
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(bodyParser.json());
 
-// sql 연동
 const db1 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
@@ -24,7 +23,13 @@ const db2 = mysql.createConnection({
   password: process.env.REACT_APP_DB_PASSWORD,
   database: process.env.REACT_APP_DB_DATABASE2,
 });
-// 잘 연동 되었는지 확인
+const db3 = mysql.createConnection({
+  host: process.env.REACT_APP_DB_HOST,
+  user: process.env.REACT_APP_DB_USERNAME,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  database: process.env.REACT_APP_DB_DATABASE3,
+});
+
 db1.connect((error) => {
   if (error) { console.error("Error connecting to MySQL1:", error); return; }
   console.log("db1 성공");
@@ -33,12 +38,17 @@ db2.connect((error) => {
   if (error) { console.error("Error connecting to MySQL2:", error); return; }
   console.log("db2 성공");
 });
+db3.connect((error) => {
+  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  console.log("db3 성공");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
 let inputValue;
-// post 요청 시 값을 객체로 바꿔줌
+
 app.use(express.urlencoded({ extended: true }));
 app.post('/search', (req, res) => {
   inputValue = req.body.name;
@@ -55,23 +65,42 @@ app.post('/search', (req, res) => {
       if (db1results.length === 0) {
         return res.json({ message: "못 찾겠다.." });
       }
-      console.log('db1 결과 : ',db1results);
-      const jkValue = db1results[0].code_name.replace(/'/g, ''); // 수정: 구문 오류 수정
+      console.log('db1 결과 : ', db1results);
+      const jkValue = db1results[0].code_name.replace(/'/g, '');
       console.log(jkValue);
 
       db1.query(
-        `SELECT date, close, open, volume, code, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
-        (error, results) => {
+        `SELECT date, close, open, volume, code, high, low FROM ${jkValue} where date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
+        (error, chartdata) => {
           if (error) {
             console.error(error);
             return res.status(500).json({ error: 'Internal Server Error' });
           }
-          if (results.length === 0) {
+          if (chartdata.length === 0) {
             return res.json({ message: "table don't find" });
           }
-          console.log(results);
-          res.json(results);
-          const tableName = results[0].code_name;
+          console.log(chartdata);
+
+          db3.query(
+            `select IFRS, \`2020/12\`, \`2021/12\`, \`2022/12\`, \`2023/12(E)\` from ${jkValue};`,
+            (error, finance) => {
+              if (error) {
+                console.error(error);
+                return res.status(500).json({ error: 'Internal Server Error' });
+              }
+              if (finance.length === 0) {
+                return res.json({ message: "table don't find" });
+              }
+              console.log(finance);
+
+              const responseData = {
+                results: chartdata,
+                finance: finance
+              };
+
+              res.json(responseData);
+            }
+          );
         }
       );
     }
