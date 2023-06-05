@@ -8,7 +8,7 @@ import "../pages/css/App.css";
 const ThemeList = () => {
   return (
     <div>
-      <ListGroup.Item>
+      <ListGroup.Item action variant="light">
         <div id="ThemeListMain">
           <div className="ThemeName">철</div>
           <div className="ThemeRate">+34%</div>
