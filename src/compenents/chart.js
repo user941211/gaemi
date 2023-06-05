@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 
-function Chart({ chartData , inputValue}) {
+function Chart({ chartData }) {
   const [series, setSeries] = useState([
     {
       name: ' ',
       data: [],
     },
   ]);
-  console.log(inputValue);
+  const codeName = chartData[0].code_name;
   const [options, setOptions] = useState({
     chart: {
       zoom: {
@@ -33,7 +33,7 @@ function Chart({ chartData , inputValue}) {
       curve: 'smooth',
     },
     title: {
-      text: inputValue,
+      text: codeName,
       align: 'left',
     },
     grid: {
@@ -78,7 +78,7 @@ function Chart({ chartData , inputValue}) {
           },
         },
         title: {
-          text: inputValue, // 중괄호를 추가하였습니다.
+          text: codeName,
           align: 'left',
         },
       }));

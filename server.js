@@ -70,7 +70,7 @@ app.post('/search', (req, res) => {
       console.log(jkValue);
 
       db1.query(
-        `SELECT date, close, open, volume, code, high, low FROM ${jkValue} where date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
+        `SELECT date, close, open, volume, code, code_name, high, low FROM ${jkValue} where date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, chartdata) => {
           if (error) {
             console.error(error);

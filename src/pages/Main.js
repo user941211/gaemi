@@ -20,11 +20,9 @@ import Categoryfilter from "../compenents/categoryfilter";
 function Main() {
   const [chartData, setChartData] = useState([]);
   const [finance, setfinance] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const handleDataUpdate = (results, finance, inputValue) =>{
+  const handleDataUpdate = (results, finance) =>{
     setChartData(results);
     setfinance(finance);
-    setInputValue(inputValue);
   };
   console.log(chartData);
   return (
@@ -34,7 +32,7 @@ function Main() {
         <div className="main_container">
           <div className="Left">
             <div className="Graph">
-              <Chart chartData={chartData} inputValue={inputValue}/>
+              <Chart chartData={chartData}/>
             </div>
             <div>
               <Recommendation />
@@ -53,7 +51,7 @@ function Main() {
                   <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance} inputValue={inputValue}/>
+                  <FinancialInfo finance={finance} chartData={chartData}/>
                 </Tab>
               </Tabs>
             </div>
