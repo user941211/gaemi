@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 function CategoryFilter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [checkboxValues, setCheckboxValues] = useState({
+    
     marketCap: false,
     stockPrice: false,
     tradingVolume: false,
@@ -39,7 +40,9 @@ function CategoryFilter() {
     currentDebtRatio: false
 
   });
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([
+    'marketCap', 'stockPrice', 'tradingVolume' // 초기에 보이길 원하는 항목들 추가
+  ]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -50,7 +53,6 @@ function CategoryFilter() {
   };
   const closeModal2 = () => {
     setIsModalOpen(false);
-    console.log(checkboxValues);
   };
 
 
@@ -62,13 +64,23 @@ function CategoryFilter() {
     }));
   };
 
+
+  useEffect(() => {
+    console.log(selectedItems);
+  }, [selectedItems]);
+  
   const handleConfirm = () => {
     const selected = Object.entries(checkboxValues)
       .filter(([key, value]) => value === true)
       .map(([key, value]) => key);
     setSelectedItems(selected);
-    console.log(checkboxValues); // 선택된 체크박스 값 확인
+    closeModal2(); // 추가: 확인 버튼을 누르면 모달을 닫도록 함
   };
+  
+  useEffect(() => {
+    console.log(selectedItems);
+  }, [selectedItems]);
+  
 
   return (
     <div>
