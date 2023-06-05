@@ -8,7 +8,7 @@ function Chart({ chartData }) {
       data: [],
     },
   ]);
-  const codeName = chartData[0].code_name;
+  //const codeName = chartData[0].code_name;
   const [options, setOptions] = useState({
     chart: {
       zoom: {
@@ -33,7 +33,7 @@ function Chart({ chartData }) {
       curve: 'smooth',
     },
     title: {
-      text: codeName,
+      text: 'codeName',
       align: 'left',
     },
     grid: {
@@ -78,7 +78,7 @@ function Chart({ chartData }) {
           },
         },
         title: {
-          text: codeName,
+          text: 'codeName',
           align: 'left',
         },
       }));

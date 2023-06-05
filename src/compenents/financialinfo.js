@@ -17,14 +17,14 @@ const FinancialInfo = ({ finance, chartData }) => {
     }));
     setData(extractedData);
   }, [finance]);
-  const codeName = chartData[0].code_name;
+  //const codeName = chartData[0].code_name;
 
   return (
     <div id="FinancialInfo">
       <div className="stockLogo_small">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
-          <p>{codeName}</p>
+          <p>asd</p>
         </div>
       </div>
       <table className="stockTable">
