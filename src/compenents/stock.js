@@ -8,9 +8,7 @@ function Stock(chartData) {
   const [data, setData] = useState([]);
   const [code_name, setCodeName] = useState("");
   const [code, setCode] = useState("");
-  //const code_name = chartData[0]?.code_name;
-  //const name = chartData[0]?.name;
-  //console.log(name);
+
   useEffect(() => {
     updateChartData();
   }, [chartData]);
@@ -20,19 +18,6 @@ function Stock(chartData) {
       setCode(chartData[0].code);
     }
   };
-
-
-  /*useEffect(() => {
-  // 크롤링 및 데이터 요청
-  axios.post('/search', { name: inputValue })
-    .then(response => {
-      setData(response.data);
-      // setInputValue(response.data.inputValue); // 수정 필요: setInputValue는 정의되지 않음
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}, [inputValue]);*/
 
   return (
     <div className="stockInfo">
