@@ -41,7 +41,6 @@ function CategoryFilter() {
 
   });
   const [selectedItems, setSelectedItems] = useState([
-    'marketCap', 'stockPrice', 'tradingVolume' // 초기에 보이길 원하는 항목들 추가
   ]);
 
   const openModal = () => {
@@ -55,6 +54,11 @@ function CategoryFilter() {
     setIsModalOpen(false);
   };
 
+  const removefilter = () => {
+    setSelectedItems([]); // 리스트그룹 초기화
+  };
+  
+
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -65,26 +69,81 @@ function CategoryFilter() {
   };
 
 
-  useEffect(() => {
-    console.log(selectedItems);
-  }, [selectedItems]);
+ 
   
   const handleConfirm = () => {
     const selected = Object.entries(checkboxValues)
       .filter(([key, value]) => value === true)
-      .map(([key, value]) => key);
+      .map(([key, value]) => {
+        const label = getLabelByKey(key); // 키(key)에 해당하는 레이블 정보를 가져옴
+        return label;
+      });
     setSelectedItems(selected);
     closeModal2(); // 추가: 확인 버튼을 누르면 모달을 닫도록 함
   };
+
+  const getLabelByKey = (key) => {
+    switch (key) {
+      case 'marketCap':
+        return '시가총액';
+      case 'stockPrice':
+        return '주가';
+      case 'tradingVolume':
+        return '거래량';
+      case 'transactionVolume':
+        return '거래대금';
+      case 'per':
+        return 'PER (최근 4분기)';
+      case 'pbr':
+        return 'PBR';
+      case 'psr':
+        return 'PSR (최근 4분기)';
+      case 'pcr':
+        return 'PCR (최근 4분기)';
+      case 'eps':
+        return 'EPS (최근 연도)';
+      case 'bps':
+        return 'BPS (최근 연도)';
+      case 'sps':
+        return 'SPS (최근 연도)';
+      case 'cps':
+        return 'CPS (최근 연도)';
+      case 'revenueGrowth':
+        return '매출액 증가율';
+      case 'operatingIncomeGrowth':
+        return '영업이익 증가율';
+      case 'netIncomeGrowth':
+        return '순이익 증가율';
+      case 'totalAssetsGrowth':
+        return '총자산 증가율';
+      case 'roe':
+        return 'ROE (최근 4분기)';
+      case 'roa':
+        return 'ROA (최근 4분기)';
+      case 'grossProfitMargin':
+        return '매출총이익률 (최근 연도)';
+      case 'operatingProfitMargin':
+        return '영업이익률 (최근 연도)';
+      case 'netProfitMargin':
+        return '순이익률 (최근 연도)';
+      case 'debtRatio':
+        return '부채비율 (최근 연도)';
+      case 'currentRatio':
+        return '유동비율 (최근 연도)';
+      case 'currentDebtRatio':
+        return '유동부채비율 (최근 연도)';
+      default:
+        return '';
+    }
+  };
   
-  useEffect(() => {
-    console.log(selectedItems);
-  }, [selectedItems]);
+ 
   
 
   return (
     <div>
       <Button variant="outline-primary" onClick={openModal}>필터생성</Button>{' '}
+      <Button variant="outline-primary" onClick={removefilter}>필터제거</Button>{' '}
       <ListGroup>
         {selectedItems.map((item, index) => (
           <ListGroup.Item key={index}>{item}</ListGroup.Item>
@@ -342,7 +401,7 @@ function CategoryFilter() {
   
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>닫기</Button>
-            <Button variant="primary" onClick={closeModal2}>확인</Button>{' '} {/* 추가: 확인 버튼 */}
+            <Button variant="primary" onClick={handleConfirm}>확인</Button>{' '} {/* 추가: 확인 버튼 */}
           </Modal.Footer>
         </Modal>
       </div>
