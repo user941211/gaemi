@@ -8,7 +8,7 @@ function Chart({ chartData }) {
       data: [],
     },
   ]);
-  //const codeName = chartData[0].code_name;
+  
   const [options, setOptions] = useState({
     chart: {
       zoom: {
@@ -19,7 +19,7 @@ function Chart({ chartData }) {
           const { dataPointIndex, seriesIndex } = config;
           const { categories } = chartContext.config.xaxis;
           const category = categories[dataPointIndex];
-          const value = chartData[seriesIndex].data[dataPointIndex];
+          const value = series[seriesIndex].data[dataPointIndex];
 
           console.log(`Category: ${category}`);
           console.log(`Value: ${value}`);
@@ -33,7 +33,7 @@ function Chart({ chartData }) {
       curve: 'smooth',
     },
     title: {
-      text: 'codeName',
+      text: ' ',
       align: 'left',
     },
     grid: {
@@ -55,6 +55,7 @@ function Chart({ chartData }) {
     if (chartData && chartData.length > 0) {
       const categories = chartData.map((item) => item.date);
       const end = chartData.map((item) => item.close);
+      const codeName = chartData[0].code_name;
       /*const start = chartData.map((item) => item.open);
       const low = chartData.map((item) => item.low);
       const high = chartData.map((item) => item.high);
@@ -78,7 +79,7 @@ function Chart({ chartData }) {
           },
         },
         title: {
-          text: 'codeName',
+          text: codeName,
           align: 'left',
         },
       }));
