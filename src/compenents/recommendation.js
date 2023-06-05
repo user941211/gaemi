@@ -7,12 +7,6 @@ function Recommendation() {
   return (
     <div id="Recommendation">
       <div className="left">
-        <div id="RecommendationFigure">
-          <ProgressBar variant="success" now={40} />
-          <ProgressBar variant="info" now={20} />
-          <ProgressBar variant="warning" now={60} />
-          <ProgressBar variant="danger" now={80} />
-        </div>
         <div id="RecommendationResult">Good!</div>
         <div id="RecommendationOther">
           <span>Good인 주식</span>
@@ -31,34 +25,6 @@ function Recommendation() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="right">
-        <table>
-          <tr>
-            <td>
-              <div className="circle green"></div>
-            </td>
-            <td>평가기준1</td>
-          </tr>
-          <tr>
-            <td>
-              <div className="circle blue"></div>
-            </td>
-            <td>평가기준2</td>
-          </tr>
-          <tr>
-            <td>
-              <div className="circle yellow"></div>
-            </td>
-            <td>평가기준3</td>
-          </tr>
-          <tr>
-            <td>
-              <div className="circle red"></div>
-            </td>
-            <td>평가기준4</td>
-          </tr>
-        </table>
       </div>
     </div>
   );

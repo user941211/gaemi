@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Chart from "../compenents/chart";
 import Stock from "../compenents/stock";
 import Tab from "react-bootstrap/Tab";
@@ -20,19 +20,35 @@ import Categoryfilter from "../compenents/categoryfilter";
 function Main() {
   const [chartData, setChartData] = useState([]);
   const [finance, setfinance] = useState([]);
-  const handleDataUpdate = (results, finance) =>{
+  const [inputValue, setInputValue] = useState("");
+  const handleDataUpdate = (results, finance, inputValue) => {
     setChartData(results);
     setfinance(finance);
+    setInputValue(inputValue);
   };
   console.log(chartData);
   return (
     <div>
-      <Header link="/" onDataUpdate={handleDataUpdate}/>
+      <Header link="/" onDataUpdate={handleDataUpdate} />
       <div className="main">
         <div className="main_container">
           <div className="Left">
+            <div>
+              <div className="presentPrice">
+                <p>현재가 : </p>
+                <p>7마넌</p>
+              </div>
+              <div className="buyPrice">
+                <p>매수적정가 : </p>
+                <p>7000~8000</p>
+              </div>
+              <div className="sellPrice">
+                <p>매도적정가 : </p>
+                <p>7000~8000</p>
+              </div>
+            </div>
             <div className="Graph">
-              <Chart chartData={chartData}/>
+              <Chart chartData={chartData} inputValue={inputValue} />
             </div>
             <div>
               <Recommendation />
@@ -51,7 +67,7 @@ function Main() {
                   <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance} chartData={chartData}/>
+                  <FinancialInfo finance={finance} inputValue={inputValue} />
                 </Tab>
               </Tabs>
             </div>
