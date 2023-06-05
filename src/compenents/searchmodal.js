@@ -16,9 +16,14 @@ function SearchModal({ onDataUpdate }) {
       const response = await axios.post('http://localhost:3001/search', { name: inputValue });
       const data = response?.data;
       console.log(response.data);
-      onDataUpdate(data.results, data.finance); // 부모 컴포넌트에 전달하는 코드
+      if (data.message) {
+        alert(data.message); // 서버에서 전달한 메시지를 알림창으로 표시
+      } else {
+        onDataUpdate(data.results, data.finance); // 부모 컴포넌트에 전달하는 코드
+      }
     } catch (error) {
       console.error('Error:', error);
+      alert('해당 정보가 없습니다.');
     }
   };
 

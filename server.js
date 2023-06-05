@@ -63,7 +63,7 @@ app.post('/search', (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
       if (db1results.length === 0) {
-        return res.json({ message: "못 찾겠다.." });
+        return res.json({ message: "해당하는 종목이 없습니다." });
       }
       console.log('db1 결과 : ', db1results);
       const jkValue = db1results[0].code_name.replace(/'/g, '');
