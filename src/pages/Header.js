@@ -17,7 +17,7 @@ function Header(props) {
           <Link to={props.link}>
             <div className="LogoMain">
               <img src={logo} alt="logo"></img>
-              <p>Omega Route</p>
+              <p>개미집</p>
             </div>
           </Link>
         </div>
