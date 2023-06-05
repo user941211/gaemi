@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
+import ListGroup from 'react-bootstrap/ListGroup';
+import ThemeList from "./themelist";
 
 const BalGul = () => {
   const [stockData, setStockData] = useState(null);
@@ -24,6 +26,10 @@ const BalGul = () => {
   // Render stock item information
   return (
     <div>
+      <ListGroup>
+        <ThemeList />
+        <ThemeList />
+      </ListGroup>
       {stockData ? (
         <div>
           <h2>{stockData.name}</h2>
