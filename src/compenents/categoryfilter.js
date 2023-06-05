@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import "../pages/css/App.css";
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from "react-router-dom";
 
 function CategoryFilter() {
@@ -12,6 +13,7 @@ function CategoryFilter() {
     stockPrice: false,
     tradingVolume: false,
     transactionVolume: false,
+
     per: false,
     pbr: false,
     psr: false,
@@ -20,7 +22,24 @@ function CategoryFilter() {
     bps: false,
     sps: false,
     cps: false,
+
+    revenueGrowth: false,
+    operatingIncomeGrowth: false,
+    netIncomeGrowth: false,
+    totalAssetsGrowth: false,
+
+    roe: false,
+    roa: false,
+    grossProfitMargin: false,
+    operatingProfitMargin: false,
+    netProfitMargin: false,
+
+    debtRatio: false,
+    currentRatio: false,
+    currentDebtRatio: false
+
   });
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,6 +48,11 @@ function CategoryFilter() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const closeModal2 = () => {
+    setIsModalOpen(false);
+    console.log(checkboxValues);
+  };
+
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -38,9 +62,23 @@ function CategoryFilter() {
     }));
   };
 
+  const handleConfirm = () => {
+    const selected = Object.entries(checkboxValues)
+      .filter(([key, value]) => value === true)
+      .map(([key, value]) => key);
+    setSelectedItems(selected);
+    console.log(checkboxValues); // 선택된 체크박스 값 확인
+  };
+
   return (
     <div>
       <Button variant="outline-primary" onClick={openModal}>필터생성</Button>{' '}
+      <ListGroup>
+        {selectedItems.map((item, index) => (
+          <ListGroup.Item key={index}>{item}</ListGroup.Item>
+        ))}
+      </ListGroup>
+      
 
       <Modal
         show={isModalOpen}
@@ -215,17 +253,84 @@ function CategoryFilter() {
                   checked={checkboxValues.totalAssetsGrowth}
                   onChange={handleCheckboxChange}
                 />
-
-
-
                </div>
+               <hr />
+          <div>수익성</div>
+          <Form.Check
+            type="checkbox"
+            id="roe"
+            label="ROE (최근 4분기)"
+            name="roe"
+            checked={checkboxValues.roe}
+            onChange={handleCheckboxChange}
+          />
+          <Form.Check
+            type="checkbox"
+            id="roa"
+            label="ROA (최근 4분기)"
+            name="roa"
+            checked={checkboxValues.roa}
+            onChange={handleCheckboxChange}
+          />
+          <Form.Check
+            type="checkbox"
+            id="grossProfitMargin"
+            label="매출총이익률 (최근 연도)"
+            name="grossProfitMargin"
+            checked={checkboxValues.grossProfitMargin}
+            onChange={handleCheckboxChange}
+          />
+          <Form.Check
+            type="checkbox"
+            id="operatingProfitMargin"
+            label="영업이익률 (최근 연도)"
+            name="operatingProfitMargin"
+            checked={checkboxValues.operatingProfitMargin}
+            onChange={handleCheckboxChange}
+            />
+            <Form.Check
+            type="checkbox"
+            id="netProfitMargin"
+            label="순이익률 (최근 연도)"
+            name="netProfitMargin"
+            checked={checkboxValues.netProfitMargin}
+            onChange={handleCheckboxChange}
+            />
+             <hr />
 
-            <hr />
-            <p>시가총액, 주가, 거래대금, 거래량 등 체크박스 추가하기</p>
+            <div>안정성</div>
+            <Form.Check
+            type="checkbox"
+            id="debtRatio"
+            label="부채비율 (최근 연도)"
+            name="debtRatio"
+            checked={checkboxValues.debtRatio}
+            onChange={handleCheckboxChange}
+            />
+            <Form.Check
+            type="checkbox"
+            id="currentRatio"
+            label="유동비율 (최근 연도)"
+            name="currentRatio"
+            checked={checkboxValues.currentRatio}
+            onChange={handleCheckboxChange}
+            />
+            <Form.Check
+            type="checkbox"
+            id="currentDebtRatio"
+            label="유동부채비율 (최근 연도)"
+            name="currentDebtRatio"
+            checked={checkboxValues.currentDebtRatio}
+            onChange={handleCheckboxChange}
+            />
+
+           
+           
           </Modal.Body>
   
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>닫기</Button>
+            <Button variant="primary" onClick={closeModal2}>확인</Button>{' '} {/* 추가: 확인 버튼 */}
           </Modal.Footer>
         </Modal>
       </div>
