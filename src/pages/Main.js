@@ -11,7 +11,7 @@ import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
 import Categoryfilter from "../compenents/categoryfilter";
-import SearchModal from '../compenents/searchmodal';
+//import SearchModal from '../compenents/searchmodal';
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
@@ -34,7 +34,7 @@ function Main() {
         <div className="main_container">
           <div className="Left">
             <div className="Graph">
-              <Chart chartData={chartData}/>
+              <Chart chartData={chartData} inputValue={inputValue}/>
             </div>
             <div>
               <Recommendation />

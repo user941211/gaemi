@@ -8,7 +8,7 @@ function Chart({ chartData , inputValue}) {
       data: [],
     },
   ]);
-
+  console.log(inputValue);
   const [options, setOptions] = useState({
     chart: {
       zoom: {
@@ -33,7 +33,7 @@ function Chart({ chartData , inputValue}) {
       curve: 'smooth',
     },
     title: {
-      text: ' ',
+      text: inputValue,
       align: 'left',
     },
     grid: {
@@ -78,7 +78,7 @@ function Chart({ chartData , inputValue}) {
           },
         },
         title: {
-          text: inputValue,
+          text: inputValue, // 중괄호를 추가하였습니다.
           align: 'left',
         },
       }));
