@@ -3,7 +3,7 @@ import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../pages/css/App.css";   
     
-const FinancialInfo = ({ finance }) => {
+const FinancialInfo = ({ finance, inputValue }) => {
   const [data, setData] = useState([]);
   const columns = ["IFRS", "2020/12", "2021/12", "2022/12", "2023/12(E)"];
 
@@ -18,12 +18,13 @@ const FinancialInfo = ({ finance }) => {
     setData(extractedData);
   }, [finance]);
 
+
   return (
     <div id="FinancialInfo">
       <div className="stockLogo_small">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
-          <p>삼성전자</p>
+          <p>{inputValue}</p>
         </div>
       </div>
       <table className="stockTable">

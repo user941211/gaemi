@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 
-function Chart({ chartData }) {
+function Chart({ chartData , inputValue}) {
   const [series, setSeries] = useState([
     {
       name: ' ',
@@ -78,7 +78,7 @@ function Chart({ chartData }) {
           },
         },
         title: {
-          text: name,
+          text: inputValue,
           align: 'left',
         },
       }));

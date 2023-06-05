@@ -20,9 +20,11 @@ import SearchModal from '../compenents/searchmodal';
 function Main() {
   const [chartData, setChartData] = useState([]);
   const [finance, setfinance] = useState([]);
-  const handleDataUpdate = (results, finance) =>{
+  const [inputValue, setInputValue] = useState('');
+  const handleDataUpdate = (results, finance, inputValue) =>{
     setChartData(results);
     setfinance(finance);
+    setInputValue(inputValue);
   };
   console.log(chartData);
   return (
@@ -51,7 +53,7 @@ function Main() {
                   <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance}/>
+                  <FinancialInfo finance={finance} inputValue={inputValue}/>
                 </Tab>
               </Tabs>
             </div>
