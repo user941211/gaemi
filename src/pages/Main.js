@@ -77,12 +77,13 @@ function Main() {
                 id="noanim-tab-example"
                 className="mb-3"
               >
-                <Tab eventKey="home" title="테마종목">
-                  <BalGul />
-                </Tab>
                 <Tab eventKey="profile" title="종목필터">
                   <Categoryfilter />
                 </Tab>
+                <Tab eventKey="home" title="테마종목">
+                  <BalGul />
+                </Tab>
+                
               </Tabs>
             </div>
           </div>
