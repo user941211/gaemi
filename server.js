@@ -59,24 +59,6 @@ app.post('/search', (req, res) => {
       const jkValue = db1results[0].code_name.replace(/'/g, ''); // 수정: 구문 오류 수정
       console.log(jkValue);
 
-      /*const url = `https://alphasquare.co.kr/home/stock/stock-summary?code=${inputValue}`;
-      axios.get(url)
-        .then(response => {
-          const html = response.data;
-          const $ = cheerio.load(html);
-
-          // 크롤링 코드 작성 예시
-          const targetElements = $('.contents, .clickable-layer v-popper--has-tooltip');
-          const texts = targetElements.map((index, element) => {
-            return $(element).text();
-          }).get();
-
-          Stock.processData(texts, inputValue); // stock.js로 데이터 전달
-        })
-        .catch(error => {
-          console.error(error);
-          return res.status(500).json({ error: 'Internal Server Error' });
-        });*/
       db1.query(
         `SELECT date, close, open, volume, code, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, results) => {
