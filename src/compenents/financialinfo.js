@@ -19,7 +19,7 @@ const FinancialInfo = ({ finance }) => {
   }, [finance]);
 
   return (
-    <div className="stockInfo">
+    <div id="FinancialInfo">
       <div className="stockLogo_small">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">

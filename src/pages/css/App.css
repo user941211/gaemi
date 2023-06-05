@@ -243,16 +243,10 @@ td {
   border-top: 1px solid lightcoral;
   border-bottom: 1px solid lightcoral;
 }
-.stockInfo .stockTable tr:nth-child(2n-1) {
-  color: brown;
-  font-size: 18px;
+#FinancialInfo td:nth-child(1){
+  color:brown;
 }
-.stockInfo .stockTable tr:nth-child(8) td:nth-child(1) {
-  color: blue;
-}
-.stockInfo .stockTable tr:nth-child(8) td:nth-child(2) {
-  color: red;
-}
+
 .themeLayout {
   display: flex;
 }
