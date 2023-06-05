@@ -8,7 +8,7 @@ const BalGul = () => {
   const [stockData, setStockData] = useState(null);
 
   // Fetch stock item information from an API
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -21,7 +21,7 @@ const BalGul = () => {
     };
 
     fetchData();
-  }, []);
+  }, []);*/
 
   // Render stock item information
   return (
