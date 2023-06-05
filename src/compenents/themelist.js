@@ -14,8 +14,8 @@ const ThemeList = () => {
           <div className="ThemeRate">+34%</div>
           <div className="ThemeProgress">
             <ProgressBar>
-              <ProgressBar striped variant="success" now={35} key={1} />
-              <ProgressBar variant="warning" now={20} key={2} />
+              <ProgressBar striped variant="danger" now={35} key={1} />
+              <ProgressBar variant="info" now={20} key={2} />
             </ProgressBar>
           </div>
         </div>
