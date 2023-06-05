@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Theme from "./theme";
 import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
-function Stock() {
+function Stock(chartData) {
+  const [data, setData] = useState([]);
+  const code_name = chartData[0]?.code_name;
+  const name = chartData[0]?.name;
+  console.log(name);
+
+  /*useEffect(() => {
+  // 크롤링 및 데이터 요청
+  axios.post('/search', { name: inputValue })
+    .then(response => {
+      setData(response.data);
+      // setInputValue(response.data.inputValue); // 수정 필요: setInputValue는 정의되지 않음
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, [inputValue]);*/
+
   return (
     <div className="stockInfo">
       <div className="stockLogo">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
-          <p>삼성버섯</p>
-          <p className="cospi">코스피 980908</p>
+          <p>{code_name}</p>
+          <p className="cospi">코스피 {name}</p> {/* 수정: inputValue를 출력 */}
         </div>
       </div>
       <div className="themeLayout">
@@ -18,38 +36,40 @@ function Stock() {
         <Theme />
       </div>
       <table className="stockTable">
-        <tr>
-          <td>시가총액</td>
-          <td>기업순위</td>
-        </tr>
-        <tr>
-          <td>408조</td>
-          <td>코스피 1위</td>
-        </tr>
-        <tr>
-          <td>주식수</td>
-          <td>외국인 비중</td>
-        </tr>
-        <tr>
-          <td>10000</td>
-          <td>52.19%</td>
-        </tr>
-        <tr>
-          <td>산업군</td>
-          <td>세부산업군</td>
-        </tr>
-        <tr>
-          <td>반도체/반도체장비</td>
-          <td>하드웨어/IT장비</td>
-        </tr>
-        <tr>
-          <td>52주 최저</td>
-          <td>52주 최고</td>
-        </tr>
-        <tr>
-          <td>51,800</td>
-          <td>62,000</td>
-        </tr>
+        <tbody> {/* 수정: tbody 요소 추가 */}
+          <tr>
+            <td>시가총액</td>
+            <td>{data[0]}</td>
+          </tr>
+          <tr>
+            <td>408조</td>
+            <td>{data[1]}</td>
+          </tr>
+          <tr>
+            <td>주식수</td>
+            <td>{data[2]}</td>
+          </tr>
+          <tr>
+            <td>10000</td>
+            <td>{data[3]}</td>
+          </tr>
+          <tr>
+            <td>산업군</td>
+            <td>{data[4]}</td>
+          </tr>
+          <tr>
+            <td>반도체/반도체장비</td>
+            <td>{data[5]}</td>
+          </tr>
+          <tr>
+            <td>52주 최저</td>
+            <td>{data[6]}</td>
+          </tr>
+          <tr>
+            <td>52주 최고</td>
+            <td>{data[7]}</td>
+          </tr>
+        </tbody> {/* 수정: tbody 요소 닫기 */}
       </table>
     </div>
   );

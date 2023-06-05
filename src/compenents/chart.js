@@ -93,6 +93,3 @@ function Chart({ chartData }) {
 }
 
 export default Chart;
-
-
-

@@ -1,10 +1,12 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const cheerio = require('cheerio');
 const app = express();
 const port = 3001;
 require('dotenv').config();
 const bodyParser = require('body-parser');
+//import Stock from './src/components/stock'
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,14 +36,6 @@ db2.connect((error) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-app.get("/search", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  const sql = `SELECT * FROM ${inputValue};`; // 수정: inputValue를 사용할 수 있는 범위로 이동
-  db1.query(sql, (err, result) => {
-    if (err) console.log(err);
-    else res.send(result);
-  });
-});
 
 let inputValue;
 // post 요청 시 값을 객체로 바꿔줌
@@ -64,8 +58,27 @@ app.post('/search', (req, res) => {
       console.log('db1 결과 : ',db1results);
       const jkValue = db1results[0].code_name.replace(/'/g, ''); // 수정: 구문 오류 수정
       console.log(jkValue);
+
+      /*const url = `https://alphasquare.co.kr/home/stock/stock-summary?code=${inputValue}`;
+      axios.get(url)
+        .then(response => {
+          const html = response.data;
+          const $ = cheerio.load(html);
+
+          // 크롤링 코드 작성 예시
+          const targetElements = $('.contents, .clickable-layer v-popper--has-tooltip');
+          const texts = targetElements.map((index, element) => {
+            return $(element).text();
+          }).get();
+
+          Stock.processData(texts, inputValue); // stock.js로 데이터 전달
+        })
+        .catch(error => {
+          console.error(error);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        });*/
       db1.query(
-        `SELECT date, close, open, volume, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
+        `SELECT date, close, open, volume, code, high, low FROM ${jkValue} where date>= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, results) => {
           if (error) {
             console.error(error);

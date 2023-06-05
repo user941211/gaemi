@@ -45,7 +45,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="종목요약">
-                  <Stock />
+                  <Stock chartData={chartData}/>
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
                   <FinancialInfo />
