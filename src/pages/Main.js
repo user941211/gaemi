@@ -57,7 +57,7 @@ function Main() {
                   <Stock chartData={chartData} rim={rim} />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance} chartData={chartData} />
+                  <FinancialInfo finance={finance} chartData={chartData} recommend={recommend}/>
                 </Tab>
               </Tabs>
             </div>
