@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
 import ThemeList from "./themelist";
