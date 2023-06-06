@@ -6,25 +6,24 @@ import "../pages/css/App.css";
 
 function Stock({chartData}) {
   const [data, setData] = useState([]);
-  const [code_name, setCodeName] = useState("");
+  const [codeName, setCodeName] = useState("");
   const [code, setCode] = useState("");
-
+  
   useEffect(() => {
-    updateChartData();
-  }, [chartData]);
-  const updateChartData = () => {
-    if (chartData.length > 0) {
-      setCodeName(chartData[0].code_name);
-      setCode(chartData[0].code);
+    if (chartData && chartData.length > 0){
+      const codeName = chartData[0].code_name;
+      setCodeName(codeName);
+      const code = chartData[0].code;
+      setCode(code);
     }
-  };
+  }, [chartData]);
   //const codeName = chartData[0].code_name;
   return (
     <div className="stockInfo">
       <div className="stockLogo">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
-          <p>codename</p>
+          <p>{codeName}</p>
           <p className="cospi">코스피 {code}</p> {/* 수정: inputValue를 출력 */}
         </div>
       </div>
