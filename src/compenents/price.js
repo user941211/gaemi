@@ -1,20 +1,38 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, {useState, useEffect} from "react";
 
-const Price = () => {
+const Price = ({rim , chartData}) => {
+  const [codeName, setCodeName] = useState("");
+  const [filteredRim, setFilteredRim] = useState([]);
+
+  useEffect(() => {
+    if (chartData && chartData.length > 0) {
+      const codeName = chartData[0].code_name;
+      setCodeName(codeName);
+
+      const filteredRim = rim.filter((item) => item.종목명 === codeName);
+      setFilteredRim(filteredRim);
+    }
+  }, [chartData, rim, codeName]);
+
   return (
     <div>
       <div className="presentPrice">
         <p>현재가 : </p>
-        <p>7마넌</p>
+        {filteredRim.map((item, index) => (
+          <p key={index}>{item.현재가}</p>
+        ))}
       </div>
       <div className="buyPrice">
         <p>매수적정가 : </p>
-        <p>7000~8000</p>
+        {filteredRim.map((item, index) => (
+          <p key={index}>{item.매수적정가}</p>
+        ))}
       </div>
       <div className="sellPrice">
         <p>매도적정가 : </p>
-        <p>7000~8000</p>
+        {filteredRim.map((item, index) => (
+          <p key={index}>{item.매도적정가}</p>
+        ))}
       </div>
     </div>
   );

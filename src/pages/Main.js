@@ -36,7 +36,7 @@ function Main() {
       <div className="main">
         <div className="main_container">
           <div className="Left">
-            <Price />
+            <Price rim={rim} chartData={chartData}/>
             <div className="Graph">
               <Chart chartData={chartData} />
             </div>
@@ -83,5 +83,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;

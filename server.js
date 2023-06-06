@@ -125,7 +125,7 @@ app.post('/search', (req, res) => {
                   console.log(recommend);
 
                   db5.query(
-                    `SELECT 종목명, 현재가, 매도적정자, 매수적정가, 괴리율 FROM ${process.env.REACT_APP_DB_DATABASE5}.s_rim;`,
+                    `SELECT 종목명, 현재가, 매도적정가, 매수적정가 FROM ${process.env.REACT_APP_DB_DATABASE5}.적정주가;`,
                     (error, rim) => {
                       if (error) {
                         console.error(error);
