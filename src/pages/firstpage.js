@@ -15,7 +15,7 @@ import "./css/firstPage.css";
 const Firstpage = () => {
   return (
     <div>
-      <Header link="/Main"/>
+      <Header link="/Main" disabledQ='false'/>
       <div id="wrap">
         <article>
           <p>
