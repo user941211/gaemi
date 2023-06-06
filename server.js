@@ -35,6 +35,12 @@ const db4 = mysql.createConnection({
   password: process.env.REACT_APP_DB_PASSWORD,
   database: process.env.REACT_APP_DB_DATABASE4,
 });
+const db5 = mysql.createConnection({
+  host: process.env.REACT_APP_DB_HOST,
+  user: process.env.REACT_APP_DB_USERNAME,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  database: process.env.REACT_APP_DB_DATABASE5,
+});
 
 db1.connect((error) => {
   if (error) { console.error("Error connecting to MySQL1:", error); return; }
@@ -51,6 +57,10 @@ db3.connect((error) => {
 db4.connect((error) => {
   if (error) { console.error("Error connecting to MySQL2:", error); return; }
   console.log("db4 성공");
+});
+db5.connect((error) => {
+  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  console.log("db5 성공");
 });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -114,13 +124,29 @@ app.post('/search', (req, res) => {
                   }
                   console.log(recommend);
 
-                  const responseData = {
-                    results: chartdata,
-                    finance: finance,
-                    recommend: recommend,
-                  };
+                  db5.query(
+                    `SELECT 종목명, 현재가, 매도적정자, 매수적정가, 괴리율 FROM ${process.env.REACT_APP_DB_DATABASE5}.s_rim;`,
+                    (error, rim) => {
+                      if (error) {
+                        console.error(error);
+                        return res.status(500).json({ error: 'Internal Server Error' });
+                      }
+                      if (rim.length === 0) {
+                        return res.json({ message: "table don't find" });
+                      }
+                      console.log(rim);
 
-                  res.json(responseData);
+                      const responseData = {
+                        results: chartdata,
+                        finance: finance,
+                        recommend: recommend,
+                        rim: rim,
+                      };
+    
+                      res.json(responseData);
+                    }
+                  )
+                  
                 })
             }
           );

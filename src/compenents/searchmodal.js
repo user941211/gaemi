@@ -19,7 +19,7 @@ function SearchModal({ onDataUpdate }) {
       if (data.message) {
         alert(data.message); // 서버에서 전달한 메시지를 알림창으로 표시
       } else {
-        onDataUpdate(data.results, data.finance, data.recommend); // 부모 컴포넌트에 전달하는 코드
+        onDataUpdate(data.results, data.finance, data.recommend, data.rim); // 부모 컴포넌트에 전달하는 코드
       }
     } catch (error) {
       console.error('Error:', error);

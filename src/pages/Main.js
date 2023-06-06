@@ -21,10 +21,12 @@ function Main() {
   const [chartData, setChartData] = useState([]);
   const [finance, setfinance] = useState([]);
   const [recommend, setrecommend] = useState([]);
-  const handleDataUpdate = (results, finance, recommend) => {
+  const [rim, setrim] = useState([]);
+  const handleDataUpdate = (results, finance, recommend, rim) => {
     setChartData(results);
     setfinance(finance);
     setrecommend(recommend);
+    setrim(rim);
   };
   console.log(recommend);
   return (
@@ -64,7 +66,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="종목요약">
-                  <Stock chartData={chartData} />
+                  <Stock chartData={chartData} rim={rim} />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
                   <FinancialInfo finance={finance} chartData={chartData}/>
