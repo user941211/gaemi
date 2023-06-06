@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header";
 import "./css/App.css";
 import BalGul from "../compenents/balgul";
+import Price from "../compenents/price";
 import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
@@ -31,29 +32,16 @@ function Main() {
   console.log(recommend);
   return (
     <div>
-      <Header link="/" onDataUpdate={handleDataUpdate} disabledQ="true"/>
+      <Header link="/" onDataUpdate={handleDataUpdate} disabledQ="true" />
       <div className="main">
         <div className="main_container">
           <div className="Left">
-            <div>
-              <div className="presentPrice">
-                <p>현재가 : </p>
-                <p>7마넌</p>
-              </div>
-              <div className="buyPrice">
-                <p>매수적정가 : </p>
-                <p>7000~8000</p>
-              </div>
-              <div className="sellPrice">
-                <p>매도적정가 : </p>
-                <p>7000~8000</p>
-              </div>
-            </div>
+            <Price />
             <div className="Graph">
-              <Chart chartData={chartData}/>
+              <Chart chartData={chartData} />
             </div>
             <div>
-              <Recommendation recommend={recommend}/>
+              <Recommendation recommend={recommend} />
             </div>
           </div>
           <div className="Right">
@@ -69,7 +57,7 @@ function Main() {
                   <Stock chartData={chartData} rim={rim} />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance} chartData={chartData}/>
+                  <FinancialInfo finance={finance} chartData={chartData} />
                 </Tab>
               </Tabs>
             </div>
@@ -87,7 +75,6 @@ function Main() {
                 <Tab eventKey="home" title="테마종목">
                   <BalGul />
                 </Tab>
-                
               </Tabs>
             </div>
           </div>
@@ -98,4 +85,3 @@ function Main() {
 }
 
 export default Main;
-
