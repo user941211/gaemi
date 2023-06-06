@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import SearchModal from "../compenents/searchmodal";
 import logo from "./img/YUlogo.png";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import "./css/App.css";
 */
 
 function Header(props) {
+  const [visible,setVisible] = useState(props.disabledQ);
   return (
     <div id="header">
       <div className="header_container">
@@ -23,7 +24,7 @@ function Header(props) {
         </div>
       </div>
       <form>
-        <SearchModal onDataUpdate={props.onDataUpdate} />
+        {visible&&<SearchModal onDataUpdate={props.onDataUpdate}/>}
       </form>
     </div>
   );

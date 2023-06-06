@@ -29,7 +29,7 @@ function Main() {
   console.log(recommend);
   return (
     <div>
-      <Header link="/" onDataUpdate={handleDataUpdate} />
+      <Header link="/" onDataUpdate={handleDataUpdate} disabledQ="true"/>
       <div className="main">
         <div className="main_container">
           <div className="Left">
