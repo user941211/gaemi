@@ -28,5 +28,3 @@ function Recommendation({recommend} ) {
 }
 
 export default Recommendation;
-
-
