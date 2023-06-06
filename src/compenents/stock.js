@@ -19,6 +19,7 @@ function Stock({ chartData, rim, recommend }) {
       setCode(code);
     }
 
+    // Filtered rim
     const filteredRim = rim && rim.filter((item) => item.종목명 === codeName);
     setFilteredRim(filteredRim);
 
@@ -75,5 +76,7 @@ function Stock({ chartData, rim, recommend }) {
 }
 
 export default Stock;
+
+
 
 
