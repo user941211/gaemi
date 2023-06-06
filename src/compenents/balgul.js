@@ -6,7 +6,7 @@ import ThemeList from "./themelist";
 
 const BalGul = () => {
   const [stockData, setStockData] = useState(null);
-
+  
   // Fetch stock item information from an API
   /*useEffect(() => {
     const fetchData = async () => {
