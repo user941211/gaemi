@@ -3,7 +3,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
-function Recommendation() {
+function Recommendation({recommend} ) {
+  console.log(recommend);
   return (
     <div id="Recommendation">
       <div className="left">
@@ -11,18 +12,14 @@ function Recommendation() {
         <div id="RecommendationOther">
           <span>Good인 주식</span>
           <div id="stockLogo_reco">
-            <div className="stockLogo">
-              <img src={stockLogo} alt="stock" />
-              <div className="stockContent">
-                <p>삼성버섯</p>
+          {recommend.map((item, index) => (
+              <div className="stockLogo" key={index}>
+                <img src={stockLogo} alt="stock" />
+                <div className="stockContent">
+                  <p key={index}>{item.name}</p>
+                </div>
               </div>
-            </div>
-            <div className="stockLogo">
-              <img src={stockLogo} alt="stock" />
-              <div className="stockContent">
-                <p>엘지버섯</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -31,3 +28,5 @@ function Recommendation() {
 }
 
 export default Recommendation;
+
+

@@ -29,6 +29,12 @@ const db3 = mysql.createConnection({
   password: process.env.REACT_APP_DB_PASSWORD,
   database: process.env.REACT_APP_DB_DATABASE3,
 });
+const db4 = mysql.createConnection({
+  host: process.env.REACT_APP_DB_HOST,
+  user: process.env.REACT_APP_DB_USERNAME,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  database: process.env.REACT_APP_DB_DATABASE4,
+});
 
 db1.connect((error) => {
   if (error) { console.error("Error connecting to MySQL1:", error); return; }
@@ -42,7 +48,10 @@ db3.connect((error) => {
   if (error) { console.error("Error connecting to MySQL2:", error); return; }
   console.log("db3 성공");
 });
-
+db4.connect((error) => {
+  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  console.log("db4 성공");
+});
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
@@ -93,16 +102,32 @@ app.post('/search', (req, res) => {
               }
               console.log(finance);
 
-              const responseData = {
-                results: chartdata,
-                finance: finance
-              };
+              db4.query(
+                `SELECT name FROM ${process.env.REACT_APP_DB_DATABASE4}.rpoint ORDER BY result DESC LIMIT 3;`,
+                (error, recommend) => {
+                  if (error) {
+                    console.error(error);
+                    return res.status(500).json({ error: 'Internal Server Error' });
+                  }
+                  if (recommend.length === 0) {
+                    return res.json({ message: "table don't find" });
+                  }
+                  console.log(recommend);
 
-              res.json(responseData);
+                  const responseData = {
+                    results: chartdata,
+                    finance: finance,
+                    recommend: recommend,
+                  };
+
+                  res.json(responseData);
+                })
             }
           );
         }
       );
+      
+      
     }
   );
 });

@@ -20,11 +20,13 @@ import Categoryfilter from "../compenents/categoryfilter";
 function Main() {
   const [chartData, setChartData] = useState([]);
   const [finance, setfinance] = useState([]);
-  const handleDataUpdate = (results, finance) => {
+  const [recommend, setrecommend] = useState([]);
+  const handleDataUpdate = (results, finance, recommend) => {
     setChartData(results);
     setfinance(finance);
+    setrecommend(recommend);
   };
-  console.log(chartData);
+  console.log(recommend);
   return (
     <div>
       <Header link="/" onDataUpdate={handleDataUpdate} />
@@ -49,7 +51,7 @@ function Main() {
               <Chart chartData={chartData}/>
             </div>
             <div>
-              <Recommendation />
+              <Recommendation recommend={recommend}/>
             </div>
           </div>
           <div className="Right">
