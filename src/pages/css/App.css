@@ -272,6 +272,10 @@ td {
   border-top: 1px solid lightcoral;
   border-bottom: 1px solid lightcoral;
 }
+.stockInfo .stockTable td:first-child {
+  color: brown;
+}
+
 #FinancialInfo td:nth-child(1) {
   color: brown;
 }
