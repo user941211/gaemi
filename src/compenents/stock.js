@@ -18,13 +18,13 @@ function Stock({chartData}) {
       setCode(chartData[0].code);
     }
   };
-  const codeName = chartData[0].code_name;
+  //const codeName = chartData[0].code_name;
   return (
     <div className="stockInfo">
       <div className="stockLogo">
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
-          <p>{codeName}</p>
+          <p>codename</p>
           <p className="cospi">코스피 {code}</p> {/* 수정: inputValue를 출력 */}
         </div>
       </div>
