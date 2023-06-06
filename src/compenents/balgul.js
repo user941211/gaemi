@@ -27,18 +27,9 @@ const BalGul = () => {
   return (
     <div>
       <ListGroup>
-        <ThemeList />
-        <ThemeList />
+        <ThemeList name="상위"/>
+        <ThemeList name="하위"/>
       </ListGroup>
-      {stockData ? (
-        <div>
-          <h2>{stockData.name}</h2>
-          <p>Price: {stockData.price}</p>
-          <p>Quantity: {stockData.quantity}</p>
-        </div>
-      ) : (
-        <Spinner animation="border" variant="primary" />
-      )}
     </div>
   );
 };
