@@ -64,7 +64,7 @@ function Main() {
                 className="mb-3"
               >
                 <Tab eventKey="home" title="종목요약">
-                  <Stock chartData={chartData} />
+                  <Stock />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
                   <FinancialInfo finance={finance} chartData={chartData}/>
@@ -96,3 +96,4 @@ function Main() {
 }
 
 export default Main;
+
