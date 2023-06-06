@@ -80,6 +80,10 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 #header .LogoMain {
   display: flex;
