@@ -4,13 +4,13 @@ import Theme from "./theme";
 import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
-function Stock({chartData}) {
+function Stock({ chartData }) {
   const [data, setData] = useState([]);
   const [codeName, setCodeName] = useState("");
   const [code, setCode] = useState("");
-  
+
   useEffect(() => {
-    if (chartData && chartData.length > 0){
+    if (chartData && chartData.length > 0) {
       const codeName = chartData[0].code_name;
       setCodeName(codeName);
       const code = chartData[0].code;
@@ -32,29 +32,31 @@ function Stock({chartData}) {
         <Theme />
       </div>
       <table className="stockTable">
-        <tbody> {/* 수정: tbody 요소 추가 */}
+        <tbody>
+          {" "}
+          {/* 수정: tbody 요소 추가 */}
           <tr>
-            <td>시가총액</td>
+            <td>적정주가</td>
             <td>{data[0]}</td>
           </tr>
           <tr>
-            <td>408조</td>
+            <td>적정주가 괴리율</td>
             <td>{data[1]}</td>
           </tr>
           <tr>
-            <td>주식수</td>
+            <td>전일 거래대금</td>
             <td>{data[2]}</td>
           </tr>
           <tr>
-            <td>10000</td>
+            <td>변동률</td>
             <td>{data[3]}</td>
           </tr>
           <tr>
-            <td>산업군</td>
+            <td>시가총액</td>
             <td>{data[4]}</td>
           </tr>
           <tr>
-            <td>반도체/반도체장비</td>
+            <td>산업군</td>
             <td>{data[5]}</td>
           </tr>
           <tr>
@@ -65,7 +67,8 @@ function Stock({chartData}) {
             <td>52주 최고</td>
             <td>{data[7]}</td>
           </tr>
-        </tbody> {/* 수정: tbody 요소 닫기 */}
+        </tbody>{" "}
+        {/* 수정: tbody 요소 닫기 */}
       </table>
     </div>
   );

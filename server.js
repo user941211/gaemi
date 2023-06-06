@@ -1,11 +1,11 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const cheerio = require('cheerio');
+const cheerio = require("cheerio");
 const app = express();
 const port = 3001;
-require('dotenv').config();
-const bodyParser = require('body-parser');
+require("dotenv").config();
+const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
@@ -43,23 +43,38 @@ const db5 = mysql.createConnection({
 });
 
 db1.connect((error) => {
-  if (error) { console.error("Error connecting to MySQL1:", error); return; }
+  if (error) {
+    console.error("Error connecting to MySQL1:", error);
+    return;
+  }
   console.log("db1 성공");
 });
 db2.connect((error) => {
-  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  if (error) {
+    console.error("Error connecting to MySQL2:", error);
+    return;
+  }
   console.log("db2 성공");
 });
 db3.connect((error) => {
-  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  if (error) {
+    console.error("Error connecting to MySQL2:", error);
+    return;
+  }
   console.log("db3 성공");
 });
 db4.connect((error) => {
-  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  if (error) {
+    console.error("Error connecting to MySQL2:", error);
+    return;
+  }
   console.log("db4 성공");
 });
 db5.connect((error) => {
-  if (error) { console.error("Error connecting to MySQL2:", error); return; }
+  if (error) {
+    console.error("Error connecting to MySQL2:", error);
+    return;
+  }
   console.log("db5 성공");
 });
 app.listen(port, () => {
@@ -69,23 +84,23 @@ app.listen(port, () => {
 let inputValue;
 
 app.use(express.urlencoded({ extended: true }));
-app.post('/search', (req, res) => {
+app.post("/search", (req, res) => {
   inputValue = req.body.name;
-  console.log('Received search term:', inputValue);
-  res.header('Access-Control-Allow-Origin', '*');
+  console.log("Received search term:", inputValue);
+  res.header("Access-Control-Allow-Origin", "*");
   db2.query(
     `SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.stock_item_all WHERE code = ? OR code_name = ?`,
     [inputValue, inputValue],
     (error, db1results) => {
       if (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: "Internal Server Error" });
       }
       if (db1results.length === 0) {
         return res.json({ message: "해당하는 종목이 없습니다." });
       }
-      console.log('db1 결과 : ', db1results);
-      const jkValue = db1results[0].code_name.replace(/'/g, '');
+      console.log("db1 결과 : ", db1results);
+      const jkValue = db1results[0].code_name.replace(/'/g, "");
       console.log(jkValue);
 
       db1.query(
@@ -93,7 +108,7 @@ app.post('/search', (req, res) => {
         (error, chartdata) => {
           if (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Internal Server Error' });
+            return res.status(500).json({ error: "Internal Server Error" });
           }
           if (chartdata.length === 0) {
             return res.json({ message: "table don't find" });
@@ -105,7 +120,7 @@ app.post('/search', (req, res) => {
             (error, finance) => {
               if (error) {
                 console.error(error);
-                return res.status(500).json({ error: 'Internal Server Error' });
+                return res.status(500).json({ error: "Internal Server Error" });
               }
               if (finance.length === 0) {
                 return res.json({ message: "table don't find" });
@@ -117,7 +132,9 @@ app.post('/search', (req, res) => {
                 (error, recommend) => {
                   if (error) {
                     console.error(error);
-                    return res.status(500).json({ error: 'Internal Server Error' });
+                    return res
+                      .status(500)
+                      .json({ error: "Internal Server Error" });
                   }
                   if (recommend.length === 0) {
                     return res.json({ message: "table don't find" });
@@ -129,7 +146,9 @@ app.post('/search', (req, res) => {
                     (error, rim) => {
                       if (error) {
                         console.error(error);
-                        return res.status(500).json({ error: 'Internal Server Error' });
+                        return res
+                          .status(500)
+                          .json({ error: "Internal Server Error" });
                       }
                       if (rim.length === 0) {
                         return res.json({ message: "table don't find" });
@@ -142,18 +161,16 @@ app.post('/search', (req, res) => {
                         recommend: recommend,
                         rim: rim,
                       };
-    
+
                       res.json(responseData);
                     }
-                  )
-                  
-                })
+                  );
+                }
+              );
             }
           );
         }
       );
-      
-      
     }
   );
 });
