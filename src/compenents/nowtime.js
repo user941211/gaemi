@@ -11,7 +11,7 @@ function NowTime() {
       const nowSecond = nowTime.getSeconds();
 
       const startTime = { hour: 9, minutes: 0, second: 0 };
-      const endTime = { hour: 10, minutes: 30, second: 0 };
+      const endTime = { hour: 15, minutes: 30, second: 0 };
 
       var remainHour = 0;
       var remainMinutes = 0;
@@ -21,7 +21,7 @@ function NowTime() {
       if (
         (nowHour > 9 && nowHour < 10) ||
         (nowHour === 9 && nowMinutes >= 0) ||
-        (nowHour === 10 && nowMinutes < 30)
+        (nowHour === 15 && nowMinutes < 30)
       ) {
         remainHour = endTime.hour - nowHour;
         remainMinutes = endTime.minutes - nowMinutes;
