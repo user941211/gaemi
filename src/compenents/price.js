@@ -19,19 +19,19 @@ const Price = ({rim , chartData}) => {
       <div className="presentPrice">
         <p>현재가 : </p>
         {filteredRim.map((item, index) => (
-          <p key={index}>{item.현재가}</p>
+          <p key={index}>{item.종가} 원</p>
         ))}
       </div>
       <div className="buyPrice">
         <p>매수적정가 : </p>
         {filteredRim.map((item, index) => (
-          <p key={index}>{item.매수적정가}</p>
+          <p key={index}>{item.S_RIM_20} 원</p>
         ))}
       </div>
       <div className="sellPrice">
         <p>매도적정가 : </p>
         {filteredRim.map((item, index) => (
-          <p key={index}>{item.매도적정가}</p>
+          <p key={index}>{item.S_RIM} 원</p>
         ))}
       </div>
     </div>

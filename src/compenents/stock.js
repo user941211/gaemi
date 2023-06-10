@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Theme from "./theme";
 import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
-function Stock({ chartData, rim, recommend }) {
+const formatPrice = (price) => {
+  const trillion = 1000000000000;
+  const billion = 100000000;
+
+  if (price >= trillion) {
+    return `${(price / trillion).toFixed(0)}조 ${(price % trillion / billion).toFixed(0)}억`;
+  } else if (price >= billion) {
+    return `${(price / billion).toFixed(0)}억`;
+  } else {
+    return `${price}원`;
+  }
+};
+
+function Stock({ chartData, rim }) {
   const [codeName, setCodeName] = useState("");
   const [code, setCode] = useState("");
   const [filteredRim, setFilteredRim] = useState([]);
-  const [filteredRecommend, setFilteredRecommend] = useState([]);
-  const [filteredChartData, setFilteredChartData] = useState([]);
 
   useEffect(() => {
     if (chartData && chartData.length > 0) {
@@ -19,15 +29,9 @@ function Stock({ chartData, rim, recommend }) {
       setCode(code);
     }
 
-    const filteredRim = rim && rim.filter((item) => item.종목명 === codeName);
+    const filteredRim = rim && rim.filter((item1) => item1.종목명 === codeName);
     setFilteredRim(filteredRim);
-
-    const filteredRecommend = recommend && recommend.filter((item) => item.종목명 === codeName);
-    setFilteredRecommend(filteredRecommend);
-
-    const filteredChartData = chartData && chartData.filter((item) => item.종목명 === codeName);
-    setFilteredChartData(filteredChartData);
-  }, [chartData, rim, recommend]);
+  }, [rim]);
 
   return (
     <div className="stockInfo">
@@ -35,37 +39,36 @@ function Stock({ chartData, rim, recommend }) {
         <img src={stockLogo} alt="stock" />
         <div className="stockContent">
           <p>{codeName}</p>
-          <p className="cospi">코스피 {code}</p>
+          <p className="cospi">종목번호 {code}</p>
         </div>
       </div>
       <div className="themeLayout">
-        <Theme />
         <Theme />
       </div>
       <table className="stockTable">
         <tbody>
           <tr>
             <td>적정주가</td>
-            {filteredRim && filteredRim.map((item, index) => (
-              <p key={index}>{item.적정주가}</p>
+            {filteredRim && filteredRim.map((item1, index) => (
+              <p key={index}>{item1.S_RIM_10} 원</p>
             ))}
           </tr>
           <tr>
             <td>적정주가 괴리율</td>
-            {filteredRim && filteredRim.map((item, index) => (
-              <p key={index}>{item.괴리율}</p>
+            {filteredRim && filteredRim.map((item1, index) => (
+              <p key={index}>{item1.S_RIM_difr.toFixed(2)} %</p>
             ))}
           </tr>
           <tr>
             <td>전일 거래대금</td>
-            {filteredRecommend && filteredRecommend.map((item, index) => (
-              <p key={index}>{item.result}</p>
+            {filteredRim && filteredRim.map((item1, index) => (
+              <p key={index}>{formatPrice(item1.거래대금)}원</p>
             ))}
           </tr>
           <tr>
-            <td>변동률</td>
-            {filteredChartData && filteredChartData.map((item, index) => (
-              <p key={index}>{item.d1_diff_rate}</p>
+            <td>업종</td>
+            {filteredRim && filteredRim.map((item1, index) => (
+              <p key={index}>{item1.업종}</p>
             ))}
           </tr>
         </tbody>

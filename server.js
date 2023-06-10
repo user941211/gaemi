@@ -11,72 +11,66 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(bodyParser.json());
 
+db1_name = 'daily_craw'
+db2_name = 'daily_buy_list'
+db3_name = 'stock_finance'
+db4_name = 'processed_stock_data'
+
 const db1 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
   password: process.env.REACT_APP_DB_PASSWORD,
-  database: process.env.REACT_APP_DB_DATABASE1,
+  database: db1_name
 });
 const db2 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
   password: process.env.REACT_APP_DB_PASSWORD,
-  database: process.env.REACT_APP_DB_DATABASE2,
+  database: db2_name
 });
 const db3 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
   password: process.env.REACT_APP_DB_PASSWORD,
-  database: process.env.REACT_APP_DB_DATABASE3,
+  database: db3_name
 });
 const db4 = mysql.createConnection({
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
   password: process.env.REACT_APP_DB_PASSWORD,
-  database: process.env.REACT_APP_DB_DATABASE4,
-});
-const db5 = mysql.createConnection({
-  host: process.env.REACT_APP_DB_HOST,
-  user: process.env.REACT_APP_DB_USERNAME,
-  password: process.env.REACT_APP_DB_PASSWORD,
-  database: process.env.REACT_APP_DB_DATABASE5,
+  database: db4_name
 });
 
 db1.connect((error) => {
   if (error) {
-    console.error("Error connecting to MySQL1:", error);
+    console.error("Error connecting to DB 1:", error);
     return;
   }
-  console.log("db1 성공");
+  console.log("DB 1 연결성공");
 });
 db2.connect((error) => {
   if (error) {
-    console.error("Error connecting to MySQL2:", error);
+    console.error("Error connecting to DB 2:", error);
     return;
   }
-  console.log("db2 성공");
+  console.log("DB 2 연결성공");
 });
 db3.connect((error) => {
   if (error) {
-    console.error("Error connecting to MySQL2:", error);
+    console.error("Error connecting to DB 3:", error);
     return;
   }
-  console.log("db3 성공");
+  console.log("DB 3 연결성공");
 });
+
 db4.connect((error) => {
   if (error) {
-    console.error("Error connecting to MySQL2:", error);
+    console.error("Error connecting to DB 5:", error);
     return;
   }
-  console.log("db4 성공");
+  console.log("DB 4 연결성공");
 });
-db5.connect((error) => {
-  if (error) {
-    console.error("Error connecting to MySQL2:", error);
-    return;
-  }
-  console.log("db5 성공");
-});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
@@ -89,7 +83,7 @@ app.post("/search", (req, res) => {
   console.log("Received search term:", inputValue);
   res.header("Access-Control-Allow-Origin", "*");
   db2.query(
-    `SELECT * FROM ${process.env.REACT_APP_DB_DATABASE2}.stock_item_all WHERE code = ? OR code_name = ?`,
+    `SELECT * FROM ${db2_name}.stock_item_all WHERE code = ? OR code_name = ?`,
     [inputValue, inputValue],
     (error, db1results) => {
       if (error) {
@@ -104,7 +98,7 @@ app.post("/search", (req, res) => {
       console.log(jkValue);
 
       db1.query(
-        `SELECT date, close, open, volume, code, code_name, high, low FROM ${jkValue} where date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
+        `SELECT code, code_name, date, close, d1_diff_rate FROM ${jkValue} where date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`,
         (error, chartdata) => {
           if (error) {
             console.error(error);
@@ -128,7 +122,7 @@ app.post("/search", (req, res) => {
               console.log(finance);
 
               db4.query(
-                `SELECT name FROM ${process.env.REACT_APP_DB_DATABASE4}.rpoint ORDER BY result DESC LIMIT 3;`,
+                `SELECT 종목명, 거래대금 FROM ${db4_name}.RAW_Data ORDER BY 거래대금 DESC LIMIT 3;`,
                 (error, recommend) => {
                   if (error) {
                     console.error(error);
@@ -141,8 +135,8 @@ app.post("/search", (req, res) => {
                   }
                   console.log(recommend);
 
-                  db5.query(
-                    `SELECT 종목명, 현재가, 매도적정가, 매수적정가, 괴리율, 적정주가 FROM ${process.env.REACT_APP_DB_DATABASE5}.적정주가;`,
+                  db4.query(
+                    `SELECT 종목명, 업종, 종가, 거래대금, S_RIM, S_RIM_20, S_RIM_difr, S_RIM_10 FROM ${db4_name}.S_RIM_ALL_DATA;`,
                     (error, rim) => {
                       if (error) {
                         console.error(error);
