@@ -54,13 +54,13 @@ function Stock({ chartData, rim }) {
             ))}
           </tr>
           <tr>
-            <td>적정주가 괴리율</td>
+            <td>[현재가 / 매수적정가] 괴리율</td>
             {filteredRim && filteredRim.map((item1, index) => (
               <p key={index}>{item1.S_RIM_difr.toFixed(2)} %</p>
             ))}
           </tr>
           <tr>
-            <td>전일 거래대금</td>
+            <td>거래대금</td>
             {filteredRim && filteredRim.map((item1, index) => (
               <p key={index}>{formatPrice(item1.거래대금)}원</p>
             ))}
