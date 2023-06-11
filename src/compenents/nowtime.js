@@ -1,36 +1,66 @@
 import React, { useState, useEffect } from "react";
 
+function isBusinessDay(date) {
+  // 한국 공휴일 정보
+  const holidays = [
+    "2023-06-06", // 현충일
+    "2023-07-17", // 제헌절
+    // 추가적인 공휴일 정보를 필요에 따라 여기에 추가할 수 있습니다.
+  ];
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dateString = `${year}-${month < 10 ? "0" : ""}${month}-${day < 10 ? "0" : ""}${day}`;
+
+  // 주말인지 확인
+  const dayOfWeek = date.getDay();
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    return false;
+  }
+
+  // 공휴일인지 확인
+  if (holidays.includes(dateString)) {
+    return false;
+  }
+
+  return true;
+}
+
 function NowTime() {
   const [remainingTime, setRemainingTime] = useState("");
+  const [businessDay, setBusinessDay] = useState(true);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       const nowTime = new Date();
       const nowHour = nowTime.getHours();
       const nowMinutes = nowTime.getMinutes();
-      const nowSecond = nowTime.getSeconds();
+      const nowSeconds = nowTime.getSeconds();
 
       const startTime = { hour: 9, minutes: 0, second: 0 };
       const endTime = { hour: 15, minutes: 30, second: 0 };
 
-      var remainHour = 0;
-      var remainMinutes = 0;
-      var remainSeconds = 0;
-      var startEnd = "";
+      if (!isBusinessDay(nowTime)) {
+        setBusinessDay(false);
+        clearInterval(intervalId);
+        return;
+      }
 
+      let remainHour, remainMinutes, remainSeconds, startEnd;
       if (
-        (nowHour > 9 && nowHour < 10) ||
+        (nowHour > 9 && nowHour < 15) ||
         (nowHour === 9 && nowMinutes >= 0) ||
         (nowHour === 15 && nowMinutes < 30)
       ) {
         remainHour = endTime.hour - nowHour;
         remainMinutes = endTime.minutes - nowMinutes;
-        remainSeconds = endTime.second - nowSecond;
+        remainSeconds = endTime.second - nowSeconds;
         startEnd = "마감";
       } else {
         remainHour = startTime.hour - nowHour;
         remainMinutes = startTime.minutes - nowMinutes;
-        remainSeconds = startTime.second - nowSecond;
+        remainSeconds = startTime.second - nowSeconds;
         startEnd = "시작";
       }
       if (remainSeconds < 0) {
@@ -54,6 +84,10 @@ function NowTime() {
       clearInterval(intervalId);
     };
   }, []);
+
+  if (!businessDay) {
+    return <div>주식시장 영업일이 아닙니다.</div>;
+  }
 
   return <div>{remainingTime}</div>;
 }
