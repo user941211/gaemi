@@ -9,11 +9,20 @@ function SearchModal({ onDataUpdate }) {
   const handleShow = () => setShow(true);
   const [inputValue, setInputValue] = useState('');
 
+  const getLocalIPAddress = () => {
+    const currentURL = window.location.href;
+    const domain = new URL(currentURL).hostname;
+    return domain || 'localhost';
+  };
+
   const handleSearch = async (e) => {
     e.preventDefault();
 
+    const ipAddress = getLocalIPAddress();
+    const url = `http://${ipAddress}:3001/search`;
+
     try {
-      const response = await axios.post('http://localhost:3001/search', { name: inputValue });
+      const response = await axios.post(url, { name: inputValue });
       const data = response?.data;
       console.log(response.data);
       if (data.message) {
@@ -33,10 +42,12 @@ function SearchModal({ onDataUpdate }) {
       handleClose();
     }
   };
+
   const handleSubmit = (event) => {
     handleSearch(event); // Call handleSearch function
     handleClose(); // Call handleClose function
   };
+
   return (
     <form onSubmit={handleSubmit} onKeyDown={handleOnKeyPress}>
       <div id="SearchModal">
