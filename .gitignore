@@ -6,7 +6,8 @@
 .pnp.js
 # password
 /password.json
-.env
+/gaemi.ppk
+/.env
 # testing
 /coverage
 
