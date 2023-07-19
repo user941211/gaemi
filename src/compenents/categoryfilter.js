@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import "../pages/css/App.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 function CategoryFilter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [checkboxValues, setCheckboxValues] = useState({
@@ -74,6 +74,55 @@ function CategoryFilter() {
     closeModal2(); // 추가: 확인 버튼을 누르면 모달을 닫도록 함
   };
 
+  const [filterValues, setFilterValues] = useState({
+    marketCap: { minValue: "", maxValue: "" },
+    stockPrice: { minValue: "", maxValue: "" },
+    tradingVolume: { minValue: "", maxValue: "" },
+    transactionVolume: { minValue: "", maxValue: "" },
+    per: { minValue: "", maxValue: "" },
+    pbr: { minValue: "", maxValue: "" },
+    psr: { minValue: "", maxValue: "" },
+    pcr: { minValue: "", maxValue: "" },
+    eps: { minValue: "", maxValue: "" },
+    bps: { minValue: "", maxValue: "" },
+    sps: { minValue: "", maxValue: "" },
+    cps: { minValue: "", maxValue: "" },
+    revenueGrowth: { minValue: "", maxValue: "" },
+    operatingIncomeGrowth: { minValue: "", maxValue: "" },
+    netIncomeGrowth: { minValue: "", maxValue: "" },
+    totalAssetsGrowth: { minValue: "", maxValue: "" },
+    roe: { minValue: "", maxValue: "" },
+    roa: { minValue: "", maxValue: "" },
+    grossProfitMargin: { minValue: "", maxValue: "" },
+    operatingProfitMargin: { minValue: "", maxValue: "" },
+    netProfitMargin: { minValue: "", maxValue: "" },
+    debtRatio: { minValue: "", maxValue: "" },
+    currentRatio: { minValue: "", maxValue: "" },
+    currentDebtRatio: { minValue: "", maxValue: "" },
+  });
+
+  const handleFilterValueChange = (event, key) => {
+    const { name, value } = event.target;
+    setFilterValues((prevValues) => ({
+      ...prevValues,
+      [key]: {
+        ...prevValues[key],
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleFetchData = async () => {
+    try {
+      const response = await axios.get("/search", {
+        params: filterValues,
+      });
+      // 결과 처리 로직
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getLabelByKey = (key) => {
     switch (key) {
       case "marketCap":
@@ -81,8 +130,24 @@ function CategoryFilter() {
           <>
             <span>시가총액 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input
+                type="text"
+                name="minValue"
+                placeholder="최소값 입력"
+                value={filterValues.marketCap.minValue}
+                onChange={(event) =>
+                  handleFilterValueChange(event, "marketCap")
+                }
+              />
+              <input
+                type="text"
+                name="maxValue"
+                placeholder="최대값 입력"
+                value={filterValues.marketCap.maxValue}
+                onChange={(event) =>
+                  handleFilterValueChange(event, "marketCap")
+                }
+              />
             </div>
           </>
         );
@@ -334,6 +399,9 @@ function CategoryFilter() {
           <ListGroup.Item key={index}>{item}</ListGroup.Item>
         ))}
       </ListGroup>
+      <Button variant="primary" onClick={handleFetchData}>
+        확인
+      </Button>{" "}
       <Modal
         show={isModalOpen}
         onHide={closeModal}
