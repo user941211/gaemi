@@ -16,10 +16,10 @@ const dbConfig = {
 };
 
 const databases = [
-  { name: 'daily_craw', connection: null },
-  { name: 'daily_buy_list', connection: null },
-  { name: 'stock_finance', connection: null },
-  { name: 'processed_stock_data', connection: null }
+  { name: 'daily_craw', connection: null }, // DB 0
+  { name: 'daily_buy_list', connection: null }, // DB 1
+  { name: 'stock_finance', connection: null }, // DB 2
+  { name: 'processed_stock_data', connection: null } // DB 3
 ];
 
 const connectToDatabases = async () => {
@@ -71,17 +71,20 @@ app.post("/search", async (req, res) => {
       return res.json({ message: "해당하는 종목이 없습니다." });
     }
 
-    console.log("db1 결과 : ", db1Results);
-    const jkValue = db1Results[0].code_name.replace(/'/g, "");
-    console.log(jkValue);
+    console.log("daily_buy_list 내의 검색 결과 : ", db1Results);
+    const jkValue = db1Results[0].code_name.replace(/'/g, ""); // ex: jkValue = 삼성전자
+    console.log(jkValue); // EX: 005930 입력 시, jkValue = '삼성전자' 로 daily_craw 테이블에서 검색
 
     const chartdata = await queryDatabase(
       databases[0].connection,
-      `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`
+      // 아래 구문은 최신 DB Date가 3개월 초과하면 오류
+      // `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`
+      // 땜빵 해둠
+      `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB('2023-06-09', INTERVAL 3 MONTH)`
     );
 
     if (chartdata.length === 0) {
-      return res.json({ message: "table don't find" });
+      return res.json({ message: "table don't find 1, OR db is not up to date 3 months" });
     }
     console.log(chartdata);
 
@@ -91,7 +94,7 @@ app.post("/search", async (req, res) => {
     );
 
     if (finance.length === 0) {
-      return res.json({ message: "table don't find" });
+      return res.json({ message: "table don't find 2" });
     }
     console.log(finance);
 
@@ -101,7 +104,7 @@ app.post("/search", async (req, res) => {
     );
 
     if (recommend.length === 0) {
-      return res.json({ message: "table don't find" });
+      return res.json({ message: "table don't find 3" });
     }
     console.log(recommend);
 
@@ -111,7 +114,7 @@ app.post("/search", async (req, res) => {
     );
 
     if (rim.length === 0) {
-      return res.json({ message: "table don't find" });
+      return res.json({ message: "table don't find 4" });
     }
     console.log(rim);
 
