@@ -390,23 +390,19 @@ td {
   margin: 0 10px; /* 세로선의 좌우 여백을 조절합니다. */
 }
 hr {
-  width:0%;
+  width:55%;
 }
 
 
 
 .Align-right{
-  margin-left: 500px;
-  display: inline-flex;
-  justify-content: flex-end;
+  width:40%;
+  float: right;
 }
 
 .checkbox-row{
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  margin-left: 10px;
+  float:left;
+  width:55%;
 }
-.modal-body-custom {
-  float: left;
-  
-}
+

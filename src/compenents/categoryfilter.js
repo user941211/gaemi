@@ -414,9 +414,9 @@ function CategoryFilter() {
 
         <div className="Align-right">
           <p>
-            <h4>시가총액(Market Capitalization)</h4>
+            <h6>시가총액(Market Capitalization)</h6>
             <hr/>
-            <h4>Key point</h4>
+            <h5>Key point</h5>
             <ul>
               <li>
               주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를 평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로 평가한 금액이다
@@ -429,13 +429,13 @@ function CategoryFilter() {
               </li>
             </ul>
             <hr/>
-            <h4>계산식</h4>
+            <h6>계산식</h6>
             <span>시가총액 = 주가 X 발행주식수 </span>
            
           </p>
         </div>
 
-          <div>가격/수급 </div>
+          <div className="checkbox-row">가격/수급 </div>
           <Form className="checkbox-form">
             <div className="checkbox-row">
               <Form.Check
@@ -494,7 +494,7 @@ function CategoryFilter() {
             
             <div></div>
             <hr />
-            <div> 가치 </div>
+            <div className="checkbox-row"> 가치 </div>
             <div className="checkbox-row">
               <Form.Check
                 type="checkbox"
@@ -573,7 +573,7 @@ function CategoryFilter() {
           </Form>
           
           <hr />
-          <div>
+          <div className="checkbox-row">
             {" "}
             성장성
             <Form.Check
@@ -610,7 +610,7 @@ function CategoryFilter() {
             />
           </div>
           <hr />
-          <div>수익성</div>
+          <div className="checkbox-row">수익성
           <Form.Check
             type="checkbox"
             id="roe"
@@ -651,9 +651,10 @@ function CategoryFilter() {
             checked={checkboxValues.netProfitMargin}
             onChange={handleCheckboxChange}
           />
+          </div>
           <hr />
 
-          <div>안정성</div>
+          <div className="checkbox-row">안정성
           <Form.Check
             type="checkbox"
             id="debtRatio"
@@ -678,6 +679,7 @@ function CategoryFilter() {
             checked={checkboxValues.currentDebtRatio}
             onChange={handleCheckboxChange}
           />
+          </div>
         </Modal.Body>
         </div>
         
