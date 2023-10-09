@@ -6,9 +6,9 @@ import "../pages/css/App.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import axios from "axios";
-function CategoryFilter() {
+function CategoryFilter() {     
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [checkboxValues, setCheckboxValues] = useState({
+  const [checkboxValues, setCheckboxValues] = useState({ //초기 체크박스의 값을 false로 설정 setCheckboxValues를 통해 업데이트가능
     marketCap: false,
     stockPrice: false,
     tradingVolume: false,
@@ -38,18 +38,16 @@ function CategoryFilter() {
     currentRatio: false,
     currentDebtRatio: false,
   });
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]); //리스트 그룹 상태 정의
 
-  const openModal = () => {
+  const openModal = () => {  //모달 오픈함수
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const closeModal2 = () => {
-    setIsModalOpen(false);
-  };
+
 
   const removefilter = () => {
     setSelectedItems([]); // 리스트그룹 초기화
@@ -71,7 +69,7 @@ function CategoryFilter() {
         return label;
       });
     setSelectedItems(selected);
-    closeModal2(); // 추가: 확인 버튼을 누르면 모달을 닫도록 함
+    closeModal(); // 추가: 확인 버튼을 누르면 모달을 닫도록 함
   };
 
   const [filterValues, setFilterValues] = useState({
@@ -402,7 +400,7 @@ function CategoryFilter() {
       <Button variant="primary" onClick={handleFetchData}>
         확인
       </Button>{" "}
-      <Modal
+      <Modal size="lg"
         show={isModalOpen}
         onHide={closeModal}
         dialogClassName="modal-dialog-custom"
@@ -411,9 +409,33 @@ function CategoryFilter() {
         <Modal.Header closeButton>
           <Modal.Title>기본적 지표</Modal.Title>
         </Modal.Header>
+          <div className="">
+        <Modal.Body className="modal-body-custom">
 
-        <Modal.Body>
-          <p>가격/수급 </p>
+        <div className="Align-right">
+          <p>
+            <h4>시가총액(Market Capitalization)</h4>
+            <hr/>
+            <h4>Key point</h4>
+            <ul>
+              <li>
+              주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를 평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로 평가한 금액이다
+              </li>
+              <li>
+              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더 크다.
+              </li>
+              <li>
+              시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과 시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
+              </li>
+            </ul>
+            <hr/>
+            <h4>계산식</h4>
+            <span>시가총액 = 주가 X 발행주식수 </span>
+           
+          </p>
+        </div>
+
+          <div>가격/수급 </div>
           <Form className="checkbox-form">
             <div className="checkbox-row">
               <Form.Check
@@ -450,7 +472,9 @@ function CategoryFilter() {
                 checked={checkboxValues.transactionVolume}
                 onChange={handleCheckboxChange}
               />
+              
             </div>
+            
 
             <div className="checkbox-row">
               <Form.Check
@@ -461,7 +485,14 @@ function CategoryFilter() {
                 checked={checkboxValues.foreignOwnership}
                 onChange={handleCheckboxChange}
               />
-            </div>
+              </div> 
+              
+            
+             
+              
+              
+            
+            <div></div>
             <hr />
             <div> 가치 </div>
             <div className="checkbox-row">
@@ -540,7 +571,7 @@ function CategoryFilter() {
               />
             </div>
           </Form>
-
+          
           <hr />
           <div>
             {" "}
@@ -648,6 +679,8 @@ function CategoryFilter() {
             onChange={handleCheckboxChange}
           />
         </Modal.Body>
+        </div>
+        
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>

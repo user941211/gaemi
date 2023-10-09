@@ -381,3 +381,32 @@ td {
   max-width: 2500px;
   padding: 30px;
 }
+
+.vertical-line {
+  display: flex;
+  justify-content: flex-end;
+  border-left: 1px solid #000; /* 세로선의 스타일을 지정합니다. */
+  height: 100px; /* 세로선의 높이를 지정합니다. */
+  margin: 0 10px; /* 세로선의 좌우 여백을 조절합니다. */
+}
+hr {
+  width:0%;
+}
+
+
+
+.Align-right{
+  margin-left: 500px;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.checkbox-row{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.modal-body-custom {
+  float: left;
+  
+}
