@@ -43,8 +43,6 @@ function Main() {
             <div>
               <Recommendation recommend={recommend} />
             </div>
-          </div>
-          <div className="Right">
             <div className="first">
               <div className="first_name">종목정보</div>
               <Tabs

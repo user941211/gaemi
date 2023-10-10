@@ -33,7 +33,6 @@ td {
   -ms-flex-pack: center;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid burlywood;
   background-color: white;
   color: black;
   /*background-color: var(--background);*/
@@ -153,7 +152,6 @@ td {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-bottom: 1px solid gray;
   background-color: white;
   color: black;
   /*background-color: var(--background);*/
@@ -203,27 +201,18 @@ td {
 .Left {
   width: 50%;
   height: 100%;
-  border-right: 1px solid burlywood;
-  float: left;
-  left: 0;
 }
-.Right {
-  width: 50%;
-  height: 100%;
-  float: right;
-  right: 0;
-}
+
 .first {
   width: 100%;
   height: 50%;
   top: 0px;
-  border-bottom: 1px solid burlywood;
   padding: 20px;
-  overflow: scroll;
+  overflow: visible;
 }
 .second {
   padding: 20px;
-  overflow: scroll;
+  overflow: visible;
 }
 .first_name {
   font-size: 20px;
@@ -405,4 +394,3 @@ hr {
   float:left;
   width:55%;
 }
-

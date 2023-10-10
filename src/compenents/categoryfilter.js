@@ -386,7 +386,7 @@ function CategoryFilter() {
 
   return (
     <div>
-      <Button variant="outline-primary" onClick={openModal}>
+      <Button variant="outline-primary" onClick={openModal} style={{marginRight:"3%"}}>
         필터생성
       </Button>{" "}
       <Button variant="outline-primary" onClick={removefilter}>
@@ -397,7 +397,7 @@ function CategoryFilter() {
           <ListGroup.Item key={index}>{item}</ListGroup.Item>
         ))}
       </ListGroup>
-      <Button variant="primary" onClick={handleFetchData}>
+      <Button variant="primary" onClick={handleFetchData} style={{marginTop:"3%"}}>
         확인
       </Button>{" "}
       <Modal size="lg"
