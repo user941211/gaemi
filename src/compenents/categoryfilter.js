@@ -6,9 +6,12 @@ import "../pages/css/App.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import axios from "axios";
-function CategoryFilter() {     
+
+function CategoryFilter() {
+  const [isVisible, setIsVisible] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [checkboxValues, setCheckboxValues] = useState({ //초기 체크박스의 값을 false로 설정 setCheckboxValues를 통해 업데이트가능
+  const [checkboxValues, setCheckboxValues] = useState({
+    //초기 체크박스의 값을 false로 설정 setCheckboxValues를 통해 업데이트가능
     marketCap: false,
     stockPrice: false,
     tradingVolume: false,
@@ -38,16 +41,21 @@ function CategoryFilter() {
     currentRatio: false,
     currentDebtRatio: false,
   });
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   const [selectedItems, setSelectedItems] = useState([]); //리스트 그룹 상태 정의
 
-  const openModal = () => {  //모달 오픈함수
+  const openModal = () => {
+    //모달 오픈함수
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
 
   const removefilter = () => {
     setSelectedItems([]); // 리스트그룹 초기화
@@ -386,7 +394,11 @@ function CategoryFilter() {
 
   return (
     <div>
-      <Button variant="outline-primary" onClick={openModal} style={{marginRight:"3%"}}>
+      <Button
+        variant="outline-primary"
+        onClick={openModal}
+        style={{ marginRight: "3%" }}
+      >
         필터생성
       </Button>{" "}
       <Button variant="outline-primary" onClick={removefilter}>
@@ -397,10 +409,15 @@ function CategoryFilter() {
           <ListGroup.Item key={index}>{item}</ListGroup.Item>
         ))}
       </ListGroup>
-      <Button variant="primary" onClick={handleFetchData} style={{marginTop:"3%"}}>
+      <Button
+        variant="primary"
+        onClick={handleFetchData}
+        style={{ marginTop: "3%" }}
+      >
         확인
       </Button>{" "}
-      <Modal size="lg"
+      <Modal
+        size="lg"
         show={isModalOpen}
         onHide={closeModal}
         dialogClassName="modal-dialog-custom"
@@ -409,280 +426,282 @@ function CategoryFilter() {
         <Modal.Header closeButton>
           <Modal.Title>기본적 지표</Modal.Title>
         </Modal.Header>
-          <div className="">
-        <Modal.Body className="modal-body-custom">
-
-        <div className="Align-right">
-          <p>
-            <h6>시가총액(Market Capitalization)</h6>
-            <hr/>
-            <h5>Key point</h5>
-            <ul>
-              <li>
-              주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를 평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로 평가한 금액이다
-              </li>
-              <li>
-              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더 크다.
-              </li>
-              <li>
-              시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과 시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
-              </li>
-            </ul>
-            <hr/>
-            <h6>계산식</h6>
-            <span>시가총액 = 주가 X 발행주식수 </span>
-           
-          </p>
-        </div>
-
-          <div className="checkbox-row">가격/수급 </div>
-          <Form className="checkbox-form">
-            <div className="checkbox-row">
-              <Form.Check
-                type="checkbox"
-                id="marketCap"
-                label="시가총액"
-                name="marketCap"
-                checked={checkboxValues.marketCap}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="stockPrice"
-                label="주가"
-                name="stockPrice"
-                checked={checkboxValues.stockPrice}
-                onChange={handleCheckboxChange}
-              />
+        <div className="">
+          <Modal.Body className="modal-body-custom">
+            <div
+              className="Align-right"
+              onClick={() => {
+                toggleVisibility();
+              }}
+            >
+              <p>
+                <h6>시가총액(Market Capitalization)</h6>
+                <hr />
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를
+                    평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로
+                    평가한 금액이다
+                  </li>
+                  <li>
+                    주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
+                    크다.
+                  </li>
+                  <li>
+                    시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과
+                    시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
+                  </li>
+                </ul>
+                <hr />
+                <h6>계산식</h6>
+                <span>시가총액 = 주가 X 발행주식수</span>
+              </p>
             </div>
-            <div className="checkbox-row">
-              <Form.Check
-                type="checkbox"
-                id="tradingVolume"
-                label="거래량"
-                name="tradingVolume"
-                checked={checkboxValues.tradingVolume}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="transactionVolume"
-                label="거래대금"
-                name="transactionVolume"
-                checked={checkboxValues.transactionVolume}
-                onChange={handleCheckboxChange}
-              />
-              
-            </div>
-            
 
-            <div className="checkbox-row">
-              <Form.Check
-                type="checkbox"
-                id="foreignOwnership"
-                label="외국인지분"
-                name="foreignOwnership"
-                checked={checkboxValues.foreignOwnership}
-                onChange={handleCheckboxChange}
-              />
-              </div> 
-              
-            
-             
-              
-              
-            
-            <div></div>
+            <div className="checkbox-row">가격/수급 </div>
+            <Form className="checkbox-form">
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="marketCap"
+                  label="시가총액"
+                  name="marketCap"
+                  checked={checkboxValues.marketCap}
+                  onChange={handleCheckboxChange}
+                />
+
+                <Form.Check
+                  type="checkbox"
+                  id="stockPrice"
+                  label="주가"
+                  name="stockPrice"
+                  checked={checkboxValues.stockPrice}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="tradingVolume"
+                  label="거래량"
+                  name="tradingVolume"
+                  checked={checkboxValues.tradingVolume}
+                  onChange={handleCheckboxChange}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id="transactionVolume"
+                  label="거래대금"
+                  name="transactionVolume"
+                  checked={checkboxValues.transactionVolume}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="foreignOwnership"
+                  label="외국인지분"
+                  name="foreignOwnership"
+                  checked={checkboxValues.foreignOwnership}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+
+              <div></div>
+              <hr />
+              <div className="checkbox-row"> 가치 </div>
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="per"
+                  label="PER (최근 4분기)"
+                  name="per"
+                  checked={checkboxValues.per}
+                  onChange={handleCheckboxChange}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id="pbr"
+                  label="PBR"
+                  name="pbr"
+                  checked={checkboxValues.pbr}
+                  onChange={handleCheckboxChange}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id="psr"
+                  label="PSR (최근 4분기)"
+                  name="psr"
+                  checked={checkboxValues.psr}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="pcr"
+                  label="PCR (최근 4분기)"
+                  name="pcr"
+                  checked={checkboxValues.pcr}
+                  onChange={handleCheckboxChange}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id="eps"
+                  label="EPS (최근 연도)"
+                  name="eps"
+                  checked={checkboxValues.eps}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="bps"
+                  label="BPS (최근 연도)"
+                  name="bps"
+                  checked={checkboxValues.bps}
+                  onChange={handleCheckboxChange}
+                />
+                <Form.Check
+                  type="checkbox"
+                  id="sps"
+                  label="SPS (최근 연도)"
+                  name="sps"
+                  checked={checkboxValues.sps}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+
+              <div className="checkbox-row">
+                <Form.Check
+                  type="checkbox"
+                  id="cps"
+                  label="CPS (최근 연도)"
+                  name="cps"
+                  checked={checkboxValues.cps}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+            </Form>
+
             <hr />
-            <div className="checkbox-row"> 가치 </div>
             <div className="checkbox-row">
+              {" "}
+              성장성
               <Form.Check
                 type="checkbox"
-                id="per"
-                label="PER (최근 4분기)"
-                name="per"
-                checked={checkboxValues.per}
+                id="revenueGrowth"
+                label="매출액 증가율"
+                name="revenueGrowth"
+                checked={checkboxValues.revenueGrowth}
                 onChange={handleCheckboxChange}
               />
               <Form.Check
                 type="checkbox"
-                id="pbr"
-                label="PBR"
-                name="pbr"
-                checked={checkboxValues.pbr}
+                id="operatingIncomeGrowth"
+                label="영업이익 증가율"
+                name="operatingIncomeGrowth"
+                checked={checkboxValues.operatingIncomeGrowth}
                 onChange={handleCheckboxChange}
               />
               <Form.Check
                 type="checkbox"
-                id="psr"
-                label="PSR (최근 4분기)"
-                name="psr"
-                checked={checkboxValues.psr}
+                id="netIncomeGrowth"
+                label="순이익 증가율"
+                name="netIncomeGrowth"
+                checked={checkboxValues.netIncomeGrowth}
+                onChange={handleCheckboxChange}
+              />
+              <Form.Check
+                type="checkbox"
+                id="totalAssetsGrowth"
+                label="총자산 증가율"
+                name="totalAssetsGrowth"
+                checked={checkboxValues.totalAssetsGrowth}
                 onChange={handleCheckboxChange}
               />
             </div>
-
+            <hr />
             <div className="checkbox-row">
+              수익성
               <Form.Check
                 type="checkbox"
-                id="pcr"
-                label="PCR (최근 4분기)"
-                name="pcr"
-                checked={checkboxValues.pcr}
+                id="roe"
+                label="ROE (최근 4분기)"
+                name="roe"
+                checked={checkboxValues.roe}
                 onChange={handleCheckboxChange}
               />
               <Form.Check
                 type="checkbox"
-                id="eps"
-                label="EPS (최근 연도)"
-                name="eps"
-                checked={checkboxValues.eps}
+                id="roa"
+                label="ROA (최근 4분기)"
+                name="roa"
+                checked={checkboxValues.roa}
+                onChange={handleCheckboxChange}
+              />
+              <Form.Check
+                type="checkbox"
+                id="grossProfitMargin"
+                label="매출총이익률 (최근 연도)"
+                name="grossProfitMargin"
+                checked={checkboxValues.grossProfitMargin}
+                onChange={handleCheckboxChange}
+              />
+              <Form.Check
+                type="checkbox"
+                id="operatingProfitMargin"
+                label="영업이익률 (최근 연도)"
+                name="operatingProfitMargin"
+                checked={checkboxValues.operatingProfitMargin}
+                onChange={handleCheckboxChange}
+              />
+              <Form.Check
+                type="checkbox"
+                id="netProfitMargin"
+                label="순이익률 (최근 연도)"
+                name="netProfitMargin"
+                checked={checkboxValues.netProfitMargin}
                 onChange={handleCheckboxChange}
               />
             </div>
+            <hr />
 
             <div className="checkbox-row">
+              안정성
               <Form.Check
                 type="checkbox"
-                id="bps"
-                label="BPS (최근 연도)"
-                name="bps"
-                checked={checkboxValues.bps}
+                id="debtRatio"
+                label="부채비율 (최근 연도)"
+                name="debtRatio"
+                checked={checkboxValues.debtRatio}
                 onChange={handleCheckboxChange}
               />
               <Form.Check
                 type="checkbox"
-                id="sps"
-                label="SPS (최근 연도)"
-                name="sps"
-                checked={checkboxValues.sps}
+                id="currentRatio"
+                label="유동비율 (최근 연도)"
+                name="currentRatio"
+                checked={checkboxValues.currentRatio}
+                onChange={handleCheckboxChange}
+              />
+              <Form.Check
+                type="checkbox"
+                id="currentDebtRatio"
+                label="유동부채비율 (최근 연도)"
+                name="currentDebtRatio"
+                checked={checkboxValues.currentDebtRatio}
                 onChange={handleCheckboxChange}
               />
             </div>
-
-            <div className="checkbox-row">
-              <Form.Check
-                type="checkbox"
-                id="cps"
-                label="CPS (최근 연도)"
-                name="cps"
-                checked={checkboxValues.cps}
-                onChange={handleCheckboxChange}
-              />
-            </div>
-          </Form>
-          
-          <hr />
-          <div className="checkbox-row">
-            {" "}
-            성장성
-            <Form.Check
-              type="checkbox"
-              id="revenueGrowth"
-              label="매출액 증가율"
-              name="revenueGrowth"
-              checked={checkboxValues.revenueGrowth}
-              onChange={handleCheckboxChange}
-            />
-            <Form.Check
-              type="checkbox"
-              id="operatingIncomeGrowth"
-              label="영업이익 증가율"
-              name="operatingIncomeGrowth"
-              checked={checkboxValues.operatingIncomeGrowth}
-              onChange={handleCheckboxChange}
-            />
-            <Form.Check
-              type="checkbox"
-              id="netIncomeGrowth"
-              label="순이익 증가율"
-              name="netIncomeGrowth"
-              checked={checkboxValues.netIncomeGrowth}
-              onChange={handleCheckboxChange}
-            />
-            <Form.Check
-              type="checkbox"
-              id="totalAssetsGrowth"
-              label="총자산 증가율"
-              name="totalAssetsGrowth"
-              checked={checkboxValues.totalAssetsGrowth}
-              onChange={handleCheckboxChange}
-            />
-          </div>
-          <hr />
-          <div className="checkbox-row">수익성
-          <Form.Check
-            type="checkbox"
-            id="roe"
-            label="ROE (최근 4분기)"
-            name="roe"
-            checked={checkboxValues.roe}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="roa"
-            label="ROA (최근 4분기)"
-            name="roa"
-            checked={checkboxValues.roa}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="grossProfitMargin"
-            label="매출총이익률 (최근 연도)"
-            name="grossProfitMargin"
-            checked={checkboxValues.grossProfitMargin}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="operatingProfitMargin"
-            label="영업이익률 (최근 연도)"
-            name="operatingProfitMargin"
-            checked={checkboxValues.operatingProfitMargin}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="netProfitMargin"
-            label="순이익률 (최근 연도)"
-            name="netProfitMargin"
-            checked={checkboxValues.netProfitMargin}
-            onChange={handleCheckboxChange}
-          />
-          </div>
-          <hr />
-
-          <div className="checkbox-row">안정성
-          <Form.Check
-            type="checkbox"
-            id="debtRatio"
-            label="부채비율 (최근 연도)"
-            name="debtRatio"
-            checked={checkboxValues.debtRatio}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="currentRatio"
-            label="유동비율 (최근 연도)"
-            name="currentRatio"
-            checked={checkboxValues.currentRatio}
-            onChange={handleCheckboxChange}
-          />
-          <Form.Check
-            type="checkbox"
-            id="currentDebtRatio"
-            label="유동부채비율 (최근 연도)"
-            name="currentDebtRatio"
-            checked={checkboxValues.currentDebtRatio}
-            onChange={handleCheckboxChange}
-          />
-          </div>
-        </Modal.Body>
+          </Modal.Body>
         </div>
-        
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
