@@ -86,7 +86,7 @@ app.post("/search", async (req, res) => {
     if (chartdata.length === 0) {
       return res.json({ message: "table don't find 1, OR db is not up to date 3 months" });
     }
-    console.log(chartdata);
+    //console.log(chartdata);
 
     const finance = await queryDatabase(
       databases[2].connection,
@@ -96,7 +96,7 @@ app.post("/search", async (req, res) => {
     if (finance.length === 0) {
       return res.json({ message: "table don't find 2" });
     }
-    console.log(finance);
+    //console.log(finance);
 
     const recommend = await queryDatabase(
       databases[3].connection,
@@ -106,7 +106,7 @@ app.post("/search", async (req, res) => {
     if (recommend.length === 0) {
       return res.json({ message: "table don't find 3" });
     }
-    console.log(recommend);
+    //console.log(recommend);
 
     const rim = await queryDatabase(
       databases[3].connection,
@@ -116,7 +116,7 @@ app.post("/search", async (req, res) => {
     if (rim.length === 0) {
       return res.json({ message: "table don't find 4" });
     }
-    console.log(rim);
+    //console.log(rim);
 
     const responseData = {
       results: chartdata,
