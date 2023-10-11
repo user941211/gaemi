@@ -23,7 +23,7 @@ const Firstpage = () => {
           </p>
           <em>Whatever you imagine, you will see more</em>
           <button className="btn">
-            <Link to={`/Main`}>
+            <Link to={`/searchWindow`}>
               <p>시작하기</p>
             </Link>
           </button>
