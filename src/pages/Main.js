@@ -13,7 +13,8 @@ import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
 import Categoryfilter from "../compenents/categoryfilter";
-import Searchwindow from '../compenents/searchwindow';
+import Searchwindow from "../compenents/searchwindow";
+import Profile from "../compenents/profile";
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
@@ -27,15 +28,14 @@ function Main() {
   // const [userId, setUserId] = useState(
   //   location.state?.userId
   // );
-  
+
   const location = useLocation();
-  const [chartData, setChartData] = useState(location.state?.results||[]);
-  const [finance, setfinance] = useState(location.state?.finance||[]);
-  const [recommend, setrecommend] = useState(location.state?.recommend||[]);
-  const [rim, setrim] = useState(location.state?.rim||[]);
+  const [chartData, setChartData] = useState(location.state?.results || []);
+  const [finance, setfinance] = useState(location.state?.finance || []);
+  const [recommend, setrecommend] = useState(location.state?.recommend || []);
+  const [rim, setrim] = useState(location.state?.rim || []);
 
   //console.log(state);
-
 
   const handleDataUpdate = (results, finance, recommend, rim) => {
     setChartData(results);
@@ -51,7 +51,12 @@ function Main() {
       <div className="main">
         <div className="main_container">
           <div className="Left">
-            <Price rim={rim} chartData={chartData}/>
+            <Profile />
+            <Profile />
+            <Profile />
+            <Profile />
+            <Profile />
+            <Price rim={rim} chartData={chartData} />
             <div className="Graph">
               <Chart chartData={chartData} />
             </div>
@@ -70,7 +75,11 @@ function Main() {
                   <Stock chartData={chartData} rim={rim} />
                 </Tab>
                 <Tab eventKey="profile" title="재무정보">
-                  <FinancialInfo finance={finance} chartData={chartData} recommend={recommend}/>
+                  <FinancialInfo
+                    finance={finance}
+                    chartData={chartData}
+                    recommend={recommend}
+                  />
                 </Tab>
               </Tabs>
             </div>
