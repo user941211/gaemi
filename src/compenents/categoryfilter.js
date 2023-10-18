@@ -42,9 +42,16 @@ function CategoryFilter() {
     currentDebtRatio: false,
   });
 
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
+  const toggleVisibility = (event) => {
+    event.preventDefault();  // 기본 동작 방지 (폼이 닫히지 않도록)
+    const element = document.getElementById('abcd');
+    if (element) {
+      const currentDisplay = element.style.display;
+      element.style.display = currentDisplay === 'none' ? 'block' : 'none';
+    }
   };
+  
+  
 
   const [selectedItems, setSelectedItems] = useState([]); //리스트 그룹 상태 정의
 
@@ -430,33 +437,32 @@ function CategoryFilter() {
           <Modal.Body className="modal-body-custom">
             <div
               className="Align-right"
-              onClick={() => {
-                toggleVisibility();
-              }}
-            >
-              <p>
-                <h6>시가총액(Market Capitalization)</h6>
-                <hr />
-                <h5>Key point</h5>
-                <ul>
-                  <li>
-                    주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를
-                    평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로
-                    평가한 금액이다
-                  </li>
-                  <li>
-                    주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
-                    크다.
-                  </li>
-                  <li>
-                    시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과
-                    시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
-                  </li>
-                </ul>
-                <hr />
-                <h6>계산식</h6>
-                <span>시가총액 = 주가 X 발행주식수</span>
-              </p>
+                            >
+            
+        <p id="abcd" style={{display: isVisible ? 'block' : 'none'}}>
+          <h6>시가총액(Market Capitalization)</h6>
+          <hr />
+          <h5>Key point</h5>
+          <ul>
+            <li>
+              주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를
+              평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로
+              평가한 금액이다
+            </li>
+            <li>
+              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
+              크다.
+            </li>
+            <li>
+              시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과
+              시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
+            </li>
+          </ul>
+          <hr />
+          <h6>계산식</h6>
+          <span>시가총액 = 주가 X 발행주식수</span>
+        </p>
+      
             </div>
 
             <div className="checkbox-row">가격/수급 </div>
@@ -465,11 +471,16 @@ function CategoryFilter() {
                 <Form.Check
                   type="checkbox"
                   id="marketCap"
-                  label="시가총액"
                   name="marketCap"
                   checked={checkboxValues.marketCap}
                   onChange={handleCheckboxChange}
+                  
                 />
+                <button onClick={(event) => toggleVisibility(event)}>시가총액</button>
+
+                
+              
+                
 
                 <Form.Check
                   type="checkbox"
@@ -702,6 +713,7 @@ function CategoryFilter() {
             </div>
           </Modal.Body>
         </div>
+        <button onClick={toggleVisibility}>시가총액</button>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
