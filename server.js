@@ -80,7 +80,7 @@ app.post("/search", async (req, res) => {
       // 아래 구문은 최신 DB Date가 3개월 초과하면 오류
       // `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)`
       // 땜빵 해둠
-      `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB('2023-06-09', INTERVAL 3 MONTH)`
+      `SELECT code, code_name, date, close FROM ${jkValue} WHERE date >= DATE_SUB('2023-10-18', INTERVAL 3 MONTH)`
     );
 
     if (chartdata.length === 0) {
