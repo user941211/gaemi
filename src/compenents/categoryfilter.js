@@ -8,8 +8,38 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function CategoryFilter() {
-  const [isVisible, setIsVisible] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isVisible, setIsVisible] = useState({
+    marketCap: false,
+    stockPrice: false,
+    tradingVolume: false,
+    transactionVolume: false,
+
+    per: false,
+    pbr: false,
+    psr: false,
+    pcr: false,
+    eps: false,
+    bps: false,
+    sps: false,
+    cps: false,
+
+    revenueGrowth: false,
+    operatingIncomeGrowth: false,
+    netIncomeGrowth: false,
+    totalAssetsGrowth: false,
+
+    roe: false,
+    roa: false,
+    grossProfitMargin: false,
+    operatingProfitMargin: false,
+    netProfitMargin: false,
+
+    debtRatio: false,
+    currentRatio: false,
+    currentDebtRatio: false,
+  });
   const [checkboxValues, setCheckboxValues] = useState({
     //초기 체크박스의 값을 false로 설정 setCheckboxValues를 통해 업데이트가능
     marketCap: false,
@@ -44,12 +74,18 @@ function CategoryFilter() {
 
   const toggleVisibility = (event) => {
     event.preventDefault();  // 기본 동작 방지 (폼이 닫히지 않도록)
-    const element = document.getElementById('abcd');
-    if (element) {
-      const currentDisplay = element.style.display;
-      element.style.display = currentDisplay === 'none' ? 'block' : 'none';
-    }
-  };
+    
+    // 시가총액의 가시성을 반전시킴
+    const updatedVisibility = {
+        ...isVisible,
+        marketCap: !isVisible.marketCap,
+        stockPrice: !isVisible.stockPrice,
+    };
+    
+
+    setIsVisible(updatedVisibility);
+};
+
   
   
 
@@ -439,7 +475,7 @@ function CategoryFilter() {
               className="Align-right"
                             >
             
-        <p id="abcd" style={{display: isVisible ? 'block' : 'none'}}>
+            <p style={{ display: isVisible.marketCap ? 'block' : 'none' }}>
           <h6>시가총액(Market Capitalization)</h6>
           <hr />
           <h5>Key point</h5>
@@ -462,7 +498,25 @@ function CategoryFilter() {
           <h6>계산식</h6>
           <span>시가총액 = 주가 X 발행주식수</span>
         </p>
-      
+        <p style={{ display: isVisible.stockPrice ? 'block' : 'none' }}>
+          <h6>주가(Market Capitalization)</h6>
+          <hr />
+          <h5>Key point</h5>
+          <ul>
+            <li>
+            주식 거래 장 중에는 전일 종가, 장 마감 이후에는 해당 일의 종가가 주가를 의미한다.
+            </li>
+            <li>
+              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
+              크다.
+            </li>
+            <li>
+            근본적으로 주식은 회사의 주주가 가지는 권리이므로 이 권리의 가치에 따라 값도 변화한다.
+            </li>
+          </ul>
+          
+        </p>
+
             </div>
 
             <div className="checkbox-row">가격/수급 </div>
@@ -476,20 +530,16 @@ function CategoryFilter() {
                   onChange={handleCheckboxChange}
                   
                 />
-                <button onClick={(event) => toggleVisibility(event)}>시가총액</button>
-
-                
-              
-                
+                  <button onClick={(event) => toggleVisibility(event, 'marketCap')}>시가총액</button>
 
                 <Form.Check
                   type="checkbox"
                   id="stockPrice"
-                  label="주가"
                   name="stockPrice"
                   checked={checkboxValues.stockPrice}
                   onChange={handleCheckboxChange}
                 />
+                <button onClick={(event) => toggleVisibility(event, 'stockPrice')}>주가</button>
               </div>
               <div className="checkbox-row">
                 <Form.Check
@@ -713,7 +763,7 @@ function CategoryFilter() {
             </div>
           </Modal.Body>
         </div>
-        <button onClick={toggleVisibility}>시가총액</button>
+        
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
