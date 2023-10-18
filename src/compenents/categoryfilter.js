@@ -78,6 +78,11 @@ function CategoryFilter() {
     
     const updatedVisibility = { ...isVisible };
     // 클릭한 속성 반전
+    for (const key in updatedVisibility) {
+      if (Object.prototype.hasOwnProperty.call(updatedVisibility, key)) {
+        updatedVisibility[key] = false;
+      }
+    }
     updatedVisibility[title] = !updatedVisibility[title];
   
     setIsVisible(updatedVisibility);
