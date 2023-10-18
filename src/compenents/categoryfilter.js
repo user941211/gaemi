@@ -15,6 +15,7 @@ function CategoryFilter() {
     stockPrice: false,
     tradingVolume: false,
     transactionVolume: false,
+    ForeignerShareRatio: false,
 
     per: false,
     pbr: false,
@@ -72,17 +73,13 @@ function CategoryFilter() {
     currentDebtRatio: false,
   });
 
-  const toggleVisibility = (event) => {
+  const toggleVisibility = (event,title) => {
     event.preventDefault();  // 기본 동작 방지 (폼이 닫히지 않도록)
     
-    // 시가총액의 가시성을 반전시킴
-    const updatedVisibility = {
-        ...isVisible,
-        marketCap: !isVisible.marketCap,
-        stockPrice: !isVisible.stockPrice,
-    };
-    
-
+    const updatedVisibility = { ...isVisible };
+    // 클릭한 속성 반전
+    updatedVisibility[title] = !updatedVisibility[title];
+  
     setIsVisible(updatedVisibility);
 };
 
@@ -498,8 +495,9 @@ function CategoryFilter() {
           <h6>계산식</h6>
           <span>시가총액 = 주가 X 발행주식수</span>
         </p>
+
         <p style={{ display: isVisible.stockPrice ? 'block' : 'none' }}>
-          <h6>주가(Market Capitalization)</h6>
+          <h6>주가(Stock Price)</h6>
           <hr />
           <h5>Key point</h5>
           <ul>
@@ -514,7 +512,60 @@ function CategoryFilter() {
             근본적으로 주식은 회사의 주주가 가지는 권리이므로 이 권리의 가치에 따라 값도 변화한다.
             </li>
           </ul>
-          
+        </p>
+
+        <p style={{ display: isVisible.tradingVolume ? 'block' : 'none' }}>
+          <h6>거래량(Volume)</h6>
+          <hr />
+          <h5>Key point</h5>
+          <ul>
+            <li>
+            주식시장에서 일정 기간동안 주식의 매수/매도 거래가 성립되어 이뤄진 주식이 거래된 양을 의미한다.
+            </li>
+            <li>
+            주가지수와 함께 시장의 장세를 판단하는 중요한 가격 지표이다.
+            </li>
+            <li>
+            주가가 낮을수록 거래량은 높게 나타나는 단점이 있어 거래대금과 함께 분석해보는 것이 좋다.
+            </li>
+          </ul>
+        </p>
+
+        <p style={{ display: isVisible.transactionVolume ? 'block' : 'none' }}>
+          <h6>거래대금(Trading Value)</h6>
+          <hr />
+          <h5>Key point</h5>
+          <ul>
+            <li>
+            주식거래 장 중 체결 거래량과 종목의 체결 가격을 곱한 값으로 해당 종목이 일정시간동안 거래된 총 거래금액을 의미한다.
+            </li>
+            <li>
+            주가가 낮을수록 높게 나타나는 거래량의 단점을 보완하여 시장에서 거래된 절대적인 금액을 나타내는 지표이다.
+            </li>
+            <li>
+            거래대금의 증가와 감소는 투자시장 전반적인 흐름과 상태 혹은 상황을 추정하고 분석하는데 활용될 수 있다.
+            </li>
+          </ul>
+          <hr />
+          <h6>계산식</h6>
+          <span>거래대금 = 거래량 X 체결가격</span>
+        </p>
+
+        <p style={{ display: isVisible.ForeignerShareRatio ? 'block' : 'none' }}>
+          <h6>외국인지분(Foreigner Share Ratio)</h6>
+          <hr />
+          <h5>Key point</h5>
+          <ul>
+            <li>
+            해당 종목의 전체 유통주식 중 외국인들이 실제 보유하고 있는 주식 비중을 나타낸다.
+            </li>
+            <li>
+            외국인 지분 보유율이 높을수록 외국인이 많은 관심을 가지고 투자를 하고 있다는 의미이다.
+            </li>
+            <li>
+            통계적으로 외국인보유비율이 높은 기업은 전체 매출액에서 수출이 차지하는 비중이 높은 경향이 있다.
+            </li>
+          </ul>
         </p>
 
             </div>
@@ -530,7 +581,7 @@ function CategoryFilter() {
                   onChange={handleCheckboxChange}
                   
                 />
-                  <button onClick={(event) => toggleVisibility(event, 'marketCap')}>시가총액</button>
+                  <button onClick={(event) => toggleVisibility(event,'marketCap')}>시가총액</button>
 
                 <Form.Check
                   type="checkbox"
@@ -545,30 +596,30 @@ function CategoryFilter() {
                 <Form.Check
                   type="checkbox"
                   id="tradingVolume"
-                  label="거래량"
                   name="tradingVolume"
                   checked={checkboxValues.tradingVolume}
                   onChange={handleCheckboxChange}
                 />
+                <button onClick={(event) => toggleVisibility(event, 'tradingVolume')}>거래량</button>
                 <Form.Check
                   type="checkbox"
                   id="transactionVolume"
-                  label="거래대금"
                   name="transactionVolume"
                   checked={checkboxValues.transactionVolume}
                   onChange={handleCheckboxChange}
                 />
+                <button onClick={(event) => toggleVisibility(event, 'transactionVolume')}>거래대금</button>
               </div>
 
               <div className="checkbox-row">
                 <Form.Check
                   type="checkbox"
                   id="foreignOwnership"
-                  label="외국인지분"
                   name="foreignOwnership"
                   checked={checkboxValues.foreignOwnership}
                   onChange={handleCheckboxChange}
                 />
+                <button onClick={(event) => toggleVisibility(event, 'ForeignerShareRatio')}>외국인지분</button>
               </div>
 
               <div></div>
