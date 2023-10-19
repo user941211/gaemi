@@ -479,7 +479,8 @@ function CategoryFilter() {
             
             <p style={{ display: isVisible.marketCap ? 'block' : 'none' }}>
           <h6>시가총액(Market Capitalization)</h6>
-          <hr />
+          <div class="custom-hr"></div>
+
           <h5>Key point</h5>
           <ul>
             <li>
@@ -496,14 +497,14 @@ function CategoryFilter() {
               시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
             </li>
           </ul>
-          <hr />
+          <div class="custom-hr"></div>
           <h6>계산식</h6>
           <span>시가총액 = 주가 X 발행주식수</span>
         </p>
 
         <p style={{ display: isVisible.stockPrice ? 'block' : 'none' }}>
           <h6>주가(Stock Price)</h6>
-          <hr />
+          <div class="custom-hr"></div>
           <h5>Key point</h5>
           <ul>
             <li>
@@ -521,7 +522,7 @@ function CategoryFilter() {
 
         <p style={{ display: isVisible.tradingVolume ? 'block' : 'none' }}>
           <h6>거래량(Volume)</h6>
-          <hr />
+          <div class="custom-hr"></div>
           <h5>Key point</h5>
           <ul>
             <li>
@@ -538,7 +539,7 @@ function CategoryFilter() {
 
         <p style={{ display: isVisible.transactionVolume ? 'block' : 'none' }}>
           <h6>거래대금(Trading Value)</h6>
-          <hr />
+          <div class="custom-hr"></div>
           <h5>Key point</h5>
           <ul>
             <li>
@@ -551,14 +552,14 @@ function CategoryFilter() {
             거래대금의 증가와 감소는 투자시장 전반적인 흐름과 상태 혹은 상황을 추정하고 분석하는데 활용될 수 있다.
             </li>
           </ul>
-          <hr />
+          <div class="custom-hr"></div>
           <h6>계산식</h6>
           <span>거래대금 = 거래량 X 체결가격</span>
         </p>
 
         <p style={{ display: isVisible.ForeignerShareRatio ? 'block' : 'none' }}>
           <h6>외국인지분(Foreigner Share Ratio)</h6>
-          <hr />
+          <div class="custom-hr"></div>
           <h5>Key point</h5>
           <ul>
             <li>
@@ -578,6 +579,7 @@ function CategoryFilter() {
             <div className="checkbox-row">가격/수급 </div>
             <Form className="checkbox-form">
               <div className="checkbox-row">
+                <div className="formContainer">
                 <Form.Check
                   type="checkbox"
                   id="marketCap"
@@ -586,8 +588,9 @@ function CategoryFilter() {
                   onChange={handleCheckboxChange}
                   
                 />
-                  <button onClick={(event) => toggleVisibility(event,'marketCap')}>시가총액</button>
-
+                  <button className="buttonmargin" onClick={(event) => toggleVisibility(event,'marketCap')}>시가총액</button>
+                </div>
+                <div className="formContainer">
                 <Form.Check
                   type="checkbox"
                   id="stockPrice"
@@ -595,9 +598,11 @@ function CategoryFilter() {
                   checked={checkboxValues.stockPrice}
                   onChange={handleCheckboxChange}
                 />
-                <button onClick={(event) => toggleVisibility(event, 'stockPrice')}>주가</button>
+                <button className="buttonmargin" onClick={(event) => toggleVisibility(event, 'stockPrice')}>주가</button>
+                </div>
               </div>
               <div className="checkbox-row">
+              <div className="formContainer">
                 <Form.Check
                   type="checkbox"
                   id="tradingVolume"
@@ -605,7 +610,9 @@ function CategoryFilter() {
                   checked={checkboxValues.tradingVolume}
                   onChange={handleCheckboxChange}
                 />
-                <button onClick={(event) => toggleVisibility(event, 'tradingVolume')}>거래량</button>
+                <button className="buttonmargin" onClick={(event) => toggleVisibility(event, 'tradingVolume')}>거래량</button>
+                </div>
+                <div className="formContainer">
                 <Form.Check
                   type="checkbox"
                   id="transactionVolume"
@@ -613,10 +620,11 @@ function CategoryFilter() {
                   checked={checkboxValues.transactionVolume}
                   onChange={handleCheckboxChange}
                 />
-                <button onClick={(event) => toggleVisibility(event, 'transactionVolume')}>거래대금</button>
+                <button className="buttonmargin" onClick={(event) => toggleVisibility(event, 'transactionVolume')}>거래대금</button>
               </div>
-
+              </div>
               <div className="checkbox-row">
+              <div className="formContainer">
                 <Form.Check
                   type="checkbox"
                   id="foreignOwnership"
@@ -624,7 +632,8 @@ function CategoryFilter() {
                   checked={checkboxValues.foreignOwnership}
                   onChange={handleCheckboxChange}
                 />
-                <button onClick={(event) => toggleVisibility(event, 'ForeignerShareRatio')}>외국인지분</button>
+                <button className="buttonmargin" onClick={(event) => toggleVisibility(event, 'ForeignerShareRatio')}>외국인지분</button>
+              </div>
               </div>
 
               <div></div>

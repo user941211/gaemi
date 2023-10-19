@@ -394,3 +394,19 @@ hr {
   float:left;
   width:55%;
 }
+
+.formContainer{
+  display: flex;
+}
+
+.buttonmargin{
+  margin-left: 10px;
+  background: transparent;
+}
+
+.custom-hr {
+  border: none;
+  height: 1px;
+  background-color: #000; /* 수평선의 색상을 설정합니다. */
+  margin: 10px 0; /* 수평선의 위아래 여백을 설정합니다. */
+}
