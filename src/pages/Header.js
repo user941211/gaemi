@@ -15,14 +15,19 @@ function Header(props) {
   return (
     <div id="header">
       <div className="header_container">
-        <div className="logo">
-          <Link to={props.link}>
-            <div className="LogoMain">
-              <img src={logo} alt="logo"></img>
-              <p>개미집</p>
-            </div>
+        {/* <div className="logo"> */}
+          <p>Stair</p>
+          {/* <Link to={props.link}> */}
+          <Link to="/">
+            <p>Main </p>
           </Link>
-        </div>
+          <Link to="/profile">
+            <p>info </p>
+          </Link>
+          <Link to="/searchWindow">
+            <p>start </p>
+          </Link>
+        {/* </div> */}
       </div>
       <form>
         {visible&&<SearchModal onDataUpdate={props.onDataUpdate}/>}
