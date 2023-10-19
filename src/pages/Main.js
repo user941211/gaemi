@@ -51,11 +51,6 @@ function Main() {
       <div className="main">
         <div className="main_container">
           <div className="Left">
-            <Profile />
-            <Profile />
-            <Profile />
-            <Profile />
-            <Profile />
             <Price rim={rim} chartData={chartData} />
             <div className="Graph">
               <Chart chartData={chartData} />
