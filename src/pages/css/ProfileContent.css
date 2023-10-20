@@ -13,11 +13,24 @@
     font-family: MaplestoryOTFBold, AlphaSans, sans-serif !important;
     text-decoration: none;
   }
-  #container{
+
+  #profile_content_container{
+    width: 100%;
+    margin-top: 5%;
     background-color: black;
     color: white;
   }
-
-  #profile_container{
+  #profile_content_container .profile{
     display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #profile_content_container img{
+    width: 90%;
+  }
+  #profile_content_container .profileText{
+    text-align: center;
+  }
+  #profile_content_container .profileText h2{
+    margin-top: 5%;
   }
