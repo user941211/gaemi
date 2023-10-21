@@ -38,7 +38,7 @@ function Chart({ chartData }) {
     },
     grid: {
       row: {
-        colors: ['#f3f3f3f3', 'transparent'],
+        colors: ['white', 'transparent'],
         opacity: 0.5,
       },
     },

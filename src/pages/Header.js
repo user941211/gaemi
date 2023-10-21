@@ -29,9 +29,6 @@ function Header(props) {
           {/* </div> */}
         </div>
       </div>
-      <form>
-        {visible && <SearchModal onDataUpdate={props.onDataUpdate} />}
-      </form>
     </div>
   );
 }

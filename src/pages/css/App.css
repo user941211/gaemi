@@ -18,33 +18,7 @@
 td {
   padding: 10px;
 }
-#SearchModal .searchButton {
-  color: brown;
-  background-color: white;
-  border: 1px solid brown;
-}
-#SearchModal .searchButton:hover {
-  color: white;
-  background-color: brown;
-  border: 1px solid white;
-}
-#ModalFooter .firstButton {
-  color: brown;
-  background-color: white;
-  border: 1px solid brown;
-}
-#ModalFooter .firstButton:hover {
-  color: white;
-  background-color: brown;
-  border: 1px solid white;
-}
-.searchSpace {
-  width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 40px;
-  padding: 5px 7px;
-  text-align: center;
-}
+
 #header .logo {
   display: flex;
   justify-content: center;

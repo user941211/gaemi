@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../pages/css/firstPage.css";
+import "../pages/css/SearchWindow.css"
 import Header from "../pages/Header";
 //{ onDataUpdate }
 function SearchWindow({ list }) {
@@ -52,8 +52,9 @@ function SearchWindow({ list }) {
   };
 
   return (
-    <div className="">
+    <div id="container">
       <Header link="/searchwindow" />
+      <div id="search_container">
       <input
         type="search"
         className="searchSpace"
@@ -62,13 +63,7 @@ function SearchWindow({ list }) {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleOnKeyPress}
       />
-      <button
-        className="searchButton"
-        onKeyDown={handleOnKeyPress}
-        onClick={handleSearch}
-      >
-        찾기
-      </button>
+      </div>
     </div>
   );
 }
