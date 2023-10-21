@@ -55,6 +55,9 @@ function SearchWindow({ list }) {
     <div id="container">
       <Header link="/searchwindow" />
       <div id="search_container">
+        <div className="logo">
+          <p>Stair</p>
+        </div>
       <input
         type="search"
         className="searchSpace"

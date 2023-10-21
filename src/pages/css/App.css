@@ -108,7 +108,7 @@ td {
 }
 .presentPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .buyPrice {
@@ -116,7 +116,7 @@ td {
 }
 .buyPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .sellPrice {
@@ -124,13 +124,12 @@ td {
 }
 .sellPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .main_container {
   width: 100%;
   height: 100%;
-  margin: 0 2.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
