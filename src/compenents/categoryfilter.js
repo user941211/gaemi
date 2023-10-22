@@ -6,6 +6,7 @@ import "../pages/css/App.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { color } from "@mui/system";
 
 function CategoryFilter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -440,13 +441,13 @@ function CategoryFilter() {
   return (
     <div>
       <Button
-        variant="outline-primary"
+        variant="outline-light"
         onClick={openModal}
         style={{ marginRight: "3%" }}
       >
         필터생성
       </Button>{" "}
-      <Button variant="outline-primary" onClick={removefilter}>
+      <Button variant="outline-light" onClick={removefilter}>
         필터제거
       </Button>{" "}
       <ListGroup>
@@ -455,9 +456,9 @@ function CategoryFilter() {
         ))}
       </ListGroup>
       <Button
-        variant="primary"
+        variant="light"
         onClick={handleFetchData}
-        style={{ marginTop: "3%" }}
+        style={{ marginTop: "3%",marginBottom:"3%"}}
       >
         확인
       </Button>{" "}

@@ -11,8 +11,8 @@ const ThemeList = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div>
-      <ListGroup.Item action variant="light" onClick={handleShow}>
+    <div id="themelist_container">
+      <ListGroup.Item action variant="light" onClick={handleShow} id="group_container">
         <div id="ThemeListMain">
           <div className="ThemeName">{props.name} 우량주</div>
         </div>

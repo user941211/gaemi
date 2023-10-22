@@ -353,3 +353,9 @@ hr {
   background-color: #000; /* 수평선의 색상을 설정합니다. */
   margin: 10px 0; /* 수평선의 위아래 여백을 설정합니다. */
 }
+
+#group_container{
+  background-color: black;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
