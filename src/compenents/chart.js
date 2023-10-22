@@ -82,6 +82,7 @@ function Chart({ chartData }) {
           text: codeName,
           align: 'left',
         },
+        colors:['#FFFFFF']
       }));
     }
   };

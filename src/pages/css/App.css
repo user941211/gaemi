@@ -200,12 +200,15 @@ td {
 
 .stockInfo .stockTable {
   width: 100%;
-  margin-top: 10px;
-  border-top: 1px solid lightcoral;
-  border-bottom: 1px solid lightcoral;
+  margin-top: 3%;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 .stockInfo .stockTable td:first-child {
   color: brown;
+}
+#FinancialInfo{
+  margin-top:3%;
 }
 
 #FinancialInfo td:nth-child(1) {
