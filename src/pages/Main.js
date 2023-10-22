@@ -49,16 +49,16 @@ function Main() {
         <div className="main_container">
           <div className="Left">
             <Price rim={rim} chartData={chartData} />
-             <Chart chartData={chartData} />
-              <Recommendation recommend={recommend} />
-                  <Stock chartData={chartData} rim={rim} />
-                  <FinancialInfo
-                    finance={finance}
-                    chartData={chartData}
-                    recommend={recommend}
-                  />
-                  <BalGul />
-                  <Categoryfilter />
+            <Chart chartData={chartData} />
+            <Recommendation recommend={recommend} />
+            <Stock chartData={chartData} rim={rim} />
+            <FinancialInfo
+              finance={finance}
+              chartData={chartData}
+              recommend={recommend}
+            />
+            <BalGul />
+            <Categoryfilter />
           </div>
         </div>
       </div>

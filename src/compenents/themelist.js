@@ -25,7 +25,7 @@ const ThemeList = (props) => {
           <div>우량주이름1</div>
           <div>우량주이름2</div>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{backgroundColor:"black"}}>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>

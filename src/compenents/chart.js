@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ApexCharts from 'react-apexcharts';
+import React, { useEffect, useState } from "react";
+import ApexCharts from "react-apexcharts";
 
 function Chart({ chartData }) {
   const [series, setSeries] = useState([
     {
-      name: ' ',
+      name: " ",
       data: [],
     },
   ]);
-  
+
   const [options, setOptions] = useState({
     chart: {
       zoom: {
@@ -30,15 +30,15 @@ function Chart({ chartData }) {
       enabled: false,
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
     },
     title: {
-      text: ' ',
-      align: 'left',
+      text: " ",
+      align: "left",
     },
     grid: {
       row: {
-        colors: ['black', 'transparent'],
+        colors: ["black", "transparent"],
         opacity: 0.5,
       },
     },
@@ -65,7 +65,7 @@ function Chart({ chartData }) {
         //{ name: '시가', data: start },
         //{ name: '고가', data: high },
         //{ name: '저가', data: low },
-        { name: '종가', data: end },
+        { name: "종가", data: end },
         //{ name: '거래량', data: volume },
       ]);
 
@@ -73,23 +73,29 @@ function Chart({ chartData }) {
         ...prevOptions,
         xaxis: {
           categories: categories,
-          tickPlacement: 'on',
+          tickPlacement: "on",
           labels: {
             show: false, // 하나의 x축 레이블만 표시하기 위해 레이블 표시를 비활성화합니다.
           },
         },
         title: {
           text: codeName,
-          align: 'left',
+          align: "left",
         },
-        colors:['#FFFFFF']
+        colors: ["#FFFFFF"],
       }));
     }
   };
 
   return (
     <div>
-      <ApexCharts options={options} series={series} type="line" width={'100%'} height={500} />
+      <ApexCharts
+        options={options}
+        series={series}
+        type="line"
+        width={"100%"}
+        height={500}
+      />
     </div>
   );
 }

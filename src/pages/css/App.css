@@ -207,8 +207,8 @@ td {
 .stockInfo .stockTable td:first-child {
   color: brown;
 }
-#FinancialInfo{
-  margin-top:3%;
+#FinancialInfo {
+  margin-top: 3%;
 }
 
 #FinancialInfo td:nth-child(1) {
@@ -325,27 +325,25 @@ td {
   margin: 0 10px; /* 세로선의 좌우 여백을 조절합니다. */
 }
 hr {
-  width:55%;
+  width: 55%;
 }
 
-
-
-.Align-right{
-  width:40%;
+.Align-right {
+  width: 40%;
   float: right;
 }
 
-.checkbox-row{
+.checkbox-row {
   margin-left: 10px;
-  float:left;
-  width:55%;
+  float: left;
+  width: 55%;
 }
 
-.formContainer{
+.formContainer {
   display: flex;
 }
 
-.buttonmargin{
+.buttonmargin {
   margin-left: 10px;
   background: transparent;
 }
@@ -357,8 +355,14 @@ hr {
   margin: 10px 0; /* 수평선의 위아래 여백을 설정합니다. */
 }
 
-#group_container{
+#group_container {
   background-color: black;
   margin-top: 1%;
   margin-bottom: 2%;
+}
+.buttonContainer {
+  margin-bottom: 3%;
+}
+.buttonContainer Button{
+  margin-right: 3%;
 }
