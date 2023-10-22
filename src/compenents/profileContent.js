@@ -1,17 +1,20 @@
 import React from "react";
 import "../pages/css/ProfileContent.css";
-import profileMMK from "../pages/img/profile_mmk.jpg";
-import profileBJS from "../pages/img/profile_bjs.jpg";
-import profileSCW from "../pages/img/profile_scw.jpg";
-import profileSJH from "../pages/img/profile_sjh.jpg";
-import profileKJH from "../pages/img/profile_kjh.jpg";
 
-function ProfileContent({ name, part, content }) {
+function ProfileContent({ name, part, content, 순서 }) {
+  const 사진=[
+    //mmk, bjs, scw, sjh, kjh
+    require("../pages/img/profile_mmk.jpg"),
+    require("../pages/img/profile_bjs.jpg"),
+    require("../pages/img/profile_scw.jpg"),
+    require("../pages/img/profile_sjh.jpg"),
+    require("../pages/img/profile_kjh.jpg")
+ ]
   return (
     <div>
       <div id="profile_content_container">
         <div className="profile">
-          <img src={profileMMK} alt="profile"></img>
+          <img src={사진[순서]} alt="profile"></img>
         </div>
         <div className="profileText">
           <h2>{name}</h2>
