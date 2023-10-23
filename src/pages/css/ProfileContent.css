@@ -19,18 +19,21 @@
     margin-top: 5%;
     background-color: black;
     color: white;
+    display: flex;
   }
   #profile_content_container .profile{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   #profile_content_container img{
-    width: 90%;
+    width: 17em;
+    height: 20em;
+    margin-top:5%;
   }
   #profile_content_container .profileText{
     text-align: center;
+    margin-top: 10%;
   }
-  #profile_content_container .profileText h2{
-    margin-top: 5%;
-  }
+ 
