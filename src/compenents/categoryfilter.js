@@ -6,6 +6,7 @@ import "../pages/css/App.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { color } from "@mui/system";
 
 function CategoryFilter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,9 +74,9 @@ function CategoryFilter() {
     currentDebtRatio: false,
   });
 
-  const toggleVisibility = (event,title) => {
-    event.preventDefault();  // 기본 동작 방지 (폼이 닫히지 않도록)
-    
+  const toggleVisibility = (event, title) => {
+    event.preventDefault(); // 기본 동작 방지 (폼이 닫히지 않도록)
+
     const updatedVisibility = { ...isVisible };
     // 클릭한 속성 반전
     for (const key in updatedVisibility) {
@@ -84,12 +85,9 @@ function CategoryFilter() {
       }
     }
     updatedVisibility[title] = !updatedVisibility[title];
-  
-    setIsVisible(updatedVisibility);
-};
 
-  
-  
+    setIsVisible(updatedVisibility);
+  };
 
   const [selectedItems, setSelectedItems] = useState([]); //리스트 그룹 상태 정의
 
@@ -404,13 +402,13 @@ function CategoryFilter() {
         );
       case "debtRatio":
         return (
-          <>
+          <div>
             <span>부채비율 범위</span>
             <div className="input-wrapper">
               <input type="text" placeholder="최소값 입력" />
               <input type="text" placeholder="최대값 입력" />
             </div>
-          </>
+          </div>
         );
       case "currentRatio":
         return (
@@ -438,29 +436,29 @@ function CategoryFilter() {
   };
 
   return (
-    <div>
-      <Button
-        variant="outline-primary"
-        onClick={openModal}
-        style={{ marginRight: "3%" }}
-      >
-        필터생성
-      </Button>{" "}
-      <Button variant="outline-primary" onClick={removefilter}>
-        필터제거
-      </Button>{" "}
-      <ListGroup>
-        {selectedItems.map((item, index) => (
-          <ListGroup.Item key={index}>{item}</ListGroup.Item>
-        ))}
-      </ListGroup>
-      <Button
-        variant="primary"
-        onClick={handleFetchData}
-        style={{ marginTop: "3%" }}
-      >
-        확인
-      </Button>{" "}
+    <div id="filterContainer">
+      <div className="buttonContainer">
+        <Button variant="outline-light" onClick={openModal}>
+          필터생성
+        </Button>{" "}
+        <Button variant="outline-light" onClick={removefilter}>
+          필터제거
+        </Button>{" "}
+        <Button
+          variant="outline-light"
+          onClick={handleFetchData}
+          style={{ marginTop: "3%", marginBottom: "3%" }}
+        >
+          확인
+        </Button>{" "}
+      </div>
+      <div className="filtergroup_container">
+        <ListGroup>
+          {selectedItems.map((item, index) => (
+            <ListGroup.Item key={index}>{item}</ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
       <Modal
         size="lg"
         show={isModalOpen}
@@ -473,158 +471,213 @@ function CategoryFilter() {
         </Modal.Header>
         <div className="">
           <Modal.Body className="modal-body-custom">
-            <div
-              className="Align-right"
-                            >
-            
-            <p style={{ display: isVisible.marketCap ? 'block' : 'none' }}>
-          <h6>시가총액(Market Capitalization)</h6>
-          <hr />
-          <h5>Key point</h5>
-          <ul>
-            <li>
-              주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를
-              평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로
-              평가한 금액이다
-            </li>
-            <li>
-              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
-              크다.
-            </li>
-            <li>
-              시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과
-              시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
-            </li>
-          </ul>
-          <hr />
-          <h6>계산식</h6>
-          <span>시가총액 = 주가 X 발행주식수</span>
-        </p>
+            <div className="Align-right">
+              <p style={{ display: isVisible.marketCap ? "block" : "none" }}>
+                <h6>시가총액(Market Capitalization)</h6>
+                <div class="custom-hr"></div>
 
-        <p style={{ display: isVisible.stockPrice ? 'block' : 'none' }}>
-          <h6>주가(Stock Price)</h6>
-          <hr />
-          <h5>Key point</h5>
-          <ul>
-            <li>
-            주식 거래 장 중에는 전일 종가, 장 마감 이후에는 해당 일의 종가가 주가를 의미한다.
-            </li>
-            <li>
-              주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
-              크다.
-            </li>
-            <li>
-            근본적으로 주식은 회사의 주주가 가지는 권리이므로 이 권리의 가치에 따라 값도 변화한다.
-            </li>
-          </ul>
-        </p>
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    주가와 발행주식수를 곱한 것으로 상장기업의 규모와 가치를
+                    평가하는 지표이며 전체 주식의 가치를 시장가격(현재 주가)으로
+                    평가한 금액이다
+                  </li>
+                  <li>
+                    주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
+                    크다.
+                  </li>
+                  <li>
+                    시가총액의 변화와 시가총액 순위 변화를 통해 성장하는 산업과
+                    시장의 기대치가 높은 산업의 선호도를 파악할 수 있다.
+                  </li>
+                </ul>
+                <div class="custom-hr"></div>
+                <h6>계산식</h6>
+                <span>시가총액 = 주가 X 발행주식수</span>
+              </p>
 
-        <p style={{ display: isVisible.tradingVolume ? 'block' : 'none' }}>
-          <h6>거래량(Volume)</h6>
-          <hr />
-          <h5>Key point</h5>
-          <ul>
-            <li>
-            주식시장에서 일정 기간동안 주식의 매수/매도 거래가 성립되어 이뤄진 주식이 거래된 양을 의미한다.
-            </li>
-            <li>
-            주가지수와 함께 시장의 장세를 판단하는 중요한 가격 지표이다.
-            </li>
-            <li>
-            주가가 낮을수록 거래량은 높게 나타나는 단점이 있어 거래대금과 함께 분석해보는 것이 좋다.
-            </li>
-          </ul>
-        </p>
+              <p style={{ display: isVisible.stockPrice ? "block" : "none" }}>
+                <h6>주가(Stock Price)</h6>
+                <div class="custom-hr"></div>
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    주식 거래 장 중에는 전일 종가, 장 마감 이후에는 해당 일의
+                    종가가 주가를 의미한다.
+                  </li>
+                  <li>
+                    주가가 비슷하더라도 발행주식 수가 많으면 시가 총액이 더
+                    크다.
+                  </li>
+                  <li>
+                    근본적으로 주식은 회사의 주주가 가지는 권리이므로 이 권리의
+                    가치에 따라 값도 변화한다.
+                  </li>
+                </ul>
+              </p>
 
-        <p style={{ display: isVisible.transactionVolume ? 'block' : 'none' }}>
-          <h6>거래대금(Trading Value)</h6>
-          <hr />
-          <h5>Key point</h5>
-          <ul>
-            <li>
-            주식거래 장 중 체결 거래량과 종목의 체결 가격을 곱한 값으로 해당 종목이 일정시간동안 거래된 총 거래금액을 의미한다.
-            </li>
-            <li>
-            주가가 낮을수록 높게 나타나는 거래량의 단점을 보완하여 시장에서 거래된 절대적인 금액을 나타내는 지표이다.
-            </li>
-            <li>
-            거래대금의 증가와 감소는 투자시장 전반적인 흐름과 상태 혹은 상황을 추정하고 분석하는데 활용될 수 있다.
-            </li>
-          </ul>
-          <hr />
-          <h6>계산식</h6>
-          <span>거래대금 = 거래량 X 체결가격</span>
-        </p>
+              <p
+                style={{ display: isVisible.tradingVolume ? "block" : "none" }}
+              >
+                <h6>거래량(Volume)</h6>
+                <div class="custom-hr"></div>
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    주식시장에서 일정 기간동안 주식의 매수/매도 거래가 성립되어
+                    이뤄진 주식이 거래된 양을 의미한다.
+                  </li>
+                  <li>
+                    주가지수와 함께 시장의 장세를 판단하는 중요한 가격 지표이다.
+                  </li>
+                  <li>
+                    주가가 낮을수록 거래량은 높게 나타나는 단점이 있어
+                    거래대금과 함께 분석해보는 것이 좋다.
+                  </li>
+                </ul>
+              </p>
 
-        <p style={{ display: isVisible.ForeignerShareRatio ? 'block' : 'none' }}>
-          <h6>외국인지분(Foreigner Share Ratio)</h6>
-          <hr />
-          <h5>Key point</h5>
-          <ul>
-            <li>
-            해당 종목의 전체 유통주식 중 외국인들이 실제 보유하고 있는 주식 비중을 나타낸다.
-            </li>
-            <li>
-            외국인 지분 보유율이 높을수록 외국인이 많은 관심을 가지고 투자를 하고 있다는 의미이다.
-            </li>
-            <li>
-            통계적으로 외국인보유비율이 높은 기업은 전체 매출액에서 수출이 차지하는 비중이 높은 경향이 있다.
-            </li>
-          </ul>
-        </p>
+              <p
+                style={{
+                  display: isVisible.transactionVolume ? "block" : "none",
+                }}
+              >
+                <h6>거래대금(Trading Value)</h6>
+                <div class="custom-hr"></div>
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    주식거래 장 중 체결 거래량과 종목의 체결 가격을 곱한 값으로
+                    해당 종목이 일정시간동안 거래된 총 거래금액을 의미한다.
+                  </li>
+                  <li>
+                    주가가 낮을수록 높게 나타나는 거래량의 단점을 보완하여
+                    시장에서 거래된 절대적인 금액을 나타내는 지표이다.
+                  </li>
+                  <li>
+                    거래대금의 증가와 감소는 투자시장 전반적인 흐름과 상태 혹은
+                    상황을 추정하고 분석하는데 활용될 수 있다.
+                  </li>
+                </ul>
+                <div class="custom-hr"></div>
+                <h6>계산식</h6>
+                <span>거래대금 = 거래량 X 체결가격</span>
+              </p>
 
+              <p
+                style={{
+                  display: isVisible.ForeignerShareRatio ? "block" : "none",
+                }}
+              >
+                <h6>외국인지분(Foreigner Share Ratio)</h6>
+                <div class="custom-hr"></div>
+                <h5>Key point</h5>
+                <ul>
+                  <li>
+                    해당 종목의 전체 유통주식 중 외국인들이 실제 보유하고 있는
+                    주식 비중을 나타낸다.
+                  </li>
+                  <li>
+                    외국인 지분 보유율이 높을수록 외국인이 많은 관심을 가지고
+                    투자를 하고 있다는 의미이다.
+                  </li>
+                  <li>
+                    통계적으로 외국인보유비율이 높은 기업은 전체 매출액에서
+                    수출이 차지하는 비중이 높은 경향이 있다.
+                  </li>
+                </ul>
+              </p>
             </div>
 
             <div className="checkbox-row">가격/수급 </div>
             <Form className="checkbox-form">
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="marketCap"
-                  name="marketCap"
-                  checked={checkboxValues.marketCap}
-                  onChange={handleCheckboxChange}
-                  
-                />
-                  <button onClick={(event) => toggleVisibility(event,'marketCap')}>시가총액</button>
-
-                <Form.Check
-                  type="checkbox"
-                  id="stockPrice"
-                  name="stockPrice"
-                  checked={checkboxValues.stockPrice}
-                  onChange={handleCheckboxChange}
-                />
-                <button onClick={(event) => toggleVisibility(event, 'stockPrice')}>주가</button>
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="marketCap"
+                    name="marketCap"
+                    checked={checkboxValues.marketCap}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    시가총액
+                  </button>
+                </div>
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="stockPrice"
+                    name="stockPrice"
+                    checked={checkboxValues.stockPrice}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "stockPrice")}
+                  >
+                    주가
+                  </button>
+                </div>
               </div>
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="tradingVolume"
-                  name="tradingVolume"
-                  checked={checkboxValues.tradingVolume}
-                  onChange={handleCheckboxChange}
-                />
-                <button onClick={(event) => toggleVisibility(event, 'tradingVolume')}>거래량</button>
-                <Form.Check
-                  type="checkbox"
-                  id="transactionVolume"
-                  name="transactionVolume"
-                  checked={checkboxValues.transactionVolume}
-                  onChange={handleCheckboxChange}
-                />
-                <button onClick={(event) => toggleVisibility(event, 'transactionVolume')}>거래대금</button>
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="tradingVolume"
+                    name="tradingVolume"
+                    checked={checkboxValues.tradingVolume}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) =>
+                      toggleVisibility(event, "tradingVolume")
+                    }
+                  >
+                    거래량
+                  </button>
+                </div>
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="transactionVolume"
+                    name="transactionVolume"
+                    checked={checkboxValues.transactionVolume}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) =>
+                      toggleVisibility(event, "transactionVolume")
+                    }
+                  >
+                    거래대금
+                  </button>
+                </div>
               </div>
-
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="foreignOwnership"
-                  name="foreignOwnership"
-                  checked={checkboxValues.foreignOwnership}
-                  onChange={handleCheckboxChange}
-                />
-                <button onClick={(event) => toggleVisibility(event, 'ForeignerShareRatio')}>외국인지분</button>
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="foreignOwnership"
+                    name="foreignOwnership"
+                    checked={checkboxValues.foreignOwnership}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) =>
+                      toggleVisibility(event, "ForeignerShareRatio")
+                    }
+                  >
+                    외국인지분
+                  </button>
+                </div>
               </div>
 
               <div></div>
@@ -819,13 +872,12 @@ function CategoryFilter() {
             </div>
           </Modal.Body>
         </div>
-        
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
             닫기
           </Button>
-          <Button variant="primary" onClick={handleConfirm}>
+          <Button variant="dark" onClick={handleConfirm}>
             확인
           </Button>{" "}
           {/* 추가: 확인 버튼 */}

@@ -4,7 +4,7 @@
     format("woff");
   font-weight: normal;
   font-style: normal;
-}
+};
 
 /*초기설정*/
 * {
@@ -19,62 +19,6 @@ td {
   padding: 10px;
 }
 
-/*header부분*/
-#header {
-  width: 100%;
-  height: 3rem;
-  position: sticky;
-  top: 0;
-  border: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: black;
-  /*background-color: var(--background);*/
-  z-index: 2;
-}
-
-#header a {
-  text-decoration: none;
-  color: black;
-}
-
-#header img {
-  width: 2em;
-  margin-right: 10px;
-}
-#SearchModal .searchButton {
-  color: brown;
-  background-color: white;
-  border: 1px solid brown;
-}
-#SearchModal .searchButton:hover {
-  color: white;
-  background-color: brown;
-  border: 1px solid white;
-}
-#ModalFooter .firstButton {
-  color: brown;
-  background-color: white;
-  border: 1px solid brown;
-}
-#ModalFooter .firstButton:hover {
-  color: white;
-  background-color: brown;
-  border: 1px solid white;
-}
-.searchSpace {
-  width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 40px;
-  padding: 5px 7px;
-  text-align: center;
-}
 #header .logo {
   display: flex;
   justify-content: center;
@@ -164,7 +108,7 @@ td {
 }
 .presentPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .buyPrice {
@@ -172,7 +116,7 @@ td {
 }
 .buyPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .sellPrice {
@@ -180,13 +124,12 @@ td {
 }
 .sellPrice p:nth-child(2) {
   margin-left: 10px;
-  color: palevioletred;
+  color: white;
 }
 
 .main_container {
   width: 100%;
   height: 100%;
-  margin: 0 2.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -257,12 +200,15 @@ td {
 
 .stockInfo .stockTable {
   width: 100%;
-  margin-top: 10px;
-  border-top: 1px solid lightcoral;
-  border-bottom: 1px solid lightcoral;
+  margin-top: 3%;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 .stockInfo .stockTable td:first-child {
   color: brown;
+}
+#FinancialInfo {
+  margin-top: 3%;
 }
 
 #FinancialInfo td:nth-child(1) {
@@ -379,18 +325,44 @@ td {
   margin: 0 10px; /* 세로선의 좌우 여백을 조절합니다. */
 }
 hr {
-  width:55%;
+  width: 55%;
 }
 
-
-
-.Align-right{
-  width:40%;
+.Align-right {
+  width: 40%;
   float: right;
 }
 
-.checkbox-row{
+.checkbox-row {
   margin-left: 10px;
-  float:left;
-  width:55%;
+  float: left;
+  width: 55%;
+}
+
+.formContainer {
+  display: flex;
+}
+
+.buttonmargin {
+  margin-left: 10px;
+  background: transparent;
+}
+
+.custom-hr {
+  border: none;
+  height: 1px;
+  background-color: #000; /* 수평선의 색상을 설정합니다. */
+  margin: 10px 0; /* 수평선의 위아래 여백을 설정합니다. */
+}
+
+#group_container {
+  background-color: black;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+.buttonContainer {
+  margin-bottom: 3%;
+}
+.buttonContainer Button{
+  margin-right: 3%;
 }

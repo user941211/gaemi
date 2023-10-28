@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroup from "react-bootstrap/ListGroup";
 import ThemeList from "./themelist";
 
 const BalGul = () => {
   const [stockData, setStockData] = useState(null);
-  
+
   // Fetch stock item information from an API
   /*useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +26,8 @@ const BalGul = () => {
   return (
     <div>
       <ListGroup>
-        <ThemeList name="상위"/>
-        <ThemeList name="하위"/>
+        <ThemeList name="상위" />
+        <ThemeList name="하위" />
       </ListGroup>
     </div>
   );

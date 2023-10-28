@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Theme from "./theme";
-import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
 const formatPrice = (price) => {
@@ -36,7 +35,6 @@ function Stock({ chartData, rim }) {
   return (
     <div className="stockInfo">
       <div className="stockLogo">
-        <img src={stockLogo} alt="stock" />
         <div className="stockContent">
           <p>{codeName}</p>
           <p className="cospi">종목번호 {code}</p>

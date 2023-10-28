@@ -1,6 +1,5 @@
 import React from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import stockLogo from "../pages/img/stockLogoEx.jpeg";
 import "../pages/css/App.css";
 
 const formatPrice = (price) => {
@@ -27,7 +26,6 @@ function Recommendation({recommend}) {
           <div id="stockLogo_reco">
           {recommend.map((item, index) => (
               <div className="stockLogo" key={index}>
-                <img src={stockLogo} alt="stock" />
                 <div className="stockContent">
                   <p key={index}>{item.종목명} {formatPrice(item.거래대금)}</p>
                 </div>
