@@ -45,6 +45,7 @@ function Chart({ chartData }) {
     xaxis: {
       categories: [],
     },
+
   });
 
   useEffect(() => {
@@ -54,6 +55,15 @@ function Chart({ chartData }) {
   const updateChartData = () => {
     if (chartData && chartData.length > 0) {
       const categories = chartData.map((item) => item.date);
+      const shortenedCategories = categories.map((date) => date.slice(0, 6));
+
+      const uniqueCategories = Array.from(new Set(categories));
+      const uniqueMonths = uniqueCategories.map((category) => category.slice(0, 6));
+      const uniqueCategoriesMerged = [...new Set(uniqueMonths)];
+
+      
+      //위 const변수는 categories map에서 받은 정보들을 월별로 끊기 위해서 만든거임.
+      const slicedCategories = uniqueCategoriesMerged.slice(0, 10);
       const end = chartData.map((item) => item.close);
       const codeName = chartData[0].code_name;
       /*const start = chartData.map((item) => item.open);
@@ -72,16 +82,21 @@ function Chart({ chartData }) {
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {
-          categories: categories,
+          categories: shortenedCategories,
           tickPlacement: "on",
           labels: {
-            show: false, // 하나의 x축 레이블만 표시하기 위해 레이블 표시를 비활성화합니다.
+            show: true, // 하나의 x축 레이블만 표시하기 위해 레이블 표시를 비활성화합니다.
+            rotate: -45,
           },
+        },
+        stroke: {
+          width: 3, // 선의 굵기를 여기서 조절함.
         },
         title: {
           text: codeName,
           align: "left",
         },
+
         colors: ["#FFFFFF"],
       }));
     }
