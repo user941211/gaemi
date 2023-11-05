@@ -33,7 +33,7 @@ function Main() {
   const [rim, setrim] = useState(location.state?.rim || []);
 
   //console.log(state);
-
+  
   const handleDataUpdate = (results, finance, recommend, rim) => {
     setChartData(results);
     setfinance(finance);
