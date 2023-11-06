@@ -684,79 +684,150 @@ function CategoryFilter() {
               <hr />
               <div className="checkbox-row"> 가치 </div>
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="per"
-                  label="PER (최근 4분기)"
-                  name="per"
-                  checked={checkboxValues.per}
-                  onChange={handleCheckboxChange}
-                />
-                <Form.Check
-                  type="checkbox"
-                  id="pbr"
-                  label="PBR"
-                  name="pbr"
-                  checked={checkboxValues.pbr}
-                  onChange={handleCheckboxChange}
-                />
-                <Form.Check
-                  type="checkbox"
-                  id="psr"
-                  label="PSR (최근 4분기)"
-                  name="psr"
-                  checked={checkboxValues.psr}
-                  onChange={handleCheckboxChange}
-                />
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="per"
+                    name="per"
+                    checked={checkboxValues.per}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    PER(최근4분기)
+                  </button>
+                </div>
+
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="pbr"
+                    name="pbr"
+                    checked={checkboxValues.pbr}
+                    onChange={handleCheckboxChange}
+                  />
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    PBR
+                  </button>
+                </div>
+
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="psr"
+                    name="psr"
+                    checked={checkboxValues.psr}
+                    onChange={handleCheckboxChange}
+                  />
+
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    PSR (최근 4분기)
+                  </button>
+                </div>
               </div>
 
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="pcr"
-                  label="PCR (최근 4분기)"
-                  name="pcr"
-                  checked={checkboxValues.pcr}
-                  onChange={handleCheckboxChange}
-                />
-                <Form.Check
-                  type="checkbox"
-                  id="eps"
-                  label="EPS (최근 연도)"
-                  name="eps"
-                  checked={checkboxValues.eps}
-                  onChange={handleCheckboxChange}
-                />
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="pcr"
+                    name="pcr"
+                    checked={checkboxValues.pcr}
+                    onChange={handleCheckboxChange}
+                  />
+
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    PCR (최근 4분기)
+                  </button>
+                </div>
+
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="eps"
+                    name="eps"
+                    checked={checkboxValues.eps}
+                    onChange={handleCheckboxChange}
+                  />
+                  <div>
+                    <button
+                      className="buttonmargin"
+                      onClick={(event) => toggleVisibility(event, "marketCap")}
+                    >
+                      EPS (최근 연도)
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="bps"
-                  label="BPS (최근 연도)"
-                  name="bps"
-                  checked={checkboxValues.bps}
-                  onChange={handleCheckboxChange}
-                />
-                <Form.Check
-                  type="checkbox"
-                  id="sps"
-                  label="SPS (최근 연도)"
-                  name="sps"
-                  checked={checkboxValues.sps}
-                  onChange={handleCheckboxChange}
-                />
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="bps"
+                    name="bps"
+                    checked={checkboxValues.bps}
+                    onChange={handleCheckboxChange}
+                  />
+                  <div>
+                    <button
+                      className="buttonmargin"
+                      onClick={(event) => toggleVisibility(event, "marketCap")}
+                    >
+                      BPS (최근 연도)
+                    </button>
+                  </div>
+                </div>
+
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="sps"
+                    name="sps"
+                    checked={checkboxValues.sps}
+                    onChange={handleCheckboxChange}
+                  />
+                  <div>
+                    <button
+                      className="buttonmargin"
+                      onClick={(event) => toggleVisibility(event, "marketCap")}
+                    >
+                      SPS (최근 연도)
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="checkbox-row">
-                <Form.Check
-                  type="checkbox"
-                  id="cps"
-                  label="CPS (최근 연도)"
-                  name="cps"
-                  checked={checkboxValues.cps}
-                  onChange={handleCheckboxChange}
-                />
+                <div className="formContainer">
+                  <Form.Check
+                    type="checkbox"
+                    id="cps"
+                    name="cps"
+                    checked={checkboxValues.cps}
+                    onChange={handleCheckboxChange}
+                  />
+
+                  <div>
+                    <button
+                      className="buttonmargin"
+                      onClick={(event) => toggleVisibility(event, "marketCap")}
+                    >
+                      CPS (최근 연도)
+                    </button>
+                  </div>
+                </div>
               </div>
             </Form>
 
@@ -764,111 +835,220 @@ function CategoryFilter() {
             <div className="checkbox-row">
               {" "}
               성장성
-              <Form.Check
-                type="checkbox"
-                id="revenueGrowth"
-                label="매출액 증가율"
-                name="revenueGrowth"
-                checked={checkboxValues.revenueGrowth}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="operatingIncomeGrowth"
-                label="영업이익 증가율"
-                name="operatingIncomeGrowth"
-                checked={checkboxValues.operatingIncomeGrowth}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="netIncomeGrowth"
-                label="순이익 증가율"
-                name="netIncomeGrowth"
-                checked={checkboxValues.netIncomeGrowth}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="totalAssetsGrowth"
-                label="총자산 증가율"
-                name="totalAssetsGrowth"
-                checked={checkboxValues.totalAssetsGrowth}
-                onChange={handleCheckboxChange}
-              />
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="revenueGrowth"
+                  name="revenueGrowth"
+                  checked={checkboxValues.revenueGrowth}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    매출액 증가율
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="operatingIncomeGrowth"
+                  name="operatingIncomeGrowth"
+                  checked={checkboxValues.operatingIncomeGrowth}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    영업이익 증가율
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="netIncomeGrowth"
+                  name="netIncomeGrowth"
+                  checked={checkboxValues.netIncomeGrowth}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    순이익 증가율
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="totalAssetsGrowth"
+                  name="totalAssetsGrowth"
+                  checked={checkboxValues.totalAssetsGrowth}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    총자산 증가율
+                  </button>
+                </div>
+              </div>
             </div>
             <hr />
+
             <div className="checkbox-row">
               수익성
-              <Form.Check
-                type="checkbox"
-                id="roe"
-                label="ROE (최근 4분기)"
-                name="roe"
-                checked={checkboxValues.roe}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="roa"
-                label="ROA (최근 4분기)"
-                name="roa"
-                checked={checkboxValues.roa}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="grossProfitMargin"
-                label="매출총이익률 (최근 연도)"
-                name="grossProfitMargin"
-                checked={checkboxValues.grossProfitMargin}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="operatingProfitMargin"
-                label="영업이익률 (최근 연도)"
-                name="operatingProfitMargin"
-                checked={checkboxValues.operatingProfitMargin}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="netProfitMargin"
-                label="순이익률 (최근 연도)"
-                name="netProfitMargin"
-                checked={checkboxValues.netProfitMargin}
-                onChange={handleCheckboxChange}
-              />
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="roe"
+                  name="roe"
+                  checked={checkboxValues.roe}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    ROE (최근 4분기)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="roa"
+                  name="roa"
+                  checked={checkboxValues.roa}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    ROA (최근 4분기)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="grossProfitMargin"
+                  name="grossProfitMargin"
+                  checked={checkboxValues.grossProfitMargin}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    매출총이익률 (최근 연도)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="operatingProfitMargin"
+                  name="operatingProfitMargin"
+                  checked={checkboxValues.operatingProfitMargin}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    영업이익률 (최근 연도)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="netProfitMargin"
+                  name="netProfitMargin"
+                  checked={checkboxValues.netProfitMargin}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    순이익률 (최근 연도)
+                  </button>
+                </div>
+              </div>
             </div>
             <hr />
 
             <div className="checkbox-row">
               안정성
-              <Form.Check
-                type="checkbox"
-                id="debtRatio"
-                label="부채비율 (최근 연도)"
-                name="debtRatio"
-                checked={checkboxValues.debtRatio}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="currentRatio"
-                label="유동비율 (최근 연도)"
-                name="currentRatio"
-                checked={checkboxValues.currentRatio}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                type="checkbox"
-                id="currentDebtRatio"
-                label="유동부채비율 (최근 연도)"
-                name="currentDebtRatio"
-                checked={checkboxValues.currentDebtRatio}
-                onChange={handleCheckboxChange}
-              />
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="debtRatio"
+                  name="debtRatio"
+                  checked={checkboxValues.debtRatio}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    부채비율 (최근 연도)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="currentRatio"
+                  name="currentRatio"
+                  checked={checkboxValues.currentRatio}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    유동비율 (최근 연도)
+                  </button>
+                </div>
+              </div>
+              <div className="formContainer">
+                <Form.Check
+                  type="checkbox"
+                  id="currentDebtRatio"
+                  name="currentDebtRatio"
+                  checked={checkboxValues.currentDebtRatio}
+                  onChange={handleCheckboxChange}
+                />
+                <div>
+                  <button
+                    className="buttonmargin"
+                    onClick={(event) => toggleVisibility(event, "marketCap")}
+                  >
+                    유동부채비율 (최근 연도)
+                  </button>
+                </div>
+              </div>
             </div>
           </Modal.Body>
         </div>
