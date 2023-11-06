@@ -9,6 +9,9 @@ import axios from "axios";
 import { color } from "@mui/system";
 
 function CategoryFilter() {
+
+  const [minValue, setMinValue] = useState("");
+  const [maxValue, setMaxValue] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isVisible, setIsVisible] = useState({
@@ -150,63 +153,55 @@ function CategoryFilter() {
     currentDebtRatio: { minValue: "", maxValue: "" },
   });
 
-  const handleFilterValueChange = (event, key) => {
-    const { name, value } = event.target;
-    setFilterValues((prevValues) => ({
-      ...prevValues,
-      [key]: {
-        ...prevValues[key],
-        [name]: value,
-      },
-    }));
-  };
-
+  
   const handleFetchData = async () => {
     try {
       const response = await axios.get("/search", {
         params: filterValues,
+       
       });
-      // 결과 처리 로직
+      
     } catch (error) {
       console.error(error);
     }
   };
 
   const getLabelByKey = (key) => {
+    const handleInputChange = (category, valueName, event) => {
+      const newValue = event.target.value;
+      console.log(`Category: ${category}, Value Name: ${valueName}, New Value: ${newValue}`);
+    setFilterValues((prevFilterValues) => ({
+      ...prevFilterValues,
+      [category]: {
+        ...prevFilterValues[category],
+        [valueName]: newValue,
+      },
+    }));
+  };
+
     switch (key) {
+
       case "marketCap":
         return (
           <>
             <span>시가총액 범위</span>
             <div className="input-wrapper">
-              <input
-                type="text"
-                name="minValue"
-                placeholder="최소값 입력"
-                value={filterValues.marketCap.minValue}
-                onChange={(event) =>
-                  handleFilterValueChange(event, "marketCap")
-                }
-              />
-              <input
-                type="text"
-                name="maxValue"
-                placeholder="최대값 입력"
-                value={filterValues.marketCap.maxValue}
-                onChange={(event) =>
-                  handleFilterValueChange(event, "marketCap")
-                }
-              />
+            <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+            <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)} />
+
             </div>
           </>
         );
+      
+      
       case "stockPrice":
         return (
           <>
             <span>주가 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+            <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+            <input type="text" placeholder="최대값 입력"  onChange={(event) => handleInputChange(key, "maxValue", event)}/>
+
             </div>
           </>
         );
@@ -215,8 +210,8 @@ function CategoryFilter() {
           <>
             <span>거래량 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -225,8 +220,8 @@ function CategoryFilter() {
           <>
             <span>거래대금 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력"onChange={(event) => handleInputChange(key, "maxValue", event)} />
             </div>
           </>
         );
@@ -235,8 +230,8 @@ function CategoryFilter() {
           <>
             <span>PER 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -245,8 +240,8 @@ function CategoryFilter() {
           <>
             <span>PBR 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력"onChange={(event) => handleInputChange(key, "maxValue", event)} />
             </div>
           </>
         );
@@ -255,8 +250,8 @@ function CategoryFilter() {
           <>
             <span>PSR 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -265,8 +260,8 @@ function CategoryFilter() {
           <>
             <span>PCR 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -275,8 +270,8 @@ function CategoryFilter() {
           <>
             <span>EPS 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -285,8 +280,8 @@ function CategoryFilter() {
           <>
             <span>BPS 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력"onChange={(event) => handleInputChange(key, "maxValue", event)} />
             </div>
           </>
         );
@@ -295,8 +290,8 @@ function CategoryFilter() {
           <>
             <span>SPS 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -305,8 +300,8 @@ function CategoryFilter() {
           <>
             <span>CPS 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -315,8 +310,8 @@ function CategoryFilter() {
           <>
             <span>매출액 증가율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -325,8 +320,8 @@ function CategoryFilter() {
           <>
             <span>영업이익 증가율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -335,8 +330,8 @@ function CategoryFilter() {
           <>
             <span>순이익 증가율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -345,8 +340,8 @@ function CategoryFilter() {
           <>
             <span>총자산 증가율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -355,8 +350,8 @@ function CategoryFilter() {
           <>
             <span>ROE 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -365,8 +360,8 @@ function CategoryFilter() {
           <>
             <span>ROA 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -375,8 +370,8 @@ function CategoryFilter() {
           <>
             <span>매출총이익률 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -385,8 +380,8 @@ function CategoryFilter() {
           <>
             <span>영업이익률 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력" onChange={(event) => handleInputChange(key, "minValue", event)} />
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -395,8 +390,8 @@ function CategoryFilter() {
           <>
             <span>순이익률 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -405,8 +400,8 @@ function CategoryFilter() {
           <div>
             <span>부채비율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </div>
         );
@@ -415,8 +410,8 @@ function CategoryFilter() {
           <>
             <span>유동비율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
@@ -425,8 +420,8 @@ function CategoryFilter() {
           <>
             <span>유동부채비율 범위</span>
             <div className="input-wrapper">
-              <input type="text" placeholder="최소값 입력" />
-              <input type="text" placeholder="최대값 입력" />
+              <input type="text" placeholder="최소값 입력"  onChange={(event) => handleInputChange(key, "minValue", event)}/>
+              <input type="text" placeholder="최대값 입력" onChange={(event) => handleInputChange(key, "maxValue", event)}/>
             </div>
           </>
         );
