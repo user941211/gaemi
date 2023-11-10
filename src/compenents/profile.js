@@ -6,7 +6,7 @@ import profileMMK from "../pages/img/profile_mmk.jpg";
 function Profile() {
   return (
     <div>
-      <Header link="/profile"/>
+      <Header link="/profile" />
       <div id="profile_container">
         <div className="profile">
           <img src={profileMMK} alt="profile"></img>
@@ -14,7 +14,7 @@ function Profile() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Profile;
