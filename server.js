@@ -12,25 +12,25 @@ app.use(cors());
 const dbConfig = {
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
-  password: process.env.REACT_APP_DB_PASSWORD
+  password: process.env.REACT_APP_DB_PASSWORD,
 };
 
 const databases = [
-  { name: 'daily_craw', connection: null }, // DB 0
-  { name: 'daily_buy_list', connection: null }, // DB 1
-  { name: 'stock_finance', connection: null }, // DB 2
-  { name: 'processed_stock_data', connection: null } // DB 3
+  { name: "daily_craw", connection: null }, // DB 0
+  { name: "daily_buy_list", connection: null }, // DB 1
+  { name: "stock_finance", connection: null }, // DB 2
+  { name: "processed_stock_data", connection: null }, // DB 3
 ];
 
 const connectToDatabases = async () => {
   for (const database of databases) {
     database.connection = mysql.createConnection({
       ...dbConfig,
-      database: database.name
+      database: database.name,
     });
 
     await new Promise((resolve, reject) => {
-      database.connection.connect(error => {
+      database.connection.connect((error) => {
         if (error) {
           console.error(`Error connecting to ${database.name} DB:`, error);
           reject(error);
@@ -46,7 +46,7 @@ const connectToDatabases = async () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-connectToDatabases().catch(error => {
+connectToDatabases().catch((error) => {
   console.error("Failed to connect to databases:", error);
   process.exit(1);
 });
@@ -84,7 +84,9 @@ app.post("/search", async (req, res) => {
     );
 
     if (chartdata.length === 0) {
-      return res.json({ message: "table don't find 1, OR db is not up to date 3 months" });
+      return res.json({
+        message: "table don't find 1, OR db is not up to date 3 months",
+      });
     }
     //console.log(chartdata);
 
@@ -156,13 +158,13 @@ const connection = mysql.createConnection({
 connection.connect();
 
 // API 엔드포인트
-app.post('/filterData', (req, res) => {
+app.post("/filterData", (req, res) => {
   const filterValues = req.body;
   console.log(filterValues);
 
   // 동적으로 SQL 쿼리 생성
   let sqlQuery = `
-    SELECT 종목명
+    SELECT 종목명, 시가총액, 거래량,BPS,PER,PBR,EPS
     FROM ALL_DATA_저PBR_저PER
     WHERE 1 = 1
   `;
@@ -175,26 +177,26 @@ app.post('/filterData', (req, res) => {
     // 카테고리에 따라 필드 이름 변경
     let translatedCategory = category;
     switch (category) {
-      case 'marketCap':
-        translatedCategory = '시가총액';
+      case "marketCap":
+        translatedCategory = "시가총액";
         break;
-      case 'stockPrice':
-        translatedCategory = '종가';
+      case "stockPrice":
+        translatedCategory = "종가";
         break;
-      case 'tradingVolume':
-        translatedCategory = '거래량';
+      case "tradingVolume":
+        translatedCategory = "거래량";
         break;
-      case 'BPS':
-        translatedCategory = 'BPS';
+      case "BPS":
+        translatedCategory = "BPS";
         break;
-      case 'PER':
-        translatedCategory = 'PER';
+      case "PER":
+        translatedCategory = "PER";
         break;
-      case 'PBR':
-        translatedCategory = 'PBR';
+      case "PBR":
+        translatedCategory = "PBR";
         break;
-      case 'EPS':
-        translatedCategory = 'EPS';
+      case "EPS":
+        translatedCategory = "EPS";
         break;
       // 필요한 경우 다른 카테고리를 추가하실 수 있습니다.
 
@@ -202,7 +204,7 @@ app.post('/filterData', (req, res) => {
         break;
     }
 
-    if (minValue !== '' && maxValue !== '') {
+    if (minValue !== "" && maxValue !== "") {
       sqlQuery += ` AND ${translatedCategory} > ${minValue} AND ${translatedCategory} < ${maxValue}`;
     }
   }
@@ -210,19 +212,11 @@ app.post('/filterData', (req, res) => {
   // 쿼리 실행
   connection.query(sqlQuery, (error, results, fields) => {
     if (error) {
-      console.error('SQL 쿼리 실행 중 오류 발생:', error);
-      res.status(500).json({ error: '내부 서버 오류' });
+      console.error("SQL 쿼리 실행 중 오류 발생:", error);
+      res.status(500).json({ error: "내부 서버 오류" });
     } else {
-      console.log('쿼리 결과:', results);
+      console.log("쿼리 결과:", results);
       res.status(200).json(results); // 결과를 JSON 형태로 클라이언트에게 반환
     }
   });
 });
-
-
-
-
-
-
-
-
