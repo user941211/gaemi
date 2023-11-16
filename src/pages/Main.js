@@ -6,9 +6,7 @@ import Header from "./Header";
 import "./css/App.css";
 import "./css/Main.css";
 import { useLocation } from "react-router-dom";
-import BalGul from "../compenents/balgul";
 import Price from "../compenents/price";
-import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
 import Categoryfilter from "../compenents/categoryfilter";
@@ -57,7 +55,6 @@ function Main() {
               chartData={chartData}
               recommend={recommend}
             />
-            <BalGul />
             <Categoryfilter />
           </div>
         </div>
