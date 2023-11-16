@@ -9,9 +9,18 @@ import axios from "axios";
 import { color } from "@mui/system";
 
 function CategoryFilter() {
+  const [response, setResultData] = useState({ data: [] });
 
-  const [minValue, setMinValue] = useState("");
-  const [maxValue, setMaxValue] = useState("");
+ 
+  
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const open_resultModal = () => {
+    // 모달 관련 작업이 필요하면 추가
+    setShowModal(true);
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isVisible, setIsVisible] = useState({
@@ -156,28 +165,31 @@ function CategoryFilter() {
   
   const handleFetchData = async () => {
     try {
-      const response = await axios.get("/search", {
-        params: filterValues,
-       
-      });
-      
+
+      console.log(filterValues)
+      const response = await axios.post('http://localhost:3001/filterData', filterValues);
+      console.log("Data saved successfully:", response.data);
+      setResultData(response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error saving data:", error);
     }
+    
+    open_resultModal();
   };
 
   const getLabelByKey = (key) => {
     const handleInputChange = (category, valueName, event) => {
       const newValue = event.target.value;
-      console.log(`Category: ${category}, Value Name: ${valueName}, New Value: ${newValue}`);
-    setFilterValues((prevFilterValues) => ({
-      ...prevFilterValues,
-      [category]: {
-        ...prevFilterValues[category],
-        [valueName]: newValue,
-      },
-    }));
-  };
+      setFilterValues((prevFilterValues) => ({
+        ...prevFilterValues,
+        [category]: {
+          ...prevFilterValues[category],
+          [valueName]: newValue,
+        },
+      }));
+    };
+  
+   
 
     switch (key) {
 
@@ -433,20 +445,46 @@ function CategoryFilter() {
   return (
     <div id="filterContainer">
       <div className="buttonContainer">
-        <Button variant="outline-light" onClick={openModal}>
-          필터생성
-        </Button>{" "}
-        <Button variant="outline-light" onClick={removefilter}>
-          필터제거
-        </Button>{" "}
-        <Button
-          variant="outline-light"
-          onClick={handleFetchData}
-          style={{ marginTop: "3%", marginBottom: "3%" }}
-        >
-          확인
-        </Button>{" "}
-      </div>
+      <Button variant="outline-light" onClick={openModal}>
+        필터생성
+      </Button>{' '}
+      <Button variant="outline-light" onClick={removefilter}>
+        필터제거
+      </Button>{' '}
+      <Button
+        variant="outline-light"
+        onClick={handleFetchData}
+        style={{ marginTop: '3%', marginBottom: '3%' }}
+      >
+        결과보기
+      </Button>{' '}
+
+      {/* 결과 모달 */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>결과 모달 제목</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        {showModal && response && response.data && response.data.length > 0 ? (
+    <div>
+      <h1>전체 데이터 출력</h1>
+      {response.data.map((item, index) => (
+        <div key={index}>
+          <p>결과 {index + 1}: {item.종목명}</p>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>데이터가 없습니다.</p>
+  )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            닫기
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
       <div className="filtergroup_container">
         <ListGroup>
           {selectedItems.map((item, index) => (

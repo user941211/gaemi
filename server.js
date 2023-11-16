@@ -143,3 +143,86 @@ function queryDatabase(connection, sql, params = []) {
     });
   });
 }
+
+// MySQL 연결 설정
+const connection = mysql.createConnection({
+  host: process.env.REACT_APP_DB_HOST,
+  user: process.env.REACT_APP_DB_USERNAME,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  database: "processed_stock_data",
+});
+
+// 연결
+connection.connect();
+
+// API 엔드포인트
+app.post('/filterData', (req, res) => {
+  const filterValues = req.body;
+  console.log(filterValues);
+
+  // 동적으로 SQL 쿼리 생성
+  let sqlQuery = `
+    SELECT 종목명
+    FROM ALL_DATA_저PBR_저PER
+    WHERE 1 = 1
+  `;
+
+  // 각 필터 값들을 반영하여 SQL 쿼리에 추가
+  for (const category in filterValues) {
+    const minValue = filterValues[category].minValue;
+    const maxValue = filterValues[category].maxValue;
+
+    // 카테고리에 따라 필드 이름 변경
+    let translatedCategory = category;
+    switch (category) {
+      case 'marketCap':
+        translatedCategory = '시가총액';
+        break;
+      case 'stockPrice':
+        translatedCategory = '종가';
+        break;
+      case 'tradingVolume':
+        translatedCategory = '거래량';
+        break;
+      case 'BPS':
+        translatedCategory = 'BPS';
+        break;
+      case 'PER':
+        translatedCategory = 'PER';
+        break;
+      case 'PBR':
+        translatedCategory = 'PBR';
+        break;
+      case 'EPS':
+        translatedCategory = 'EPS';
+        break;
+      // 필요한 경우 다른 카테고리를 추가하실 수 있습니다.
+
+      default:
+        break;
+    }
+
+    if (minValue !== '' && maxValue !== '') {
+      sqlQuery += ` AND ${translatedCategory} > ${minValue} AND ${translatedCategory} < ${maxValue}`;
+    }
+  }
+
+  // 쿼리 실행
+  connection.query(sqlQuery, (error, results, fields) => {
+    if (error) {
+      console.error('SQL 쿼리 실행 중 오류 발생:', error);
+      res.status(500).json({ error: '내부 서버 오류' });
+    } else {
+      console.log('쿼리 결과:', results);
+      res.status(200).json(results); // 결과를 JSON 형태로 클라이언트에게 반환
+    }
+  });
+});
+
+
+
+
+
+
+
+
