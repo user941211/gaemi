@@ -73,12 +73,23 @@ const ThemeEvent = () => {
           <Modal.Title>{selectedCategory}산업에 속한 회사들</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ul className='theme-event-fontsize'>
-            {selectedCompanies.map((company, index) => (
-              <li key={index}>{company.종목명}</li>
-            ))}
-          </ul>
-        </Modal.Body>
+    <table className="table theme-event-table">
+      <thead>
+        <tr>
+          <th>종목명</th>
+          <th>종가</th>
+        </tr>
+      </thead>
+      <tbody>
+        {selectedCompanies.map((company, index) => (
+          <tr key={index}>
+            <td>{company.종목명}</td>
+            <td>{company.종가}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             닫기

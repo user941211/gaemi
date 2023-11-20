@@ -228,7 +228,7 @@ app.get('/api/companies', (req, res) => {
 
   // 동적으로 SQL 쿼리 생성
   let sqlQuery = `
-    SELECT 종목명
+    SELECT 종목명,종가
     FROM processed_stock_data.RAW_Data
     WHERE 업종 LIKE '%${category}%'
   `;
