@@ -647,7 +647,7 @@ function CategoryFilter() {
         {/* 결과 모달 */}
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
-            <Modal.Title>결과 모달 제목</Modal.Title>
+            <Modal.Title>주식필터 추출 결과</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {showModal &&
@@ -655,7 +655,7 @@ function CategoryFilter() {
             response.data &&
             response.data.length > 0 ? (
               <div>
-                <h1>전체 데이터 출력</h1>
+                
                 <table>
                   <thead>
                     <tr>

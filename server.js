@@ -220,3 +220,30 @@ app.post("/filterData", (req, res) => {
     }
   });
 });
+
+
+
+app.get('/api/companies', (req, res) => {
+  const { category } = req.query;
+
+  // 동적으로 SQL 쿼리 생성
+  let sqlQuery = `
+    SELECT 종목명
+    FROM processed_stock_data.RAW_Data
+    WHERE 업종 LIKE '%${category}%'
+  `;
+
+  // 쿼리 실행
+  connection.query(sqlQuery, (error, results, fields) => {
+    if (error) {
+      console.error("SQL 쿼리 실행 중 오류 발생:", error);
+      res.status(500).json({ error: "내부 서버 오류" });
+    } else {
+      console.log("쿼리 결과:", results);
+      res.status(200).json(results); // 결과를 JSON 형태로 클라이언트에게 반환
+    }
+  });
+});
+
+
+
