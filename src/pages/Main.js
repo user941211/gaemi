@@ -6,12 +6,11 @@ import Header from "./Header";
 import "./css/App.css";
 import "./css/Main.css";
 import { useLocation } from "react-router-dom";
-import BalGul from "../compenents/balgul";
 import Price from "../compenents/price";
-import Test from "../compenents/test";
 import FinancialInfo from "../compenents/financialinfo";
 import Recommendation from "../compenents/recommendation";
 import Categoryfilter from "../compenents/categoryfilter";
+import ThemeEvent from "../compenents/themeEvent";
 /*
     종목분석과 발굴분석은 알파스퀘어를 최대한 모방할건데
     한 페이지로 한꺼번에 볼 수 있도록만 변경한다.
@@ -57,9 +56,10 @@ function Main() {
               chartData={chartData}
               recommend={recommend}
             />
-            <BalGul />
             <Categoryfilter />
+            <ThemeEvent></ThemeEvent>
           </div>
+          
         </div>
       </div>
     </div>

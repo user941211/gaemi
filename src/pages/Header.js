@@ -25,7 +25,7 @@ function Header(props) {
     // 다른 경우에는 'start' 링크를 표시
     content = (
       <Link to="/searchWindow">
-        <p>start</p>
+        <p>검색</p>
       </Link>
     );
   }

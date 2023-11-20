@@ -366,3 +366,15 @@ hr {
 .buttonContainer Button{
   margin-right: 3%;
 }
+
+.theme-event-container {
+  padding-bottom: 5%;
+}
+
+.theme-event-fontsize {
+  font-size: 20px;
+}
+
+.filtergroup_container{
+  padding-bottom: 5%;
+}
