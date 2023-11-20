@@ -8,6 +8,7 @@ const ThemeEvent = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCompanies, setSelectedCompanies] = useState([]);
+  const [isDivVisible, setIsDivVisible] = useState(false);
 
   const categories = [
     '금융',
@@ -50,10 +51,16 @@ const ThemeEvent = () => {
     setSelectedCompanies([]);
   };
 
+  const handleCategoryClick = (category) => {
+    setIsDivVisible(prevState => !prevState); // 현재 값의 반대로 업데이트
+  };
+  
+
   return (
-    <div>
-      <h2>업종 카테고리</h2>
-      <ul>
+    <div className='theme-event-container'>
+       <h2 onClick={() => handleCategoryClick()}>업종 카테고리</h2>
+      <div style={{ display: isDivVisible ? 'block' : 'none' }}>
+      <ul className='theme-event-fontsize'>
         {categories.map((category, index) => (
           <li key={index} onClick={() => setSelectedCategory(category)}>
             {category}
@@ -66,7 +73,7 @@ const ThemeEvent = () => {
           <Modal.Title>{selectedCategory}산업에 속한 회사들</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ul>
+          <ul className='theme-event-fontsize'>
             {selectedCompanies.map((company, index) => (
               <li key={index}>{company.종목명}</li>
             ))}
@@ -78,6 +85,7 @@ const ThemeEvent = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      </div>
     </div>
   );
 };
