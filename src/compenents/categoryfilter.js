@@ -676,25 +676,26 @@ function CategoryFilter() {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{item.종목명}</td>
-                        <td>
-                          {filterValues.marketCap.minValue && item.시가총액}
-                        </td>
-                        <td>
-                          {filterValues.stockPrice.minValue && item.종가}
-                        </td>
-                        <td>
-                          {filterValues.tradingVolume.minValue && item.거래량}
-                        </td>
-                        <td>
-                        {filterValues.transactionVolume.minValue && item.거래대금}
-                        </td>
-                        <td>{filterValues.bps.minValue && item.BPS}</td>
-                        <td>{filterValues.per.minValue && item.PER}</td>
-                        <td>{filterValues.pbr.minValue && item.PBR}</td>
-                        <td>{filterValues.eps.minValue && item.EPS}</td>
+                        {filterValues.marketCap.minValue && (
+                          <td>{filterValues.marketCap.minValue && item.시가총액}</td>
+                        )}
+                        {filterValues.stockPrice.minValue && (
+                          <td>{filterValues.stockPrice.minValue && item.종가}</td>
+                        )}
+                        {filterValues.tradingVolume.minValue && (
+                          <td>{filterValues.tradingVolume.minValue && item.거래량}</td>
+                        )}
+                        {filterValues.transactionVolume.minValue && (
+                          <td>{filterValues.transactionVolume.minValue && item.거래대금}</td>
+                        )}
+                        {filterValues.bps.minValue && <td>{filterValues.bps.minValue && item.BPS}</td>}
+                        {filterValues.per.minValue && <td>{filterValues.per.minValue && item.PER}</td>}
+                        {filterValues.pbr.minValue && <td>{filterValues.pbr.minValue && item.PBR}</td>}
+                        {filterValues.eps.minValue && <td>{filterValues.eps.minValue && item.EPS}</td>}
                       </tr>
                     ))}
                   </tbody>
+
                 </table>
               </div>
             ) : (
