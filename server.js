@@ -258,5 +258,44 @@ app.get('/api/companies', (req, res) => {
   });
 });
 
+app.post("/firstpage", async (req, res) => {
+  console.log("Received firstpage data");
+  try {
+    const db1Results = await queryDatabase(
+      databases[3].connection,
+      `SELECT 종목명
+      FROM ${databases[3].name}.RAW_Data
+      ORDER BY 거래량 DESC
+      LIMIT 10`,
+      []
+    );
+    const db2Results = await queryDatabase(
+      databases[3].connection,
+      `SELECT 종목명
+      FROM ${databases[3].name}.RAW_Data
+      ORDER BY 종가 DESC
+      LIMIT 10`,
+      []
+    );
+    const db3Results = await queryDatabase(
+      databases[3].connection,
+      `SELECT 종목명
+      FROM ${databases[3].name}.RAW_Data
+      ORDER BY 시가총액 DESC
+      LIMIT 10`,
+      []
+    );
 
+     const responseData = {
+      jongga: db1Results,
+      trade: db2Results,
+      complete: db3Results,
+    };
+    
+    res.json(responseData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
