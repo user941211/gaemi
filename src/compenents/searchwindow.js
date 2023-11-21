@@ -32,6 +32,7 @@ function SearchWindow({ list }) {
         navigate("/main", {
           state: {
             results: data.results,
+            results2: data.results2,
             finance: data.finance,
             recommend: data.recommend,
             rim: data.rim,
