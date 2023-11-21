@@ -14,7 +14,7 @@ function Header(props) {
   const location = useLocation();
   let content;
 
-  if (location.pathname === '/main') {
+  if (location.pathname == '/main') {
     // 페이지 주소가 '/main' 일 때 <abc/> 컴포넌트를 렌더링
     content = (
       <Link to="/searchWindow">
@@ -42,7 +42,9 @@ function Header(props) {
           <Link to="/profile">
             <p>info </p>
           </Link>
-          {content}
+          <Link to="/searchWindow">
+            <p>검색</p>
+          </Link>
           {/* </div> */}
         </div>
       </div>
