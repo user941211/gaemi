@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import SearchModal from "../compenents/searchmodal";
-import { Link, useLocation } from "react-router-dom";
-import Searchbtn from "../compenents/searchbtn";
+import React from "react";
+import { Link, } from "react-router-dom";
 import "./css/Header.css";
 
 /*
@@ -10,25 +8,6 @@ import "./css/Header.css";
 */
 
 function Header(props) {
-  const [visible, setVisible] = useState(props.disabledQ);
-  const location = useLocation();
-  let content;
-
-  if (location.pathname === '/main') {
-    // 페이지 주소가 '/main' 일 때 <abc/> 컴포넌트를 렌더링
-    content = (
-      <Link to="/searchWindow">
-        <p>검색</p>
-      </Link>
-    );
-  } else {
-    // 다른 경우에는 'start' 링크를 표시
-    content = (
-      <Link to="/searchWindow">
-        <p>검색</p>
-      </Link>
-    );
-  }
   return (
     <div id="header">
       <div className="header_container">
@@ -42,7 +21,9 @@ function Header(props) {
           <Link to="/profile">
             <p>info </p>
           </Link>
-          {content}
+          <Link to="/searchWindow">
+            <p>검색</p>
+          </Link>
           {/* </div> */}
         </div>
       </div>
