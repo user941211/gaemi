@@ -1,10 +1,10 @@
 import React from "react";
 import ApexCharts from "react-apexcharts";
 
-function Chart({ chartData }) {
+function Chart({ chartData, chartData2 }) {
   return (
     <div>
-      <div>
+      <div style={{ width: "70%", display: "inline-block" }}>
         <ApexCharts
           options={{
             chart: {
@@ -29,6 +29,11 @@ function Chart({ chartData }) {
                     colors: "#3C90EB",
                   },
                 },
+                title: {
+                  style: {
+                    color: "#3C90EB",
+                  },
+                },
               },
             ],
             grid: {
@@ -48,7 +53,58 @@ function Chart({ chartData }) {
             },
           ]}
           type="candlestick"
-          width={"100%"}
+          height={300}
+        />
+      </div>
+      <div style={{ width: "30%", display: "inline-block" }}>
+        <ApexCharts
+          options={{
+            chart: {
+              type: "line",
+              height: 300,
+            },
+            xaxis: {
+              type: "datetime",
+              labels: {
+                show: true,
+                rotate: -45,
+              },
+              tickPlacement: "on",
+            },
+            yaxis: [
+              {
+                tooltip: {
+                  enabled: true,
+                },
+                labels: {
+                  style: {
+                    colors: "#FF9800",
+                  },
+                },
+                title: {
+                  style: {
+                    color: "#FF9800",
+                  },
+                },
+              },
+            ],
+            grid: {
+              padding: {
+                left: 30,
+                right: 30,
+              },
+            },
+          }}
+          series={[
+            {
+              name: "Line Chart",
+              data: chartData2.map((item) => ({
+                x: new Date(item.date),
+                y: item.predict_close,
+              })),
+            },
+          ]}
+          type="line"
           height={300}
         />
       </div>
@@ -78,7 +134,7 @@ function Chart({ chartData }) {
           }}
           series={[
             {
-              name: "volume",
+              name: "Volume",
               data: chartData.map((item) => ({
                 x: new Date(item.date).getTime(),
                 y: item.volume,
