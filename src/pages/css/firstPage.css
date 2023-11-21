@@ -25,7 +25,8 @@
   flex-direction: column;
   width: 95%;
   margin-left: 5%;
-  margin-top: 15%;
+  margin-top: 5%;
+  font-size: 90%;
 }
 #container #content_container p:first-child{
   font-size: 500%;

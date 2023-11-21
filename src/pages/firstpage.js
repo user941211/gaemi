@@ -1,26 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import "./css/firstPage.css";
+import axios from 'axios';
 
-/*
-  현재 구현이 안되어있는 기능: 장 오픈 여부 => <span></span>태그 안에 '장이 열린 여부' 글자 대신에
-  장이 열리는 시간에 맞추어 'Open' 이라는 글자 혹은 'Close'라는 문구 출력
-  그리고 firstpage의 배경이미지 같은 경우에는 현재 이대로 제출하면 저작권에 위배되서
-  오늘 내일[23.05.23~24중]으로 영남대학교를 아침, 점심, 저녁, 밤으로 나누어 사진을 직접 찍어서 교체할듯
-  모바일 부분의 배경도 포토샵을 대충이라도 배워서 바꿔보도록 하겠습니당...
-*/
 
 const Firstpage = () => {
+  const handleSearch = async () => {
+    const ipAddress = getLocalIPAddress();
+    const url = `http://${ipAddress}:3001/search`;
+
+    try {
+      const response = await axios.post(url, { name: inputValue });
+      const data = response?.data;
+      console.log(`data:${data}`);
+      if (data.message) {
+        alert(data.message); // 서버에서 전달한 메시지를 알림창으로 표시
+      } else {
+        navigate("/firstpage", {
+          state: {
+            jongga: data.jongga,
+            trade: data.trade,
+            complete: data.complete,
+          },
+        });
+        //onDataUpdate(data.results, data.finance, data.recommend, data.rim); // 부모 컴포넌트에 전달하는 코드
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("해당 정보가 없습니다.");
+    }
+  };
+
   return (
     <div id="container">
       <Header link="/Main" />
       <div id="content_container">
-        <p>Stair</p>
-        <p>Stock prediction program</p>
+        <p>Stair: stock prediction program</p>
+        <div className="container text-center">
+          <div className="row">
+            <div className="col">
+              <h2>종가</h2>
+              <ul>종가123</ul>
+              {/* <ul>{renderList(data.jongga)}</ul> */}
+            </div>
+            <div className="col">
+              <h2>거래량</h2>
+              <ul>거래량123</ul>
+              {/* <ul>{renderList(data.trade)}</ul> */}
+            </div>
+            <div className="col">
+              <h2>시가총액</h2>
+              <ul>시총123</ul>
+              {/* <ul>{renderList(data.complete)}</ul> */}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
+};
+
+// 받은 데이터를 리스트로 렌더링하는 함수
+const renderList = (items) => {
+  return items.map((item, index) => (
+    <li key={index}>{item.종목명}</li>
+  ));
 };
 
 export default Firstpage;
