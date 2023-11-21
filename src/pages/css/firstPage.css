@@ -12,6 +12,7 @@
   font: inherit;
   font-family: MaplestoryOTFBold, AlphaSans, sans-serif !important;
   text-decoration: none;
+  list-style-type:none;
 }
 
 #container{
