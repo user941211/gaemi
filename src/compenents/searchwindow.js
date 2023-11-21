@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../pages/css/SearchWindow.css"
 import Header from "../pages/Header";
+import { useLocation } from "react-router-dom";
 //{ onDataUpdate }
 function SearchWindow({ list }) {
+  const location = useLocation();
+  const initialSearchValue = location.state?.name || "";
   const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(initialSearchValue);
   const [searchResults, setSearchResults] = useState([]);
   const getLocalIPAddress = () => {
     const currentURL = window.location.href;

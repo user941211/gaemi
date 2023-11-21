@@ -11,7 +11,7 @@ const Firstpage = () => {
     trade: [],
     complete: [],
   });
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,6 @@ const Firstpage = () => {
       try {
         const response = await axios.post(url, {});
         const data = response?.data;
-        console.log(data.complete);
         setJusic(data);
       } catch (error) {
         console.error("Error:", error);
@@ -38,6 +37,22 @@ const Firstpage = () => {
 
     handleSearch();
   }, []); // 빈 의존성 배열을 사용하여 한 번만 실행
+
+  // 리스트 아이템 클릭 시 해당 주식 정보를 SearchWindow로 전달
+  const handleListItemClick = (item) => {
+    navigate("/searchwindow", {
+      state: { name: item.종목명 },
+    });
+  };
+
+  // 받은 데이터를 리스트로 렌더링하는 함수
+  const renderList = (items) => {
+    return items.map((item, index) => (
+      <li key={index} onClick={() => handleListItemClick(item)}>
+        {index + 1}. {item.종목명}
+      </li>
+    ));
+  };
 
   return (
     <div id="container">
@@ -63,15 +78,6 @@ const Firstpage = () => {
       </div>
     </div>
   );
-};
-
-// 받은 데이터를 리스트로 렌더링하는 함수
-const renderList = (items) => {
-  return items.map((item, index) => (
-    <li key={index}>
-      {index + 1}. {item.종목명}
-    </li>
-  ));
 };
 
 export default Firstpage;
