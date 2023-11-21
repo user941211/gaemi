@@ -164,8 +164,8 @@ app.post("/filterData", (req, res) => {
 
   // 동적으로 SQL 쿼리 생성
   let sqlQuery = `
-    SELECT 종목명, 시가총액, 거래량,BPS,PER,PBR,EPS
-    FROM ALL_DATA_저PBR_저PER
+    SELECT 종목명,종가,시가총액, 거래량,거래대금,BPS,PER,PBR,EPS
+    FROM RAW_Data
     WHERE 1 = 1
   `;
 
@@ -185,6 +185,9 @@ app.post("/filterData", (req, res) => {
         break;
       case "tradingVolume":
         translatedCategory = "거래량";
+        break;
+        case "transactionVolume":
+        translatedCategory = "거래대금";
         break;
       case "BPS":
         translatedCategory = "BPS";

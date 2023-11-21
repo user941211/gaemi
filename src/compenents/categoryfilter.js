@@ -656,13 +656,15 @@ function CategoryFilter() {
             response.data.length > 0 ? (
               <div>
                 
-                <table>
+                <table id="filtertable">
                   <thead>
                     <tr>
                       <th>순번</th>
                       <th>종목명</th>
                       {filterValues.marketCap.minValue && <th>시가총액</th>}
+                      {filterValues.stockPrice.minValue && <th>주가</th>}
                       {filterValues.tradingVolume.minValue && <th>거래량</th>}
+                      {filterValues.transactionVolume.minValue && <th>거래대금</th>}
                       {filterValues.bps.minValue && <th>BPS</th>}
                       {filterValues.per.minValue && <th>PER</th>}
                       {filterValues.pbr.minValue && <th>PBR</th>}
@@ -678,7 +680,13 @@ function CategoryFilter() {
                           {filterValues.marketCap.minValue && item.시가총액}
                         </td>
                         <td>
+                          {filterValues.stockPrice.minValue && item.종가}
+                        </td>
+                        <td>
                           {filterValues.tradingVolume.minValue && item.거래량}
+                        </td>
+                        <td>
+                        {filterValues.transactionVolume.minValue && item.거래대금}
                         </td>
                         <td>{filterValues.bps.minValue && item.BPS}</td>
                         <td>{filterValues.per.minValue && item.PER}</td>

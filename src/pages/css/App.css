@@ -378,3 +378,8 @@ hr {
 .filtergroup_container{
   padding-bottom: 5%;
 }
+
+.filtertable{
+  border-collapse: collapse;
+}
+
