@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../pages/css/SearchWindow.css"
@@ -11,6 +11,8 @@ function SearchWindow({ list }) {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState(initialSearchValue);
   const [searchResults, setSearchResults] = useState([]);
+
+  
   const getLocalIPAddress = () => {
     const currentURL = window.location.href;
     const domain = new URL(currentURL).hostname;
@@ -62,6 +64,7 @@ function SearchWindow({ list }) {
           <p>Stair</p>
         </div>
       <input
+        autoFocus
         type="search"
         className="searchSpace"
         placeholder="여섯자리 숫자코드 혹은 이름으로 입력하세요"
@@ -70,6 +73,7 @@ function SearchWindow({ list }) {
         onKeyDown={handleOnKeyPress}
       />
       </div>
+        
     </div>
   );
 }
