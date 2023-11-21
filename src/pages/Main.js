@@ -27,14 +27,16 @@ function Main() {
 
   const location = useLocation();
   const [chartData, setChartData] = useState(location.state?.results || []);
+  const [chartData2, setChartData2] = useState(location.state?.results2 || []);
   const [finance, setfinance] = useState(location.state?.finance || []);
   const [recommend, setrecommend] = useState(location.state?.recommend || []);
   const [rim, setrim] = useState(location.state?.rim || []);
 
   //console.log(state);
   
-  const handleDataUpdate = (results, finance, recommend, rim) => {
+  const handleDataUpdate = (results, results2, finance, recommend, rim) => {
     setChartData(results);
+    setChartData2(results2);
     setfinance(finance);
     setrecommend(recommend);
     setrim(rim);
@@ -48,7 +50,7 @@ function Main() {
         <div className="main_container">
           <div className="Left">
             <Price rim={rim} chartData={chartData} />
-            <Chart chartData={chartData} />
+            <Chart chartData={chartData} chartData2={chartData2} />
             <Recommendation recommend={recommend} />
             <Stock chartData={chartData} rim={rim} />
             <FinancialInfo
