@@ -20,6 +20,7 @@ const databases = [
   { name: "daily_buy_list", connection: null }, // DB 1
   { name: "stock_finance", connection: null }, // DB 2
   { name: "processed_stock_data", connection: null }, // DB 3
+  { name: "predict", connection: null }, // DB 6
 ];
 
 const connectToDatabases = async () => {
@@ -82,10 +83,18 @@ app.post("/search", async (req, res) => {
       // 땜빵 해둠
       `SELECT code, code_name, date, close, open, high, low, volume FROM ${jkValue} WHERE date >= DATE_SUB('2023-11-10', INTERVAL 10 MONTH)`
     );
-
+    const chartdata2 = await queryDatabase(
+      databases[4].connection,//predict db
+      `SELECT date, predict_close FROM ${jkValue} WHERE date >= DATE_SUB('2023-12-31', INTERVAL 2 MONTH)`
+    );
     if (chartdata.length === 0) {
       return res.json({
-        message: "table don't find 1, OR db is not up to date 3 months",
+        message: "table don't find 1, OR db is not up to date 10 months",
+      });
+    }
+    if (chartdata2.length === 0) {
+      return res.json({
+        message: "table2 don't find 1, OR db is not up to date 2 months",
       });
     }
     //console.log(chartdata);
@@ -122,6 +131,7 @@ app.post("/search", async (req, res) => {
 
     const responseData = {
       results: chartdata,
+      results2: chartdata2,
       finance: finance,
       recommend: recommend,
       rim: rim,
@@ -248,43 +258,5 @@ app.get('/api/companies', (req, res) => {
   });
 });
 
-app.post("/firstpage", async (req, res) => {
-  console.log("Received firstpage data");
-  try {
-    const db1Results = await queryDatabase(
-      databases[3].connection,
-      `SELECT 종목명
-      FROM ${databases[3].name}.RAW_Data
-      ORDER BY 거래량 DESC
-      LIMIT 10`,
-      []
-    );
-    const db2Results = await queryDatabase(
-      databases[3].connection,
-      `SELECT 종목명
-      FROM ${databases[3].name}.RAW_Data
-      ORDER BY 종가 DESC
-      LIMIT 10`,
-      []
-    );
-    const db3Results = await queryDatabase(
-      databases[3].connection,
-      `SELECT 종목명
-      FROM ${databases[3].name}.RAW_Data
-      ORDER BY 시가총액 DESC
-      LIMIT 10`,
-      []
-    );
 
-     const responseData = {
-      jongga: db1Results,
-      trade: db2Results,
-      complete: db3Results,
-    };
-    
-    res.json(responseData);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+
