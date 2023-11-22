@@ -76,6 +76,9 @@ const Firstpage = () => {
           </div>
         </div>
       </div>
+      <div>
+        
+      </div>
     </div>
   );
 };
