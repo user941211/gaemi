@@ -43,7 +43,7 @@ function Stock({ chartData, rim }) {
       <div className="themeLayout">
         <Theme />
       </div>
-      <table className="stockTable">
+      {/* <table className="stockTable">
         <tbody>
           <tr>
             <td>적정주가</td>
@@ -70,7 +70,7 @@ function Stock({ chartData, rim }) {
             ))}
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }
