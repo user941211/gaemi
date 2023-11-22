@@ -24,7 +24,9 @@ function Header(props) {
           <Link to="/searchWindow">
             <p>검색</p>
           </Link>
-          {/* </div> */}
+          <Link to="/Login">
+            <p>Login</p>
+          </Link>
         </div>
       </div>
     </div>
