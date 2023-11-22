@@ -58,7 +58,7 @@ const Firstpage = () => {
     <div id="container">
       <Header link="/Main" />
       <div id="content_container">
-        <p>Stair: stock prediction program</p>
+        <p>Stair<br/>stock prediction program</p><br/><br/>
         <div className="container text-center">
           <div className="row">
             <div className="col">
