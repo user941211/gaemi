@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import "./css/firstPage.css";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import First_1 from "./img/first_1.jpg";
+import First_2 from "./img/first_2.jpg";
+import First_3 from "./img/first_3.jpg";
+import First_4 from "./img/first_4.jpg";
+
 
 const Firstpage = () => {
   const [jusic, setJusic] = useState({
@@ -76,8 +81,11 @@ const Firstpage = () => {
           </div>
         </div>
       </div>
-      <div>
-        
+      <div id="img_container">
+        <img src={First_1} alt="1" />
+        <img src={First_2} alt="2" />
+        <img src={First_3} alt="3" />
+        <img src={First_4} alt="4" />
       </div>
     </div>
   );
