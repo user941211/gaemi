@@ -20,7 +20,7 @@ const databases = [
   { name: "daily_buy_list", connection: null }, // DB 1
   { name: "stock_finance", connection: null }, // DB 2
   { name: "processed_stock_data", connection: null }, // DB 3
-  { name: "predicted", connection: null }, // DB 6
+  { name: "predict", connection: null }, // DB 6
 ];
 
 const connectToDatabases = async () => {
