@@ -1,36 +1,81 @@
-import React from "react";
-import { Link, } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./css/Header.css";
+import axios from 'axios';
 
-/*
-    로고는 직접만들라고 했으나 창의력의 한계로 인해 어차피 영남대학교 졸업작품이니 영대로고를 png로 다운로드 받아서 배경만 지워서 사용했습니당
-    Header에 있는 'YUlogo' 혹은 'Omega Route'를 클릭시에는 firstpage로 이동이 된다.
-*/
+function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-function Header(props) {
-  return (
-    <div id="header">
-      <div className="header_container">
-        {/* <div className="logo"> */}
-        <p className="Logo">Stair</p>
-        {/* <Link to={props.link}> */}
-        <div className="link_container">
-          <Link to="/">
-            <p>Main </p>
-          </Link>
-          <Link to="/profile">
-            <p>info </p>
-          </Link>
-          <Link to="/searchWindow">
-            <p>검색</p>
-          </Link>
-          <Link to="/Login">
-            <p>Login</p>
-          </Link>
+  const getLocalIPAddress = () => {
+    const currentURL = window.location.href;
+    const domain = new URL(currentURL).hostname;
+    return domain || "localhost";
+};
+
+  
+    // Fetch the login status from the server when the component mounts
+    const checkLoginStatus = async () => {
+      const ipAddress = getLocalIPAddress();
+      const url = `http://${ipAddress}:3001/checkLogin`;
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+        setIsLoggedIn(data.isLoggedIn);
+      } catch (error) {
+        console.error("Error fetching login status:", error);
+      }
+    };
+    useEffect(() => {
+    checkLoginStatus();
+    },[]);
+
+    const handleLogout = async () => {
+      try {
+        // 서버 측에 로그아웃 요청 보내기
+        const ipAddress = getLocalIPAddress();
+        const logoutUrl = `http://${ipAddress}:3001/logout`;
+  
+        await axios.post(logoutUrl);
+  
+        // 클라이언트 측에서 로그아웃 상태로 변경
+        alert("로그아웃 되었습니다");
+        setIsLoggedIn(false);
+      } catch (error) {
+        console.error("Error logging out:", error);
+      }
+    };
+
+    return (
+      <div id="header">
+        <div className="header_container">
+          <p className="Logo">Stair</p>
+          <div className="link_container">
+            <Link to="/">
+              <p>Main </p>
+            </Link>
+            <Link to="/profile">
+              <p>info </p>
+            </Link>
+            <Link to="/searchWindow">
+              <p>검색</p>
+            </Link>
+  
+            {isLoggedIn ? (
+              <>
+                <Link to="/myPage">
+                  <p>My Page</p>
+                </Link>
+                <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <Link to="/Login">
+                <p>Login</p>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Header;

@@ -1,6 +1,10 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const bodyParser = require('body-parser');
+var router = express.Router();
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3001;
@@ -8,7 +12,17 @@ const port = 3001;
 require("dotenv").config();
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
+const sessions = {};
+let sId;
 const dbConfig = {
   host: process.env.REACT_APP_DB_HOST,
   user: process.env.REACT_APP_DB_USERNAME,
@@ -20,7 +34,8 @@ const databases = [
   { name: "daily_buy_list", connection: null }, // DB 1
   { name: "stock_finance", connection: null }, // DB 2
   { name: "processed_stock_data", connection: null }, // DB 3
-  { name: "predict", connection: null }, // DB 6
+  { name: "predict", connection: null }, // DB 4
+  { name: "user", connection: null }, // DB 5
 ];
 
 const connectToDatabases = async () => {
@@ -196,7 +211,7 @@ app.post("/filterData", (req, res) => {
       case "tradingVolume":
         translatedCategory = "거래량";
         break;
-        case "transactionVolume":
+      case "transactionVolume":
         translatedCategory = "거래대금";
         break;
       case "BPS":
@@ -259,7 +274,6 @@ app.get('/api/companies', (req, res) => {
 });
 
 app.post("/firstpage", async (req, res) => {
-  console.log("Received firstpage data");
   try {
     const db1Results = await queryDatabase(
       databases[3].connection,
@@ -286,12 +300,12 @@ app.post("/firstpage", async (req, res) => {
       []
     );
 
-     const responseData = {
+    const responseData = {
       jongga: db1Results,
       trade: db2Results,
       complete: db3Results,
     };
-    
+
     res.json(responseData);
   } catch (error) {
     console.error(error);
@@ -299,3 +313,189 @@ app.post("/firstpage", async (req, res) => {
   }
 });
 
+
+
+app.post("/Login", async (req, res) => {
+  const loginResult = await queryDatabase(
+    databases[5].connection,
+    `SELECT *
+    FROM ${databases[5].name}.userInfo
+    WHERE id=${req.body.id} AND password=${req.body.password}`,
+    []
+  );
+
+  const result = loginResult[0];
+
+  if (result) {
+    req.session.userId = result.userId;
+    sId = req.sessionID;
+    await req.session.save();
+    sessions[sId] = req.session;
+    res.json({ success: true, userId: result.userId, message: '로그인 성공' });
+  } else {
+    res.json({ success: false, message: '로그인 실패' });
+  }
+});
+
+
+app.get('/checkLogin', (req, res) => {
+
+  // 세션 데이터 읽기
+  const sessionData = sessions[sId];
+
+  if (sessionData && sessionData.userId) {
+    // 로그인 중인 경우
+    const userId = sessionData.userId;
+    res.json({ isLoggedIn: true, userId });
+  } else {
+    // 로그인하지 않은 경우
+    res.json({ isLoggedIn: false, message: '사용자 정보를 찾을 수 없습니다.' });
+  }
+});
+
+app.post("/logout", (req, res) => {
+  const sessionId = req.sessionID;
+
+  // 세션 제거
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      res.status(500).json({ success: false, message: "Error logging out" });
+    } else {
+      // 클라이언트로 세션 제거 완료 응답 보내기
+      res.json({ success: true, message: "Logout successful" });
+
+      // 서버 측에서도 세션 정보 삭제
+      delete sessions[sessionId];
+    }
+  });
+});
+
+app.post("/mypage", async (req, res) => {
+  const sessionData = sessions[sId];
+  if (sessionData && sessionData.userId) {
+    const Id = sessionData.userId;
+
+    try {
+      const mypageResult = await queryDatabase(
+        databases[5].connection,
+        `SELECT point, jusic, jusicPrice
+        FROM ${databases[5].name}.userInfo
+        WHERE userId=${Id}`,
+        []
+      );
+
+      // mypageResult에서 데이터를 읽어와 변수에 할당
+      const { point, jusic, jusicPrice } = mypageResult[0];
+      let nowPrice = null;
+
+      if (jusic) {
+        const nowpriceget = await queryDatabase(
+          databases[3].connection,
+          `SELECT 종가
+          FROM ${databases[3].name}.RAW_Data
+          WHERE 종목명='${jusic}'`,
+          []
+        );
+
+        // nowpriceget[0]가 객체인 경우 nowpriceget[0].종가를 추출
+        // 그렇지 않은 경우 null로 설정
+        nowPrice = nowpriceget[0]?.종가 || null;
+      }
+
+      res.json({ userId: Id, point, jusic, jusicPrice, nowPrice });
+    } catch (error) {
+      console.error("Error fetching mypage data:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  } else {
+    res.status(401).json({ error: "Unauthorized" });
+  }
+});
+
+
+app.post("/mypageClosing", async (req, res) => {
+  const { userId, updatedPoint } = req.body;
+
+  await queryDatabase(
+    databases[5].connection,
+    `UPDATE ${databases[5].name}.userInfo
+    SET point=${updatedPoint}
+    WHERE userId=${userId}`,
+    []
+  );
+
+  await queryDatabase(
+    databases[5].connection,
+    `UPDATE ${databases[5].name}.userInfo
+    SET jusic=NULL, jusicPrice=NULL
+    WHERE userId=${userId}`,
+    []
+  );
+
+  res.json({ success: true, message: "결산이 완료되었습니다." });
+});
+
+app.post("/startJusic", async (req, res) => {
+  const { textBoxValue, userId } = req.body;
+
+  const result = await queryDatabase(
+    databases[3].connection,  // 여기서는 [3]으로 수정
+    `SELECT 종가 
+    FROM ${databases[3].name}.RAW_Data
+    WHERE 종목명='${textBoxValue}'`,  // 여기서는 '종목명'으로 수정
+    []
+  );
+
+  if (result.length > 0) {  // result가 배열이므로 length로 확인
+    const price = result[0]?.종가 || null;
+    await queryDatabase(
+      databases[5].connection,
+      `UPDATE ${databases[5].name}.userInfo
+      SET jusic='${textBoxValue}', jusicPrice=${price}
+      WHERE userId=${userId}`,
+      []
+    );
+
+    res.json({ success: true, message: "모의투자가 시작되었습니다." });
+  } else {
+    res.json({ success: false, message: "주식 명을 확인해주세요" });
+  }
+});
+
+app.post("/checkDuplicate", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    // 입력받은 아이디로 중복 확인 쿼리 수행
+    const checkDuplicateResult = await queryDatabase(
+      databases[5].connection,
+      `SELECT * FROM ${databases[5].name}.userInfo WHERE id='${id}'`
+    );
+
+    const isDuplicate = checkDuplicateResult.length > 0;
+
+    // 중복 여부를 JSON 형태로 응답
+    res.json({ isDuplicate });
+  } catch (error) {
+    console.error("Error checking duplicate:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { id, password } = req.body;
+      await queryDatabase(
+        databases[5].connection,
+        `INSERT INTO ${databases[5].name}.userInfo (id, password)
+         VALUES ('${id}', '${password}')`,
+        []
+      );
+      res.json({ success: true, message: '회원가입이 완료되었습니다.' });
+    
+  } catch (error) {
+    console.error("Error during signup:", error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
