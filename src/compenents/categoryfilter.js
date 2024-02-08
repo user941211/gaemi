@@ -168,7 +168,7 @@ function CategoryFilter() {
         filterValues
       );
       console.log("Data saved successfully:", response.data);
-      console.log("response는 뭐지?", response);
+      console.log("response의 값?", response);
       setResultData(response);
     } catch (error) {
       console.error("Error saving data:", error);
